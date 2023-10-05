@@ -1,6 +1,6 @@
 ---
-title: "Replication of Study X by Sample & Sample (20xx, Psychological Science)"
-author: "Replication Author[s] (contact information)"
+title: "Replication of Study X by Sample & Sample (2022, Journal of Experimental Psychology)"
+author: "Emily Chen (emchen15@stanford.edu)"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 format:
   html:
