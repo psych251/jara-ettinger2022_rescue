@@ -1,5 +1,5 @@
 ---
-title: "Replication of Study X by Sample & Sample (2022, Journal of Experimental Psychology)"
+title: "Replication of *The Origins of the Shape Bias: Evidence From the Tsimane'* by Jara-Ettinger et al. (2022, Journal of Experimental Psychology: General)"
 author: "Emily Chen (emchen15@stanford.edu)"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 format:
@@ -10,10 +10,16 @@ format:
 
 <!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
 
+
 ## Introduction
 
-[No abstract is needed.]  Each replication project will have a straightforward, no frills report of the study and results.  These reports will be publicly available as supplementary material for the aggregate report(s) of the project as a whole.  Also, to maximize project integrity, the intro and methods will be written and critiqued in advance of data collection.  Introductions can be just 1-2 paragraphs clarifying the main idea of the original study, the target finding for replication, and any other essential information.  It will NOT have a literature review -- that is in the original publication. You can write both the introduction and the methods in past tense.  
+I chose to try and rescue the replication of this experiment because I am interested in the intersection of language and spatial/object reasoning. As a developmental cognitive scientist, I also found the comparison of adults and children to be an important element relevant to my research interests. Finally, the cross-cultural comparisons made in this paper are something that I'd like to explore further in my own research, outside of the context of this project. 
 
+The stimuli that will be required to collect additional data for this experiment are available in the repository of the original replication project. The original replication collected data online from 144 U.S. adults, following the paradigm of Experiment 5 in the paper. It won't be possible to collect additional data from Tsimane' adults, so a replication of Experiments 6 and 7 cannot be performed. The new replication attempt will feature attention checks and a more detailed questionnaire about the subject's early geographic environment (e.g., urban versus rural, highly industrialized versus less industrialized), given the theoretical claims in the paper about the importance of early environmental factors on the strength of the shape bias in children. 
+
+In the original paper, the only experiment (out of 7) where the data were collected online was Experiment 5. To test if the replication of the original paper partially depends on the setting of data collection, I also plan to collect data to replicate Experiment 1 in the original paper, where data were originally collected in person with U.S. children. One hypothesis for why the setting might matter is that subjects' interpretation of the physical properties of the exemplar may differ based on whether the exemplar is presented as a physical object or online. Thus, I plan to collect data asynchronously online with 30 children ages 3-9 years old using Lookit, following the same procedures for Experiment 1 in the original paper. Like with the adult studies, it won't be possible to collect additional data from Tsimane' children, so a replication of Experiments 2, 3, and 4 cannot be performed. 
+
+Click [here](https://github.com/psych251/jara-ettinger2022_rescue) for this rescue project's Github repository. The PDF of the original paper can be found [here](https://github.com/psych251/jara-ettinger2022_rescue/blob/main/original_paper/Jara-Ettinger%20et%20al.%202022%20-%20The%20origins%20of%20the%20shape%20bias%20-%20Evidence%20from%20the%20Tsimane'.pdf). 
 
 ## Summary of prior replication attempt
 
