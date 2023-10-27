@@ -23,11 +23,22 @@ Click [here](https://github.com/psych251/jara-ettinger2022_rescue) for this resc
 
 ## Summary of prior replication attempt
 
-Based on the prior write-up, describe any differences between the original and 1st replication in terms of methods, sample, sample size, and analysis. Note any potential problems such as exclusion rates, noisy data, or issues with analysis. 
+The prior replication attempt tried to replicate only Experiment 5 from the original paper (the original paper had seven total experiments), which tested U.S. adults online using Amazon's Mechanical Turk. While the replication attempt does not specify how they collected the data, I assume that they collected the data using Prolific instead of MTurk. 
+
+The biggest difference between the original study and the first replication is that the original authors used different stimuli from the first replication author. The stimuli in the original paper used the images shown in Table 1, but the first replication used the images shown in Figure 1. The replication author contacted the first author of the study for the original image files, but they were lost, so the replication author used screenshots of the shapes taken from the figures in the paper. 
+
+The demographics of the sample were the same for both the original study (specified as U.S. adults on MTurk) and the first replication (specified as English-speaking adults from the U.S.). The original study had a sample size of N=144 U.S. adults, and the first replication had a sample size of N=142 U.S. adults, with a planned sample of N=144, but two participants did not complete the study and the replication author did not collect two additional data points. 
+
+There are two main analyses: 
+
+1. Calculating the percentage of participants who chose the object based on **shape** congruency with the exemplar, the percentage of participants who chose the object based on **material** congruency with the exemplar, and the percentage of participants who chose the object based on **color** congruency with the exemplar. Both the original study and the first replication did this analysis the same way. 
+2. Running a logistic mixed-effects model that predicted the participant’s preference for the shape-match object. In the original study, the authors used a baseline probability of 33.3% with the population (U.S. participants) and the age group (adults) dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment number, random intercepts for the exemplar object, random slopes for population as a function of exemplar, and random slopes for age group as a function of exemplar. In the first replication, the author used a random effects model, _which I believe is the same type of model as the original paper_, with exemplar type as random intercepts, which tested for a participant's preference for shape as a function of the exemplar object. 
 
 ## Methods
 
 ### Power Analysis
+
+TO BE DETERMINED. 
 
 Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size.  Considerations of feasibility for selecting planned sample size.
 
@@ -37,30 +48,37 @@ How much power does your planned sample have for original effect? For an attenua
 
 ### Planned Sample
 
-Planned sample size and/or termination rule, sampling frame, known demographics if any, preselection rules if any.
+The sample size for Experiment 5 will be N=144 U.S. adults, recruited on Prolific. I will stop the study when I reach 144 participants who complete the task. I will also collect the following demographic information from the adult participants: 
+
+* All relevant zip codes of where they lived between ages 3 and 9 (to follow the age range for the children tested for the studies in the original paper). Alternatively, if this information is not allowed to be collected due to privacy reasons, I will instead ask them to indicate the level of industrialization of their home location (on a 7-point Likert scale) during that age. 
+* The extent to which their home location was urban or rural between ages 3 and 9, as assessed using a 7-point Likert scale. 
+* The first language learned (and subsequent languages learned). 
 
 ### Materials
 
-All materials - can quote directly from original article - just put the text in quotations and note that this was followed precisely.  Or, quote directly and just point out exceptions to what was described in the original article.
+"Stimuli consisted of solid objects that varied in shape, color, and material...Each experiment consisted of three example objects and three extension objects. Each participant saw only one example object (counterbalanced across participants) and all extension objects...Experiment 5 which used photographs of the objects because it was conducted online." 
 
 ### Procedure	
 
-Can quote directly from original article - just put the text in quotations and note that this was followed precisely.  Or, quote directly and just point out exceptions to what was described in the original article.
+Experiment 5 was a "one-shot learning trial and each participant completed one trial only. Although each trial only required one label, we used three different possible labels, randomized across participants. In the experiments with U.S. participants, the example object was called a _koba_, _dax_, or _fep_...Participants saw a single screen where the top said “This is a(n) x” along with a picture of the object. Below, the text read “One of these is also a(n) x” along with three pictures of the three possible extension choices. The text below read “Which one is the other x?” Participants were allowed to select one of the three objects." 
 
 ### Controls
 
-What attention checks, positive or negative controls, or other quality control measures are you adding so that a (positive or negative) result will be more interpretable?
-
+"To ensure that participants were attending to the task, we also asked participants what each object shared in common with the original object. These questions were only included to motivate participants to look at the images carefully." **In the original study, answers to these questions were not used as exclusion criteria, but in this study, I will exclude participants who have more than one incorrect answer.**  
 
 ### Analysis Plan
 
-Can also quote directly, though it is less often spelled out effectively for an analysis strategy section.  The key is to report an analysis strategy that is as close to the original - data cleaning rules, data exclusion rules, covariates, etc. - as possible.  
+Participants will be excluded if they did not answer the main question of interest (the shape bias question) and if they answer incorrectly more than once to how the extension object choices relate to the exemplar object. Data will be downloaded from Prolific and scrubbed of all identifying information (e.g., IP addresses). I will conduct two analyses: 
 
-**Clarify key analysis of interest here**  You can also pre-specify additional analyses you plan to do.
+1. Calculate the percentage of participants who chose the object based on **shape** congruency with the exemplar, the percentage of participants who chose the object based on **material** congruency with the exemplar, and the percentage of participants who chose the object based on **color** congruency with the exemplar.
+2. Run a logistic mixed-effects model that predicts the participant’s preference for the shape-match object. In the original study, the authors used a baseline probability of 33.3% with the population (U.S. participants) and the age group (adults) dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment number, random intercepts for the exemplar object, random slopes for population as a function of exemplar, and random slopes for age group as a function of exemplar.
+
+**Clarify key analysis of interest:**  
+I am primarily interested in replicating the two analyses listed above, which are identical to the original paper. However, I also plan to do a secondary analysis, which looks at the effect of early environment and first language on the strength of the shape bias. This secondary analysis may require me to collect more data than the originally planned N=144 U.S. adult sample in order to have a balanced number of participants in the following groups: industrialized/non-industrialized, urban/rural, and English as a first language/non-English as a first language. 
 
 ### Differences from Original Study and 1st replication
 
-Explicitly describe known differences in sample, setting, procedure, and analysis plan from original study.  The goal, of course, is to minimize those differences, but differences will inevitably occur.  Also, note whether such differences are anticipated to make a difference based on claims in the original article or subsequent published research on the conditions for obtaining the effect.
+The only known major difference between this plan and the first replication is that the stimuli will be images of the physical objects as opposed to artistic renderings of the objects. The main difference between this plan and the original study is that I plan to collect more demographic information from the participants for additional analyses not conducted in the original study. I also plan to exclude participants who answer incorrectly more than once to the question asking them to indicate what each object has in common with the exemplar object. 
 
 ### Methods Addendum (Post Data Collection)
 
@@ -75,36 +93,43 @@ You can comment this section out prior to final report with data collection.
 
 ## Results
 
-
 ### Data preparation
 
 Data preparation following the analysis plan.
 	
-```{r include=F}
+```{r}
 ### Data Preparation
 
 #### Load Relevant Libraries and Functions
+library (tidyr)
+library (ggplot2)
 
 #### Import data
+#Read in the CSV file, which has been scrubbed of the columns containing identifiable participant information.
 
 #### Data exclusion / filtering
+#Remove columns that are unnecessary for the main findings. Remove rows that have NA in the shape choice column (i.e., the participant did not respond to the main question of interest). Exclude rows with more than one incorrect answer to the attention check.  
 
 #### Prepare data for analysis - create columns etc.
+#Factor the columns to make the numerical answer values meaningful.   
 ```
 
 ### Results of control measures
 
-How did people perform on any quality control checks or positive and negative controls? 
+I examined the answers to the attention check question "what does each object share in common with the original object?" to verify that participants understood the task and were paying attention. I excluded participants who answered these questions incorrectly more than once. 
 
 ### Confirmatory analysis
 
-The analyses as specified in the analysis plan.  
+I conducted two main analyses: 
+
+1. I calculated the percentage of participants who chose the object based on **shape** congruency with the exemplar, the percentage of participants who chose the object based on **material** congruency with the exemplar, and the percentage of participants who chose the object based on **color** congruency with the exemplar. XX% of participants chose the object based on **shape** congruency with the exemplar, XX% of participants chose the object based on **material** congruency with the exemplar, and XX% of participants chose the object based on **color** congruency with the exemplar. The results did/did not replicate with the original study. 
+2. I ran a logistic mixed-effects model that predicts the participant’s preference for the shape-match object. In the original study, the authors used a baseline probability of 33.3% with the population (U.S. participants) and the age group (adults) dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment number, random intercepts for the exemplar object, random slopes for population as a function of exemplar, and random slopes for age group as a function of exemplar. This model found that U.S. adults were [] to generalize the label of a novel object by shape ($\beta = X.XX$, $p < X.XX$). 
 
 *Three-panel graph with original, 1st replication, and your replication is ideal here*
 
 ### Exploratory analyses
 
-Any follow-up analyses desired (not required).  
+I conducted an exploratory analysis to see if the nature of adult participants' early childhood environment affected the strength of their shape bias. I also conducted an exploratory analysis to check if their first language affected the strength of their shape bias.  
 
 ## Discussion
 
