@@ -10,136 +10,452 @@ format:
 
 <!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
 
-
 ## Introduction
 
-I chose to try and rescue the replication of this experiment because I am interested in the intersection of language and spatial/object reasoning. As a developmental cognitive scientist, I also found the comparison of adults and children to be an important element relevant to my research interests. Finally, the cross-cultural comparisons made in this paper are something that I'd like to explore further in my own research, outside of the context of this project. 
+I chose to try and rescue the replication of this experiment because I am interested in the intersection of language and spatial/object reasoning. As a developmental cognitive scientist, I also found the comparison of adults and children to be an important element relevant to my research interests. Finally, the cross-cultural comparisons made in this paper are something that I'd like to explore further in my own research, outside of the context of this project.
 
-The stimuli that will be required to collect additional data for this experiment are available in the repository of the original replication project. The original replication collected data online from 144 U.S. adults, following the paradigm of Experiment 5 in the paper. It won't be possible to collect additional data from Tsimane' adults, so a replication of Experiments 6 and 7 cannot be performed. The new replication attempt will feature attention checks and a more detailed questionnaire about the subject's early geographic environment (e.g., urban versus rural, highly industrialized versus less industrialized), given the theoretical claims in the paper about the importance of early environmental factors on the strength of the shape bias in children. 
+The stimuli that will be required to collect additional data for this experiment are available in the repository of the original replication project. The original replication collected data online from 144 U.S. adults, following the paradigm of Experiment 5 in the paper. It won't be possible to collect additional data from Tsimane' adults, so a replication of Experiments 6 and 7 cannot be performed. The new replication attempt will feature attention checks and a more detailed questionnaire about the subject's early geographic environment (e.g., urban versus rural, highly industrialized versus less industrialized), given the theoretical claims in the paper about the importance of early environmental factors on the strength of the shape bias in children.
 
-In the original paper, the only experiment (out of 7) where the data were collected online was Experiment 5. To test if the replication of the original paper partially depends on the setting of data collection, I also plan to collect data to replicate Experiment 1 in the original paper, where data were originally collected in person with U.S. children. One hypothesis for why the setting might matter is that subjects' interpretation of the physical properties of the exemplar may differ based on whether the exemplar is presented as a physical object or online. Thus, I plan to collect data asynchronously online with 30 children ages 3-9 years old using Lookit, following the same procedures for Experiment 1 in the original paper. Like with the adult studies, it won't be possible to collect additional data from Tsimane' children, so a replication of Experiments 2, 3, and 4 cannot be performed. 
+In the original paper, the only experiment (out of 7) where the data were collected online was Experiment 5. To test if the replication of the original paper partially depends on the setting of data collection, I also plan to collect data to replicate Experiment 1 in the original paper, where data were originally collected in person with U.S. children. One hypothesis for why the setting might matter is that subjects' interpretation of the physical properties of the exemplar may differ based on whether the exemplar is presented as a physical object or online. Thus, I plan to collect data asynchronously online with 30 children ages 3-9 years old using Lookit, following the same procedures for Experiment 1 in the original paper. Like with the adult studies, it won't be possible to collect additional data from Tsimane' children, so a replication of Experiments 2, 3, and 4 cannot be performed.
 
-Click [here](https://github.com/psych251/jara-ettinger2022_rescue) for this rescue project's Github repository. The PDF of the original paper can be found [here](https://github.com/psych251/jara-ettinger2022_rescue/blob/dc24145deab4f76cf7bd405c77feb28e07fda9af/original_paper/Jara-Ettinger%20et%20al.%202022%20-%20The%20origins%20of%20the%20shape%20bias%20-%20Evidence%20from%20the%20Tsimane'.pdf). 
+Click [here](https://github.com/psych251/jara-ettinger2022_rescue) for this rescue project's Github repository. The PDF of the original paper can be found [here](https://github.com/psych251/jara-ettinger2022_rescue/blob/dc24145deab4f76cf7bd405c77feb28e07fda9af/original_paper/Jara-Ettinger%20et%20al.%202022%20-%20The%20origins%20of%20the%20shape%20bias%20-%20Evidence%20from%20the%20Tsimane'.pdf).
 
 ## Summary of prior replication attempt
 
-The prior replication attempt tried to replicate only Experiment 5 from the original paper (the original paper had seven total experiments), which tested U.S. adults online using Amazon's Mechanical Turk. While the replication attempt does not specify how they collected the data, I assume that they collected the data using Prolific instead of MTurk. 
+The prior replication attempt tried to replicate only Experiment 5 from the original paper (the original paper had seven total experiments), which tested U.S. adults online using Amazon's Mechanical Turk. While the replication attempt does not specify how they collected the data, I assume that they collected the data using Prolific instead of MTurk.
 
-The biggest difference between the original study and the first replication is that the original authors used different stimuli from the first replication author. The stimuli in the original paper used the images shown in Table 1, but the first replication used the images shown in Figure 1. The replication author contacted the first author of the study for the original image files, but they were lost, so the replication author used screenshots of the shapes taken from the figures in the paper. 
+The biggest difference between the original study and the first replication is that the original authors used different stimuli from the first replication author. The stimuli in the original paper used the images shown in Table 1, but the first replication used the images shown in Figure 1. The replication author contacted the first author of the study for the original image files, but they were lost, so the replication author used screenshots of the shapes taken from the figures in the paper.
 
-The demographics of the sample were the same for both the original study (specified as U.S. adults on MTurk) and the first replication (specified as English-speaking adults from the U.S.). The original study had a sample size of N=144 U.S. adults, and the first replication had a sample size of N=142 U.S. adults, with a planned sample of N=144, but two participants did not complete the study and the replication author did not collect two additional data points. 
+The demographics of the sample were the same for both the original study (specified as U.S. adults on MTurk) and the first replication (specified as English-speaking adults from the U.S.). The original study had a sample size of N=144 U.S. adults, and the first replication had a sample size of N=142 U.S. adults, with a planned sample of N=144, but two participants did not complete the study and the replication author did not collect two additional data points.
 
-There are two main analyses: 
+There are two main analyses:
 
-1. Calculating the percentage of participants who chose the object based on **shape** congruency with the exemplar, the percentage of participants who chose the object based on **material** congruency with the exemplar, and the percentage of participants who chose the object based on **color** congruency with the exemplar. Both the original study and the first replication did this analysis the same way. 
-2. Running a logistic mixed-effects model that predicted the participant’s preference for the shape-match object. In the original study, the authors used a baseline probability of 33.3% with the population (U.S. participants) and the age group (adults) dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment number, random intercepts for the exemplar object, random slopes for population as a function of exemplar, and random slopes for age group as a function of exemplar. In the first replication, the author used a random effects model, _which I believe is the same type of model as the original paper_, with exemplar type as random intercepts, which tested for a participant's preference for shape as a function of the exemplar object. 
+1.  Calculating the percentage of participants who chose the object based on **shape** congruency with the exemplar, the percentage of participants who chose the object based on **material** congruency with the exemplar, and the percentage of participants who chose the object based on **color** congruency with the exemplar. Both the original study and the first replication did this analysis the same way.
+2.  Running a logistic mixed-effects model that predicted the participant's preference for the shape-match object. In the original study, the authors used a baseline probability of 33.3% with the population (U.S. participants) and the age group (adults) dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment number, random intercepts for the exemplar object, random slopes for population as a function of exemplar, and random slopes for age group as a function of exemplar. In the first replication, the author used a random effects model, *which I believe is the same type of model as the original paper*, with exemplar type as random intercepts, which tested for a participant's preference for shape as a function of the exemplar object.
 
 ## Methods
 
 ### Power Analysis
 
-TO BE DETERMINED. 
+```{r Power Analysis}
+#library(simr)
+```
 
-Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size.  Considerations of feasibility for selecting planned sample size.
+TO BE DETERMINED.
 
-How much power does your planned sample have for original effect? For an attenuated effect that is half the size of the original? 
+I used the `simr` package to conduct a power analysis for a linear mixed effects model.
+
+Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size. Considerations of feasibility for selecting planned sample size.
+
+How much power does your planned sample have for original effect? For an attenuated effect that is half the size of the original?
 
 (If power analysis is not possible or precise, discuss more fully how you determined a sample size that would be sufficient for rescue.)
 
 ### Planned Sample
 
-The sample size for Experiment 5 will be N=144 U.S. adults, recruited on Prolific. I will stop the study when I reach 144 participants who complete the task. I will also collect the following demographic information from the adult participants: 
+The sample size for Experiment 5 will be N=144 U.S. adults, recruited on Prolific. I will stop the study when I reach 144 participants who complete the task. I will also collect the following demographic information from the adult participants:
 
-* All relevant zip codes of where they lived between ages 3 and 9 (to follow the age range for the children tested for the studies in the original paper). Alternatively, if this information is not allowed to be collected due to privacy reasons, I will instead ask them to indicate the level of industrialization of their home location (on a 7-point Likert scale) during that age. 
-* The extent to which their home location was urban or rural between ages 3 and 9, as assessed using a 7-point Likert scale. 
-* The first language learned (and subsequent languages learned). 
+-   All relevant zip codes of where they lived between ages 3 and 9 (to follow the age range for the children tested for the studies in the original paper). Alternatively, if this information is not allowed to be collected due to privacy reasons, I will instead ask them to indicate the level of industrialization of their home location (on a 7-point Likert scale) during that age.
+-   The extent to which their home location was urban or rural between ages 3 and 9, as assessed using a 7-point Likert scale.
+-   The first language learned (and subsequent languages learned).
 
 ### Materials
 
-"Stimuli consisted of solid objects that varied in shape, color, and material...Each experiment consisted of three example objects and three extension objects. Each participant saw only one example object (counterbalanced across participants) and all extension objects...Experiment 5 which used photographs of the objects because it was conducted online." 
+"Stimuli consisted of solid objects that varied in shape, color, and material...Each experiment consisted of three example objects and three extension objects. Each participant saw only one example object (counterbalanced across participants) and all extension objects...Experiment 5 which used photographs of the objects because it was conducted online."
 
-### Procedure	
+### Procedure
 
-Experiment 5 was a "one-shot learning trial and each participant completed one trial only. Although each trial only required one label, we used three different possible labels, randomized across participants. In the experiments with U.S. participants, the example object was called a _koba_, _dax_, or _fep_...Participants saw a single screen where the top said “This is a(n) x” along with a picture of the object. Below, the text read “One of these is also a(n) x” along with three pictures of the three possible extension choices. The text below read “Which one is the other x?” Participants were allowed to select one of the three objects." 
+Experiment 5 was a "one-shot learning trial and each participant completed one trial only. Although each trial only required one label, we used three different possible labels, randomized across participants. In the experiments with U.S. participants, the example object was called a *koba*, *dax*, or *fep*...Participants saw a single screen where the top said "This is a(n) x" along with a picture of the object. Below, the text read "One of these is also a(n) x" along with three pictures of the three possible extension choices. The text below read "Which one is the other x?" Participants were allowed to select one of the three objects."
 
 ### Controls
 
-"To ensure that participants were attending to the task, we also asked participants what each object shared in common with the original object. These questions were only included to motivate participants to look at the images carefully." **In the original study, answers to these questions were not used as exclusion criteria, but in this study, I will exclude participants who have more than one incorrect answer.**  
+"To ensure that participants were attending to the task, we also asked participants what each object shared in common with the original object. These questions were only included to motivate participants to look at the images carefully." **In the original study, answers to these questions were not used as exclusion criteria, but in this study, I will exclude participants who have more than one incorrect answer.**
 
 ### Analysis Plan
 
-Participants will be excluded if they did not answer the main question of interest (the shape bias question) and if they answer incorrectly more than once to how the extension object choices relate to the exemplar object. Data will be downloaded from Prolific and scrubbed of all identifying information (e.g., IP addresses). I will conduct two analyses: 
+Participants will be excluded if they did not answer the main question of interest (the shape bias question) and if they answer incorrectly more than once to how the extension object choices relate to the exemplar object. Data will be downloaded from Prolific and scrubbed of all identifying information (e.g., IP addresses). I will conduct two analyses:
 
-1. Calculate the percentage of participants who chose the object based on **shape** congruency with the exemplar, the percentage of participants who chose the object based on **material** congruency with the exemplar, and the percentage of participants who chose the object based on **color** congruency with the exemplar.
-2. Run a logistic mixed-effects model that predicts the participant’s preference for the shape-match object. In the original study, the authors used a baseline probability of 33.3% with the population (U.S. participants) and the age group (adults) dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment number, random intercepts for the exemplar object, random slopes for population as a function of exemplar, and random slopes for age group as a function of exemplar.
+1.  Calculate the percentage of participants who chose the object based on **shape** congruency with the exemplar, the percentage of participants who chose the object based on **material** congruency with the exemplar, and the percentage of participants who chose the object based on **color** congruency with the exemplar.
+2.  Run a logistic mixed-effects model that predicts the participant's preference for the shape-match object. In the original study, the authors used a baseline probability of 33.3% with the population (U.S. participants) and the age group (adults) dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment number, random intercepts for the exemplar object, random slopes for population as a function of exemplar, and random slopes for age group as a function of exemplar.
 
-**Clarify key analysis of interest:**  
-I am primarily interested in replicating the two analyses listed above, which are identical to the original paper. However, I also plan to do a secondary analysis, which looks at the effect of early environment and first language on the strength of the shape bias. This secondary analysis may require me to collect more data than the originally planned N=144 U.S. adult sample in order to have a balanced number of participants in the following groups: industrialized/non-industrialized, urban/rural, and English as a first language/non-English as a first language. 
+**Clarify key analysis of interest:**\
+I am primarily interested in replicating the two analyses listed above, which are identical to the original paper. However, I also plan to do a secondary analysis, which looks at the effect of early environment and first language on the strength of the shape bias. This secondary analysis may require me to collect more data than the originally planned N=144 U.S. adult sample in order to have a balanced number of participants in the following groups: industrialized/non-industrialized, urban/rural, and English as a first language/non-English as a first language.
 
 ### Differences from Original Study and 1st replication
 
-The only known major difference between this plan and the first replication is that the stimuli will be images of the physical objects as opposed to artistic renderings of the objects. The main difference between this plan and the original study is that I plan to collect more demographic information from the participants for additional analyses not conducted in the original study. I also plan to exclude participants who answer incorrectly more than once to the question asking them to indicate what each object has in common with the exemplar object. 
+The only known major difference between this plan and the first replication is that the stimuli will be images of the physical objects as opposed to artistic renderings of the objects. The main difference between this plan and the original study is that I plan to collect more demographic information from the participants for additional analyses not conducted in the original study. I also plan to exclude participants who answer incorrectly more than once to the question asking them to indicate what each object has in common with the exemplar object.
 
 ### Methods Addendum (Post Data Collection)
 
 You can comment this section out prior to final report with data collection.
 
 #### Actual Sample
-  Sample size, demographics, data exclusions based on rules spelled out in analysis plan
+
+Sample size, demographics, data exclusions based on rules spelled out in analysis plan
 
 #### Differences from pre-data collection methods plan
-  Any differences from what was described as the original plan, or “none”.
 
+Any differences from what was described as the original plan, or "none".
 
 ## Results
 
 ### Data preparation
 
-Data preparation following the analysis plan.
-	
-```{r}
-### Data Preparation
+This section contains the code necessary to prepare the data for analysis.
 
-#### Load Relevant Libraries and Functions
-library (tidyr)
+```{r Data Importing}
+#Load relevant libraries and functions. 
+suppressMessages(library (tidyverse))
+suppressMessages(library (dplyr))
 library (ggplot2)
 
-#### Import data
-#Read in the CSV file, which has been scrubbed of the columns containing identifiable participant information.
+#TODO: update this file name. 
+data_file <- 'PilotA_11-16-2023.csv'
 
-#### Data exclusion / filtering
-#Remove columns that are unnecessary for the main findings. Remove rows that have NA in the shape choice column (i.e., the participant did not respond to the main question of interest). Exclude rows with more than one incorrect answer to the attention check.  
+#Read in the CSV file.
+data_path <- file.path(getwd(), '..', 'data', data_file)
+data <- read.csv(data_path)
+```
 
-#### Prepare data for analysis - create columns etc.
-#Factor the columns to make the numerical answer values meaningful.   
+Check a few things about the cleaned data. For example, there should be an equal spread of subjects per condition before data cleaning. Also make sure that all of the images for the subjects loaded successfully (they should, or they would not have been able to complete the study).
+
+```{r Data Checking}
+#Check that there are enough subjects per condition.
+data_checks <- data |> 
+  group_by(run_id) |> #Group all trials (multiple rows per subject).
+  summarize(numSubjectsPerCondition = n_distinct(condition)) #TODO: Check that this works when there are multiple subjects per condition.
+
+print(paste("There are an equal number of subjects per condition:", length(unique(data_checks$numSubjectsPerCondition)) == 1)) #If true, then there are an equal number of subjects per condition.
+
+#Check that all of the images for each subject loaded successfully.
+suppressMessages(library(stringr))
+print(paste("Images loaded successfully for all subjects:", sum(str_detect(data$success, 'false')) == 0)) #If true, then all images loaded successfully for all subjects.
+```
+
+Now clean the data. We're first going to remove columns that are unnecessary for the main confirmatory analyses and filter out subjects not relevant to the full sample (i.e., pilot subjects) and who used phones to complete the study. Then we need to parse the demographic responses into columns.
+
+```{r Data Cleaning}
+#Select only relevant columns and rename them. 
+data_main_analyses <- data |> 
+  select(c('rt', 'trial_type', 'run_id', 'condition', 'recorded_at', 'device', 'success', 'stimulus', 'response', starts_with('exemplar'), starts_with('extension'))) |> 
+  rename(reactionTime = rt, trialType = trial_type, subjectID = run_id, recordedAt = recorded_at, imageLoadSuccess = success) |> #Rename columns to match naming conventions. 
+  filter(subjectID > 6) |> #Remove subjects before particular dates (i.e., pilot subjects). 
+  filter(device != 'iPhone') |>  #Remove subjects who used phones.
+  select(c(-'device', -'recordedAt')) #Remove columns that aren't necessary anymore. 
+
+#TODO: Remove any subjects that did not have images load successfully. 
+
+#Put demographic responses (currently in the 'response' column) into their own columns. 
+for (row_index in 1:nrow(data_main_analyses)) {
+  
+  participant_response <- data_main_analyses[row_index, 'response'] #Create a variable for the response in the current row
+  stimulus <- data_main_analyses[row_index, 'stimulus'] #Create a variable for the stimulus in the current row
+  
+  #Check that the 'response' is not an empty string.
+  if(nzchar(participant_response)) { 
+    
+    #Check if it's a survey response (has {} in the string) and update.
+    if (grepl("{", participant_response, fixed = TRUE)) {
+      
+      #Attention check: left image. 
+      if (grepl('extensionLeftImg_exemplar_commonalities', participant_response)) {
+        temp_response <- strsplit(participant_response, ':')[[1]][2] #Get only the answer
+        temp_response <- gsub('["}]', '', temp_response) #Trim the extra characters 
+        data_main_analyses[row_index, 'extensionLeftImgAttnCheckResponse'] <- temp_response
+      }
+      
+      #Attention check: center image. 
+      else if (grepl('extensionCenterImg_exemplar_commonalities', participant_response)) {
+        temp_response <- strsplit(participant_response, ':')[[1]][2] #Get only the answer
+        temp_response <- gsub('["}]', '', temp_response) #Trim the extra characters 
+        data_main_analyses[row_index, 'extensionCenterImgAttnCheckResponse'] <- temp_response
+      }
+      
+      #Attention check: right image.
+      else if (grepl('extensionRightImg_exemplar_commonalities', participant_response)) {
+        temp_response <- strsplit(participant_response, ':')[[1]][2] #Get only the answer
+        temp_response <- gsub('["}]', '', temp_response) #Trim the extra characters 
+        data_main_analyses[row_index, 'extensionRightImgAttnCheckResponse'] <- temp_response
+      }
+      
+      #Participant age.
+      else if (grepl('Age', participant_response)) {
+        temp_response <- strsplit(participant_response, ':')[[1]][2] #Get only the answer
+        temp_response <- gsub('["}]', '', temp_response) #Trim the extra characters 
+        data_main_analyses[row_index, 'participantAge'] <- temp_response
+      }
+      
+      #Geographical location.
+      else if (grepl('CurrentUSA', participant_response)) {
+        temp_response <- strsplit(participant_response, ',') #List of responses for BornUSA, ChildhoodUSA, and CurrentUSA.
+        
+        #Participant birth location. 
+        if (grepl('BornUSA', temp_response[[1]][1])) {
+          geog_temp_response <- strsplit(temp_response[[1]][1], ':')[[1]][2] #Get only the answer for BornUSA. 
+          geog_temp_response <- gsub('["}]', '', geog_temp_response) #Trim the extra characters 
+          data_main_analyses[row_index, 'participantBornUSA'] <- geog_temp_response
+        }
+        
+        #Participant childhood location. 
+        if (grepl('ChildhoodUSA', temp_response[[1]][2])) {
+          geog_temp_response <- strsplit(temp_response[[1]][2], ':')[[1]][2] #Get only the answer for ChildhoodUSA.  
+          geog_temp_response <- gsub('["}]', '', geog_temp_response) #Trim the extra characters 
+          data_main_analyses[row_index, 'participantChildhoodUSA'] <- geog_temp_response
+        }
+        
+        #Participant current location. 
+        if (grepl('CurrentUSA', temp_response[[1]][3])) {
+          geog_temp_response <- strsplit(temp_response[[1]][3], ':')[[1]][2] #Get only the answer for CurrentUSA. 
+          geog_temp_response <- gsub('["}]', '', geog_temp_response) #Trim the extra characters 
+          data_main_analyses[row_index, 'participantCurrentUSA'] <- geog_temp_response
+        }
+      }
+      
+      #Zipcodes. 
+      else if (grepl('CurrentZipcode', participant_response)) {
+        temp_response <- strsplit(participant_response, ',') #List of responses for CurrentZipcode and ChildhoodZipcode.
+        
+        #Participant current zipcode. 
+        if (grepl('CurrentZipcode', temp_response[[1]][1])) {
+          zipcode_temp_response <- strsplit(temp_response[[1]][1], ':')[[1]][2] #Get only the answer for CurrentZipcode.  
+          zipcode_temp_response <- gsub('["}]', '', zipcode_temp_response) #Trim the extra characters 
+          data_main_analyses[row_index, 'participantCurrentZipcode'] <- zipcode_temp_response
+        }
+        
+        #Participant childhood zipcode.  
+        if (grepl('ChildhoodZipcode', temp_response[[1]][2])) {
+          zipcode_temp_response <- strsplit(temp_response[[1]][2], ':')[[1]][2] #Get only the answer for ChildhoodZipcode.  
+          zipcode_temp_response <- gsub('["}]', '', zipcode_temp_response) #Trim the extra characters 
+          data_main_analyses[row_index, 'participantChildhoodZipcode'] <- zipcode_temp_response
+        }
+      }
+      
+      #Languages. 
+      else if (grepl('FirstLanguage', participant_response)) {
+        temp_response <- strsplit(participant_response, '",') #List of responses for FirstLanguage and AllLanguages.
+
+        #Participant first language. 
+        if (grepl('FirstLanguage', temp_response[[1]][1])) {
+          language_temp_response <- strsplit(temp_response[[1]][1], ':')[[1]][2] #Get only the answer for FirstLanguage. 
+          language_temp_response <- gsub('["}]', '', language_temp_response) #Trim the extra characters 
+          data_main_analyses[row_index, 'participantFirstLanguage'] <- language_temp_response
+        }
+        
+        #Participant all languages spoken.  
+        if (grepl('AllLanguages', temp_response[[1]][2])) {
+          language_temp_response <- strsplit(temp_response[[1]][2], ':')[[1]][2] #Get only the answer for AllLanguages.
+          language_temp_response <- gsub('["}]', '', language_temp_response) #Trim the extra characters 
+          data_main_analyses[row_index, 'participantCurrentLanguages'] <- language_temp_response
+        }
+      }
+    }
+    
+    #Check if it's a numerical response for participant's current location urbanicity rating (1-100). 
+    else if(grepl("^[0-9]+$", participant_response) & (grepl('currently live', stimulus, fixed = TRUE))) {
+      data_main_analyses[row_index, 'participantCurrentUrbanicity'] <- participant_response
+    }
+    
+    #Check if it's a numerical response for participant's childhood location urbanicity rating (1-100). 
+    else if(grepl("^[0-9]+$", participant_response) & (grepl('grew up', stimulus, fixed = TRUE))) {
+      #Participant's childhood location urbanicity. 
+      data_main_analyses[row_index, 'participantChildhoodUrbanicity'] <- participant_response
+    }
+    
+    #Check if it's an image response (choosing the shape image). 
+    else if(grepl("^[0-9]+$", participant_response) & (grepl('img', stimulus, fixed = TRUE))) {
+      data_main_analyses[row_index, 'participantExtensionChoice'] <- participant_response
+    }
+  }
+  
+  #Interpret the participantExtensionChoice column to make the numerical answer choice values meaningful.
+  participant_image_choice <- data_main_analyses[row_index, 'participantExtensionChoice']
+  if (!is.na(participant_image_choice) && length(participant_image_choice) > 0) {
+    
+    #Participant chose the left image. 
+    if(participant_image_choice == "0") {
+      data_main_analyses[row_index, 'participantExtensionChoiceImage'] <- data_main_analyses[row_index, 'extensionLeftImg']
+    }
+    
+    #Participant chose the center image.
+    else if(participant_image_choice == "1") {
+      data_main_analyses[row_index, 'participantExtensionChoiceImage'] <- data_main_analyses[row_index, 'extensionCenterImg']
+    }
+    
+    #Participant chose the right image. 
+    else if(participant_image_choice == "2") {
+      data_main_analyses[row_index, 'participantExtensionChoiceImage'] <- data_main_analyses[row_index, 'extensionRightImg']
+    }
+  }
+}
+
+#Combine subject rows into a single row and remove the extra columns. 
+data_main_analyses_tidy <- data_main_analyses |> 
+  select(-reactionTime, -trialType, -imageLoadSuccess, -stimulus, -response) |> 
+  mutate(across(everything(), ~ ifelse(. == "", NA, .))) |>  #Replace empty strings with NA
+  group_by(subjectID) |> 
+  summarise(across(everything(), ~ if (all(is.na(.))) {NA} else {na.omit(.)[1]}), .groups = "drop")
+```
+
+Now that the data are cleaned and in a tidy format, we want to figure out whether participants were choosing based on color, material, or shape. To do so, we're going to analyze `exemplarImg` and `participantExtensionChoiceImage` to figure out what the common property is between the exemplar and the extension choice. We're going to put the overlapping information into a new column called `participantPropertyChoice`. 
+
+```{r Check Common Property}
+#Go through each subject. 
+for (row_index in 1:nrow(data_main_analyses_tidy)) {
+  #Get the exemplar the participant saw.
+  participant_exemplar <- unlist(strsplit(as.character(data_main_analyses_tidy[row_index, 'exemplarImg']), '_'))
+  
+  #Get the extension the participant chose. 
+  participant_extension_choice <- unlist(strsplit(as.character(data_main_analyses_tidy[row_index, 'participantExtensionChoiceImage']), '_'))
+  
+  #Get the shape of the exemplar object and put into a new column called exemplarShape. 
+  exemplar_shape <- participant_exemplar[3]
+  data_main_analyses_tidy[row_index, 'exemplarShape'] <- exemplar_shape
+  
+  #Get the overlapping property. 
+  overlap <- intersect(participant_exemplar, participant_extension_choice)
+  
+  #Put the overlapping property into a new column. 
+  data_main_analyses_tidy[row_index, 'participantOverlapAnswer'] <- overlap
+  
+  #Interpret the overlapping answer
+  if(overlap == 'red' | overlap == 'blue' | overlap == 'yellow') {
+    data_main_analyses_tidy[row_index, 'participantOverlapProperty'] <- 'color' 
+    
+  }
+  
+  else if(overlap == 'crepe' | overlap == 'foam' | overlap == 'yarn') {
+    data_main_analyses_tidy[row_index, 'participantOverlapProperty'] <- 'material'
+  }
+
+  else if(overlap == 'arch' | overlap == 'lamp' | overlap == 'snowman') {
+    data_main_analyses_tidy[row_index, 'participantOverlapProperty'] <- 'shape'
+  }
+}
+```
+
+We are almost done getting the data prepared. The last step is to reorder the columns into a logical order and add information about the participant group and experiment type. 
+
+```{r Reorder Columns}
+data_main_analyses_tidy <- data_main_analyses_tidy |> 
+  mutate(participantLocation = 'USA', experiment= 'USA_Adults') |> 
+  select(subjectID, condition, experiment, participantLocation, exemplarName, exemplarImg, exemplarShape, participantOverlapAnswer, participantOverlapProperty, participantExtensionChoice, participantExtensionChoiceImage, extensionLeftImg, extensionCenterImg, extensionRightImg, extensionLeftImgAttnCheckResponse, extensionCenterImgAttnCheckResponse, extensionRightImgAttnCheckResponse, participantAge, participantBornUSA, participantChildhoodUSA, participantCurrentUSA, participantCurrentZipcode, participantChildhoodZipcode, participantFirstLanguage, participantCurrentLanguages, participantCurrentUrbanicity, participantChildhoodUrbanicity)
 ```
 
 ### Results of control measures
 
-I examined the answers to the attention check question "what does each object share in common with the original object?" to verify that participants understood the task and were paying attention. I excluded participants who answered these questions incorrectly more than once. 
+I examined the answers to the attention check question "what does each object share in common with the original object?" to verify that participants understood the task and were paying attention. I excluded participants who answered these questions incorrectly more than once.
 
-### Confirmatory analysis
+### Confirmatory analyses
 
-I conducted two main analyses: 
+I conducted two main analyses:
 
-1. I calculated the percentage of participants who chose the object based on **shape** congruency with the exemplar, the percentage of participants who chose the object based on **material** congruency with the exemplar, and the percentage of participants who chose the object based on **color** congruency with the exemplar. XX% of participants chose the object based on **shape** congruency with the exemplar, XX% of participants chose the object based on **material** congruency with the exemplar, and XX% of participants chose the object based on **color** congruency with the exemplar. The results did/did not replicate with the original study. 
-2. I ran a logistic mixed-effects model that predicts the participant’s preference for the shape-match object. In the original study, the authors used a baseline probability of 33.3% with the population (U.S. participants) and the age group (adults) dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment number, random intercepts for the exemplar object, random slopes for population as a function of exemplar, and random slopes for age group as a function of exemplar. This model found that U.S. adults were [] to generalize the label of a novel object by shape ($\beta = X.XX$, $p < X.XX$). 
+1.  I calculated the percentage of participants who chose the object based on **shape** congruency with the exemplar, the percentage of participants who chose the object based on **material** congruency with the exemplar, and the percentage of participants who chose the object based on **color** congruency with the exemplar. XX% of participants chose the object based on **shape** congruency with the exemplar, XX% of participants chose the object based on **material** congruency with the exemplar, and XX% of participants chose the object based on **color** congruency with the exemplar. The results did/did not replicate with the original study.
+
+```{r Confirmatory Analysis 1.1}
+#Calculate the percentages of each choice and output into a dataframe. 
+statistics_by_property = data_main_analyses_tidy |>  
+  group_by(participantOverlapProperty, participantLocation) |> 
+  summarize(n = n(), proportion = n / nrow(data_main_analyses_tidy), .groups = 'drop') |> 
+  #TODO: this part is incorrect, trying to calculate statistics for 95% confidence intervals. 
+  mutate(
+    lower = proportion - qnorm(0.975) * sqrt(proportion * (1 - proportion) / sum(n)),
+    upper = proportion + qnorm(0.975) * sqrt(proportion * (1 - proportion) / sum(n))
+  ) |>
+  ungroup()
+```
+
+Figure 1 shows the proportion of choices of an extension by the type of property (shape, color, material).  
+
+```{r Figure 1}
+#Plot the data for the first figure. 
+ggplot(statistics_by_property, aes(y = proportion, x = participantLocation, fill = participantOverlapProperty)) +
+  geom_bar(position = "stack", stat = 'identity', width = .7) +
+  #geom_errorbar(aes(ymin = lower, ymax = upper), position = position_stack(vjust = 0.5), width = .2) + #95% confidence interval 
+  theme_minimal() +
+  scale_fill_manual(values = c("#7F92B8", "#6C6969", "#B4DCB9")) + #set the bar colors 
+  scale_x_discrete('Experiment 5: USA Adults') + #x-label
+  scale_y_continuous('Percentage of responses', labels = scales::percent) + #y-label
+  facet_wrap(~participantLocation) + #group responses by population
+  geom_hline(yintercept = (1/3), linetype = 'dotted', color = 'black') + #add dotted chance line 
+  labs(fill = "Choice") + 
+  theme(legend.title = element_text(size = 12, face = "bold"))
+```
+
+We also want to calculate the proportion of choice by property for each of the shapes (arch, lamp, snowman).
+
+```{r Confirmatory Analysis 1.2}
+#Calculate the percentages of each choice by property and output into a dataframe. 
+count_df <- data_main_analyses_tidy |> 
+  group_by(exemplarShape, participantOverlapProperty, experiment) |> 
+  summarize(count = n(), .groups = 'drop') |> 
+  ungroup()
+
+#Pivot the dataframe.
+statistics_by_shape_property <- pivot_wider(count_df, id_cols = exemplarShape, names_from = participantOverlapProperty, values_from = count)
+statistics_by_shape_property[is.na(statistics_by_shape_property)] <- 0 #Make NULL values 0
+
+#Calculate the proportion of responses for each property. 
+statistics_by_shape_property$totalCount <- rowSums(statistics_by_shape_property[, -1]) #Calculate the total responses per property 
+columns_to_calculate <- c("shape", "material", "color")  #All possible properties 
+existing_columns <- intersect(columns_to_calculate, names(statistics_by_shape_property)) #Find columns that actually exist
+statistics_by_shape_property <- statistics_by_shape_property |> 
+  mutate(across(all_of(existing_columns), ~ .x / totalCount, .names = "{.col}Proportion")) #Takes into account if properties don't exist. 
+
+#Pivot the data. 
+statistics_by_shape_property_long <- statistics_by_shape_property |> 
+  pivot_longer(
+    cols = any_of(c("shapeProportion", "materialProportion", "colorProportion")),
+    names_to = "exemplarProperty",
+    values_to = "proportion"
+  )
+
+#Clean up the property value names.
+statistics_by_shape_property_long$exemplarProperty <- sub("Proportion", "", statistics_by_shape_property_long$exemplarProperty)
+```
+
+Figure 2 shows the proportion of choices by type of extension shape within the three property (shape, color, material) categories. 
+
+```{r Figure 2}
+#Plot the data for the second figure.
+ggplot(statistics_by_shape_property_long, aes(x = exemplarShape, y = proportion, fill = exemplarProperty)) +
+  geom_bar(stat = "identity") + #use the actual proportions
+  theme_minimal() + 
+  scale_fill_manual(values = c("#7F92B8", "#6C6969", "#B4DCB9")) + #set the bar colors 
+  scale_x_discrete('Extension Shape') + #x-label
+  scale_y_continuous(labels = scales::percent) + # Convert y-axis labels to percent
+  #facet_wrap(~participantLocation) + #group responses by population
+  geom_hline(yintercept = (1/3), linetype = 'dotted', color = 'black') + #add dotted chance line 
+  labs(x = "Shape", y = "Proportion", fill = "Material") +
+  labs(fill = "Property Choice") + 
+  theme(legend.title = element_text(size = 12, face = "bold"))
+```
+
+2.  I ran a logistic mixed-effects model that predicts the participant's preference for the shape-match object. In the original study, the authors used a baseline probability of 33.3% with the population (U.S. participants) and the age group (adults) dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment number, random intercepts for the exemplar object, random slopes for population as a function of exemplar, and random slopes for age group as a function of exemplar. This model found that U.S. adults were \[\] to generalize the label of a novel object by shape ($\beta = X.XX$, $p < X.XX$).
+
+```{r Confirmatory Analysis 2}
+#TODO: Fix model. 
+#library (lmerTest)
+#library (lme4)
+#model <- glmer(participantExtensionChoice == "Shape" ~ participantLocation + (1 + participantLocation | exemplarName) + (1 | experiment), data_main_analyses_tidy, family = 'binomial')
+#summary(model)
+```
 
 *Three-panel graph with original, 1st replication, and your replication is ideal here*
 
 ### Exploratory analyses
 
-I conducted an exploratory analysis to see if the nature of adult participants' early childhood environment affected the strength of their shape bias. I also conducted an exploratory analysis to check if their first language affected the strength of their shape bias.  
+I conducted an exploratory analysis to see if the nature of adult participants' early childhood environment affected the strength of their shape bias. I also conducted an exploratory analysis to check if their first language affected the strength of their shape bias.
 
 ## Discussion
 
 ## Mini meta analysis
-Combining across the original paper, 1st replication, and 2nd replication, what is the aggregate effect size? 
+
+Combining across the original paper, 1st replication, and 2nd replication, what is the aggregate effect size?
 
 ### Summary of Replication Attempt
 
-Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.  
+Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.
 
 ### Commentary
 
-Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long.
+Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt. None of these need to be long.

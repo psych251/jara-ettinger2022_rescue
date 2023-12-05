@@ -1,0 +1,17 @@
+<p>This is a ___. </p>
+
+<img src="____" height="200" width="200"></img>
+
+<p>One of these is also a ___.</p>
+
+<div class="row">
+    <div class="column">
+      <img src="" style="width:100%">
+    </div>
+    <div class="column">
+      <img src="" style="width:100%">
+    </div>
+    <div class="column">
+      <img src="" style="width:100%">
+    </div>
+  </div>
