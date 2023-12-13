@@ -14,9 +14,7 @@ format:
 
 I chose to try and rescue the replication of this experiment because I am interested in the intersection of language and spatial/object reasoning. As a developmental cognitive scientist, I also found the comparison of adults and children to be an important element relevant to my research interests. Finally, the cross-cultural comparisons made in this paper are something that I'd like to explore further in my own research, outside of the context of this project.
 
-The stimuli that will be required to collect additional data for this experiment are available in the repository of the original replication project. The original replication collected data online from 144 U.S. adults, following the paradigm of Experiment 5 in the paper. It won't be possible to collect additional data from Tsimane' adults, so a replication of Experiments 6 and 7 cannot be performed. The new replication attempt will feature attention checks and a more detailed questionnaire about the subject's early geographic environment (e.g., urban versus rural, highly industrialized versus less industrialized), given the theoretical claims in the paper about the importance of early environmental factors on the strength of the shape bias in children.
-
-In the original paper, the only experiment (out of 7) where the data were collected online was Experiment 5. To test if the replication of the original paper partially depends on the setting of data collection, I also plan to collect data to replicate Experiment 1 in the original paper, where data were originally collected in person with U.S. children. One hypothesis for why the setting might matter is that subjects' interpretation of the physical properties of the exemplar may differ based on whether the exemplar is presented as a physical object or online. Thus, I plan to collect data asynchronously online with 30 children ages 3-9 years old using Lookit, following the same procedures for Experiment 1 in the original paper. Like with the adult studies, it won't be possible to collect additional data from Tsimane' children, so a replication of Experiments 2, 3, and 4 cannot be performed.
+The stimuli that will be required to collect additional data for this experiment are available in the repository of the original replication project. The original replication collected data online from 144 U.S. adults, following the paradigm of Experiment 5 in the paper. It won't be possible to collect additional data from Tsimane' adults, so a replication of Experiments 6 and 7 cannot be performed. The new replication attempt will feature attention checks and a more detailed questionnaire about the subject's early geographic environment (e.g., urbanicity of current and childhood environments), given the theoretical claims in the paper about the importance of early environmental factors on the strength of the shape bias in children.
 
 Click [here](https://github.com/psych251/jara-ettinger2022_rescue) for this rescue project's Github repository. The PDF of the original paper can be found [here](https://github.com/psych251/jara-ettinger2022_rescue/blob/dc24145deab4f76cf7bd405c77feb28e07fda9af/original_paper/Jara-Ettinger%20et%20al.%202022%20-%20The%20origins%20of%20the%20shape%20bias%20-%20Evidence%20from%20the%20Tsimane'.pdf).
 
@@ -31,63 +29,66 @@ The demographics of the sample were the same for both the original study (specif
 There are two main analyses:
 
 1.  Calculating the percentage of participants who chose the object based on **shape** congruency with the exemplar, the percentage of participants who chose the object based on **material** congruency with the exemplar, and the percentage of participants who chose the object based on **color** congruency with the exemplar. Both the original study and the first replication did this analysis the same way.
-2.  Running a logistic mixed-effects model that predicted the participant's preference for the shape-match object. In the original study, the authors used a baseline probability of 33.3% with the population (U.S. participants) and the age group (adults) dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment number, random intercepts for the exemplar object, random slopes for population as a function of exemplar, and random slopes for age group as a function of exemplar. In the first replication, the author used a random effects model, *which I believe is the same type of model as the original paper*, with exemplar type as random intercepts, which tested for a participant's preference for shape as a function of the exemplar object.
+2.  Running a logistic mixed-effects model that predicted the participant's preference for the shape-match object.
+
+In the original study, the authors used a baseline probability of 33.3% with the population and the age group dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment `(1 | Experiment)`, random intercepts for the exemplar object (`Example`), random slopes for population as a function of exemplar `(1 + Location + AgeGroup | Example)`, and random slopes for age group `(1 + Location + AgeGroup | Example)` as a function of exemplar: `glmer( Choice == "Shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment) )`. The population by age interaction effect (`Location * AgeGroup`) model was not included based on a nested model comparison; instead, only the main effects of `Location` and `AgeGroup` were tested without their interaction (`Location + AgeGroup`). The `Offset` variable was set to the log-odds probability of 1/3 or 33.3% (`logit(1/3)`).
+
+In the first replication, the author used a random effects model, with random intercepts for the exemplar object (`Example`), testing for a participant's preference for shape as a function of the exemplar object: `glmer( Choice == "Shape" ~ Location  + (1 + Location | Example) )`. Notably, the first replication author did not include the `offset(Offset)` of the log-odds probability of 1/3. They also removed the random slopes for age group as a function of exemplar (`(1 + Location | Example)` instead of `(1 + Location + AgeGroup | Example)`) since they were not comparing the adult data to the child data.
 
 ## Methods
 
 ### Power Analysis
 
-```{r Power Analysis}
-#library(simr)
-```
-
-TO BE DETERMINED.
-
-I used the `simr` package to conduct a power analysis for a linear mixed effects model.
-
-Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size. Considerations of feasibility for selecting planned sample size.
-
-How much power does your planned sample have for original effect? For an attenuated effect that is half the size of the original?
-
-(If power analysis is not possible or precise, discuss more fully how you determined a sample size that would be sufficient for rescue.)
+Instead of conducting a power analysis for a logistic mixed effects model, I am going to run 3 times the original sample size (N=144) for a total of N=432 participants, which means 8 subjects per condition (54 conditions in total). While the main hypothesis for the failed first replication is the use of the wrong stimuli, running 3 times the sample size will also increase the power.
 
 ### Planned Sample
 
-The sample size for Experiment 5 will be N=144 U.S. adults, recruited on Prolific. I will stop the study when I reach 144 participants who complete the task. I will also collect the following demographic information from the adult participants:
+The sample size for Experiment 5 will be N=432 U.S. adults, whose primary language is English, recruited on Prolific. I will stop the study when I reach 432 participants who complete the task. I will also collect the following demographic information from the adult participants:
 
--   All relevant zip codes of where they lived between ages 3 and 9 (to follow the age range for the children tested for the studies in the original paper). Alternatively, if this information is not allowed to be collected due to privacy reasons, I will instead ask them to indicate the level of industrialization of their home location (on a 7-point Likert scale) during that age.
--   The extent to which their home location was urban or rural between ages 3 and 9, as assessed using a 7-point Likert scale.
--   The first language learned (and subsequent languages learned).
+-   **Age**: How old the participant is (in years).
+-   **Nationality**:
+    -   If the participant was born in the USA.
+    -   If the participant spent more than a year in the USA before age 10.
+    -   If the participant currently lives in the USA.
+-   **Geographic Location**:
+    -   The first three characters or digits of the participant's current zipcode.
+    -   The first three characters or digits of the zipcode where the participant spent the most time in growing up.
+-   **Urbanicity**:
+    -   How the participant would describe their current home location on a scale from 1-100, with 1 being very rural, 100 being very urban, and 50 being suburban.
+    -   How the participant would describe their childhood home location (if multiple, they are asked to choose the one they spent the most time in before 18 years old) on a scale from 1-100, with 1 being very rural, 100 being very urban, and 50 being suburban.
+-   **Languages**:
+    -   The first language the participant learned.
+    -   All languages that the participant currently speaks.
 
 ### Materials
 
-"Stimuli consisted of solid objects that varied in shape, color, and material...Each experiment consisted of three example objects and three extension objects. Each participant saw only one example object (counterbalanced across participants) and all extension objects...Experiment 5 which used photographs of the objects because it was conducted online."
+"Stimuli consisted of solid objects that varied in shape, color, and material...Each experiment consisted of three example objects and three extension objects. Each participant saw only one example object (counterbalanced across participants) and all extension objects...Experiment 5 which used photographs of the objects because it was conducted online" (Jara-Ettinger et al, 2022).
 
 ### Procedure
 
-Experiment 5 was a "one-shot learning trial and each participant completed one trial only. Although each trial only required one label, we used three different possible labels, randomized across participants. In the experiments with U.S. participants, the example object was called a *koba*, *dax*, or *fep*...Participants saw a single screen where the top said "This is a(n) x" along with a picture of the object. Below, the text read "One of these is also a(n) x" along with three pictures of the three possible extension choices. The text below read "Which one is the other x?" Participants were allowed to select one of the three objects."
+Experiment 5 was a "one-shot learning trial and each participant completed one trial only. Although each trial only required one label, we used three different possible labels, randomized across participants. In the experiments with U.S. participants, the example object was called a *koba*, *dax*, or *fep*...Participants saw a single screen where the top said 'This is a(n) x' along with a picture of the object. Below, the text read 'One of these is also a(n) x' along with three pictures of the three possible extension choices. The text below read 'Which one is the other x?' Participants were allowed to select one of the three objects" (Jara-Ettinger et al, 2022).
 
 ### Controls
 
-"To ensure that participants were attending to the task, we also asked participants what each object shared in common with the original object. These questions were only included to motivate participants to look at the images carefully." **In the original study, answers to these questions were not used as exclusion criteria, but in this study, I will exclude participants who have more than one incorrect answer.**
+"To ensure that participants were attending to the task, we also asked participants what each object shared in common with the original object. These questions were only included to motivate participants to look at the images carefully" (Jara-Ettinger et al, 2022). **In the original study, answers to these questions were not used as exclusion criteria, but in this study, I will exclude participants who have more than one incorrect answer.**
 
 ### Analysis Plan
 
-Participants will be excluded if they did not answer the main question of interest (the shape bias question) and if they answer incorrectly more than once to how the extension object choices relate to the exemplar object. Data will be downloaded from Prolific and scrubbed of all identifying information (e.g., IP addresses). I will conduct two analyses:
+Participants will be excluded if they did not answer the main question of interest (choosing an extension object) or if they answer more than one attention check question incorrectly, asking how each extension object relates to the exemplar object. Data will be downloaded from Prolific and scrubbed of all identifying information (e.g., IP addresses) and then cleaned. I will conduct three analyses:
 
-1.  Calculate the percentage of participants who chose the object based on **shape** congruency with the exemplar, the percentage of participants who chose the object based on **material** congruency with the exemplar, and the percentage of participants who chose the object based on **color** congruency with the exemplar.
-2.  Run a logistic mixed-effects model that predicts the participant's preference for the shape-match object. In the original study, the authors used a baseline probability of 33.3% with the population (U.S. participants) and the age group (adults) dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment number, random intercepts for the exemplar object, random slopes for population as a function of exemplar, and random slopes for age group as a function of exemplar.
+1.  Calculate the percentage of participants who chose the object based on **shape** congruency with the exemplar, the percentage of participants who chose the object based on **material** congruency with the exemplar, and the percentage of participants who chose the object based on **color** congruency with the exemplar, within the USA adult sample.
+2.  Run a random effects model, with random intercepts for the exemplar object (`Example`), testing for a participant's preference for shape as a function of the exemplar object: `glmer( Choice=="Shape" ~ offset(Offset) + Location + (1 + Location | Example) )`. The main difference between the model in the first replication and this model is the use of the `Offset` variable, set to the log-odds probability of 1/3.
+3.  Run the original paper's logistic mixed-effects model that predicts the participant's preference for the shape-match object: `glmer( Choice == "Shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment) )`. I will swap out the USA adult data from the original paper with my new USA adult data but keep all of the other data the same (USA children, Tsimane' adults, and Tsimane' children).
 
-**Clarify key analysis of interest:**\
-I am primarily interested in replicating the two analyses listed above, which are identical to the original paper. However, I also plan to do a secondary analysis, which looks at the effect of early environment and first language on the strength of the shape bias. This secondary analysis may require me to collect more data than the originally planned N=144 U.S. adult sample in order to have a balanced number of participants in the following groups: industrialized/non-industrialized, urban/rural, and English as a first language/non-English as a first language.
+**Clarify key analysis of interest:** I am primarily interested in replicating the first two analyses listed above to test whether USA adults are more likely to choose the extension object that is matched on the shape property.
 
-### Differences from Original Study and 1st replication
+### Differences from Original Study and First Replication
 
-The only known major difference between this plan and the first replication is that the stimuli will be images of the physical objects as opposed to artistic renderings of the objects. The main difference between this plan and the original study is that I plan to collect more demographic information from the participants for additional analyses not conducted in the original study. I also plan to exclude participants who answer incorrectly more than once to the question asking them to indicate what each object has in common with the exemplar object.
+The only known major difference between **this plan and the first replication** is that the stimuli are images of the physical objects as opposed to artistic renderings of the objects. The random effects model will also include the `Offset` variable, set to the log-odds probability of 1/3.
+
+The main difference between **this plan and the original study** is that I collected more demographic information from the participants for exploratory analyses not conducted in the original study if the main analysis of interest did not replicate. I also excluded participants who answered more than one attention check question incorrectly when indicating what each object has in common with the exemplar object.
 
 ### Methods Addendum (Post Data Collection)
-
-You can comment this section out prior to final report with data collection.
 
 #### Actual Sample
 
@@ -101,49 +102,50 @@ Any differences from what was described as the original plan, or "none".
 
 ### Data preparation
 
-This section contains the code necessary to prepare the data for analysis.
+This section contains the code necessary to prepare the data for analysis. First, load in the raw data.
 
-```{r Data Importing}
+```{r Import Data}
 #Load relevant libraries and functions. 
-suppressMessages(library (tidyverse))
-suppressMessages(library (dplyr))
-library (ggplot2)
+suppressMessages(library(tidyverse))
+suppressMessages(library(dplyr))
+suppressMessages(library(ggplot2))
 
-#TODO: update this file name. 
-data_file <- 'PilotA_11-16-2023.csv'
+#Update this file name. 
+data_file <- 'PilotB_12-04-2023.csv'
 
 #Read in the CSV file.
-data_path <- file.path(getwd(), '..', 'data', data_file)
+data_path <- file.path(getwd(), '..', 'data_raw', data_file)
 data <- read.csv(data_path)
 ```
 
-Check a few things about the cleaned data. For example, there should be an equal spread of subjects per condition before data cleaning. Also make sure that all of the images for the subjects loaded successfully (they should, or they would not have been able to complete the study).
+Check a few things about the raw data. For example, there should be an equal spread of subjects per condition. Also make sure that all of the images for the subjects loaded successfully (they should, or they would not have been able to complete the study).
 
-```{r Data Checking}
+```{r Validate Equal Condition Spread}
 #Check that there are enough subjects per condition.
 data_checks <- data |> 
-  group_by(run_id) |> #Group all trials (multiple rows per subject).
-  summarize(numSubjectsPerCondition = n_distinct(condition)) #TODO: Check that this works when there are multiple subjects per condition.
+  filter(trial_type == 'fullscreen') |> #Get one row per subject. 
+  group_by(condition) |> #Group by subject.
+  summarize(numSubjectsPerCondition = n_distinct(condition)) #Count the number of times the o
 
-print(paste("There are an equal number of subjects per condition:", length(unique(data_checks$numSubjectsPerCondition)) == 1)) #If true, then there are an equal number of subjects per condition.
+print(paste("There are an equal number of subjects per condition:", all(data_checks$numSubjectsPerCondition == data_checks$numSubjectsPerCondition[1]))) #If true, then there are an equal number of subjects per condition.
+```
 
-#Check that all of the images for each subject loaded successfully.
+Check that all of the images for each subject loaded successfully.
+```{r Validate Successful Image Loading}
 suppressMessages(library(stringr))
 print(paste("Images loaded successfully for all subjects:", sum(str_detect(data$success, 'false')) == 0)) #If true, then all images loaded successfully for all subjects.
 ```
 
-Now clean the data. We're first going to remove columns that are unnecessary for the main confirmatory analyses and filter out subjects not relevant to the full sample (i.e., pilot subjects) and who used phones to complete the study. Then we need to parse the demographic responses into columns.
+Now clean the data. First remove columns that are unnecessary for the main confirmatory analyses and filter out subjects not relevant to the full sample (i.e., pilot subjects). Remove subjects who used phones to complete the study. Then parse the demographic responses into columns.
 
-```{r Data Cleaning}
+```{r Clean Data}
 #Select only relevant columns and rename them. 
 data_main_analyses <- data |> 
   select(c('rt', 'trial_type', 'run_id', 'condition', 'recorded_at', 'device', 'success', 'stimulus', 'response', starts_with('exemplar'), starts_with('extension'))) |> 
   rename(reactionTime = rt, trialType = trial_type, subjectID = run_id, recordedAt = recorded_at, imageLoadSuccess = success) |> #Rename columns to match naming conventions. 
-  filter(subjectID > 6) |> #Remove subjects before particular dates (i.e., pilot subjects). 
+  filter(subjectID > 29) |> #Remove subjects before particular dates (i.e., pilot subjects). 
   filter(device != 'iPhone') |>  #Remove subjects who used phones.
   select(c(-'device', -'recordedAt')) #Remove columns that aren't necessary anymore. 
-
-#TODO: Remove any subjects that did not have images load successfully. 
 
 #Put demographic responses (currently in the 'response' column) into their own columns. 
 for (row_index in 1:nrow(data_main_analyses)) {
@@ -293,12 +295,12 @@ data_main_analyses_tidy <- data_main_analyses |>
   select(-reactionTime, -trialType, -imageLoadSuccess, -stimulus, -response) |> 
   mutate(across(everything(), ~ ifelse(. == "", NA, .))) |>  #Replace empty strings with NA
   group_by(subjectID) |> 
-  summarise(across(everything(), ~ if (all(is.na(.))) {NA} else {na.omit(.)[1]}), .groups = "drop")
+  summarize(across(everything(), ~ if (all(is.na(.))) {NA} else {na.omit(.)[1]}), .groups = "drop")
 ```
 
-Now that the data are cleaned and in a tidy format, we want to figure out whether participants were choosing based on color, material, or shape. To do so, we're going to analyze `exemplarImg` and `participantExtensionChoiceImage` to figure out what the common property is between the exemplar and the extension choice. We're going to put the overlapping information into a new column called `participantPropertyChoice`. 
+Now that the data are cleaned and in a tidy format, figure out whether participants were choosing based on color, material, or shape. To do so, analyze `exemplarImg` and `participantExtensionChoiceImage` to figure out what the common property is between the exemplar and the extension choice. Put the overlapping information into a new column called `participantOverlapProperty`.
 
-```{r Check Common Property}
+```{r Check Property Choice}
 #Go through each subject. 
 for (row_index in 1:nrow(data_main_analyses_tidy)) {
   #Get the exemplar the participant saw.
@@ -320,7 +322,6 @@ for (row_index in 1:nrow(data_main_analyses_tidy)) {
   #Interpret the overlapping answer
   if(overlap == 'red' | overlap == 'blue' | overlap == 'yellow') {
     data_main_analyses_tidy[row_index, 'participantOverlapProperty'] <- 'color' 
-    
   }
   
   else if(overlap == 'crepe' | overlap == 'foam' | overlap == 'yarn') {
@@ -333,52 +334,140 @@ for (row_index in 1:nrow(data_main_analyses_tidy)) {
 }
 ```
 
-We are almost done getting the data prepared. The last step is to reorder the columns into a logical order and add information about the participant group and experiment type. 
+Finally, reorder the columns into a logical order and add information about the participant group and experiment type.
 
 ```{r Reorder Columns}
 data_main_analyses_tidy <- data_main_analyses_tidy |> 
-  mutate(participantLocation = 'USA', experiment= 'USA_Adults') |> 
-  select(subjectID, condition, experiment, participantLocation, exemplarName, exemplarImg, exemplarShape, participantOverlapAnswer, participantOverlapProperty, participantExtensionChoice, participantExtensionChoiceImage, extensionLeftImg, extensionCenterImg, extensionRightImg, extensionLeftImgAttnCheckResponse, extensionCenterImgAttnCheckResponse, extensionRightImgAttnCheckResponse, participantAge, participantBornUSA, participantChildhoodUSA, participantCurrentUSA, participantCurrentZipcode, participantChildhoodZipcode, participantFirstLanguage, participantCurrentLanguages, participantCurrentUrbanicity, participantChildhoodUrbanicity)
+  mutate(participantLocation = 'US', experiment= 'USA_Adults', ageGroup = 'Adults', exclude = 0) |> 
+  select(subjectID, condition, experiment, ageGroup, participantLocation, exemplarName, exemplarImg, exemplarShape, participantOverlapAnswer, participantOverlapProperty, participantExtensionChoice, participantExtensionChoiceImage, extensionLeftImg, extensionCenterImg, extensionRightImg, extensionLeftImgAttnCheckResponse, extensionCenterImgAttnCheckResponse, extensionRightImgAttnCheckResponse, participantAge, participantBornUSA, participantChildhoodUSA, participantCurrentUSA, participantCurrentZipcode, participantChildhoodZipcode, participantFirstLanguage, participantCurrentLanguages, participantCurrentUrbanicity, participantChildhoodUrbanicity, exclude)
 ```
 
 ### Results of control measures
 
-I examined the answers to the attention check question "what does each object share in common with the original object?" to verify that participants understood the task and were paying attention. I excluded participants who answered these questions incorrectly more than once.
+I examined the answers to the attention check question "what does each object share in common with the original object?" to verify that participants understood the task and were paying attention. I manually excluded participants who answered these questions incorrectly more than once. The default `exclude` value is 0.
+
+### Reproduction of original analyses
+
+I want to make sure that I can get the same results as the original authors from their analysis code. Here, I am going to load in the original data and adapt the code from the original authors, accessible [here](https://osf.io/egc9y/).
+
+```{r Analyze Original Data}
+#Load libraries
+suppressMessages(library(tidyverse))
+suppressMessages(library(boot))
+suppressMessages(library(lme4))
+
+# Load data
+original_data_file <- "Original_ShapeBias_Data.csv"
+original_data_path <- file.path(getwd(), '..', 'data', original_data_file)
+original_data <- read.csv(original_data_path)
+
+table(original_data$Experiment) #Contains data from all 7 experiments.
+
+#Number of participants
+original_data |> group_by(AgeGroup,Location) %>% summarize(subjects=n(), .groups = 'drop')
+
+#Stats by experiment
+summary_data_original <- original_data |> 
+  group_by(Experiment) |> 
+  summarize(subjects=n(), 
+            average=mean(Age,na.rm=TRUE),
+            minage=min(Age,na.rm=TRUE),
+            maxage=max(Age,na.rm=TRUE),
+            stdev=sd(Age,na.rm=TRUE),
+            ShapeNo=sum(Choice=="Shape"),
+            MatNo=sum(Choice=="Material"),
+            ColorNo=sum(Choice=="Color"),
+            DistNo=sum(Choice=="Distractor"),
+            ShapePerc=ShapeNo/subjects,
+            MatPerc=MatNo/subjects,
+            ColorPerc=ColorNo/subjects,
+            DistPerc=DistNo/subjects)
+summary_data_original$ExpNo <- c(6,7,2,4,3,1,5)
+summary_data_original <- arrange(summary_data_original,ExpNo)
+
+# Results
+summary_data_original |> 
+  dplyr::select(ExpNo, Experiment, subjects, ShapeNo, MatNo, ColorNo, DistNo, ShapePerc, MatPerc, ColorPerc, DistPerc)
+
+#Reproduce the binomial test for Experiment 5: US_Turk_Adults.
+CurrExp <- summary_data_original |> 
+  filter(ExpNo==5)
+binom.test(CurrExp$ShapeNo, CurrExp$subjects, p=1/3)
+```
+
+```{r Reproduce the main logistic mixed-effects model}
+#This model predicts the participant's preference for the shape-match object. 
+CurrExp <- original_data |> 
+  filter(Experiment %in% c("Tsi_Adults_Objects","Tsi_Adults_wDistractor", "US_Turk_Adults","Tsi_Child_Objects","US_Children")) |> 
+  filter(Choice!="Distractor")
+CurrExp$Offset <- logit(1/3)
+
+m <- glmer(Choice=="Shape" ~ offset(Offset) + Location * AgeGroup + (1 + Location + AgeGroup| Example) + (1 | Experiment),CurrExp,family="binomial")
+summary(m)
+
+#Actual model: main effects of `Location` and `AgeGroup` tested without their interaction. 
+m0 <- glmer(Choice=="Shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment),CurrExp,family="binomial")
+
+anova(m,m0)
+summary(m0)
+```
+
+**Based on the calculations above, I successfully reproduced the original results: "This model...showed that U.S. participants were significantly more likely to generalize the label by shape $(\beta = 1.22$; $p < .01)$ and no difference across age groups $(\beta = -.62$; $p = .34)$".**
 
 ### Confirmatory analyses
 
-I conducted two main analyses:
+I conducted three main analyses:
 
-1.  I calculated the percentage of participants who chose the object based on **shape** congruency with the exemplar, the percentage of participants who chose the object based on **material** congruency with the exemplar, and the percentage of participants who chose the object based on **color** congruency with the exemplar. XX% of participants chose the object based on **shape** congruency with the exemplar, XX% of participants chose the object based on **material** congruency with the exemplar, and XX% of participants chose the object based on **color** congruency with the exemplar. The results did/did not replicate with the original study.
+1.  I calculated the percentage of participants who chose the object based on **shape** congruency with the exemplar, the percentage of participants who chose the object based on **material** congruency with the exemplar, and the percentage of participants who chose the object based on **color** congruency with the exemplar. XX% of participants chose the object based on **shape** congruency with the exemplar, XX% of participants chose the object based on **material** congruency with the exemplar, and XX% of participants chose the object based on **color** congruency with the exemplar. A binomial test showed whether U.S. adults were significantly more likely to choose the shape match as opposed to the color or material matches. The results did/did not replicate with the original study.
 
 ```{r Confirmatory Analysis 1.1}
-#Calculate the percentages of each choice and output into a dataframe. 
-statistics_by_property = data_main_analyses_tidy |>  
-  group_by(participantOverlapProperty, participantLocation) |> 
-  summarize(n = n(), proportion = n / nrow(data_main_analyses_tidy), .groups = 'drop') |> 
-  #TODO: this part is incorrect, trying to calculate statistics for 95% confidence intervals. 
-  mutate(
-    lower = proportion - qnorm(0.975) * sqrt(proportion * (1 - proportion) / sum(n)),
-    upper = proportion + qnorm(0.975) * sqrt(proportion * (1 - proportion) / sum(n))
-  ) |>
-  ungroup()
+#Summary statistics  
+summary_data <- data_main_analyses_tidy |>  
+  summarize(subjects=n(), 
+            average=mean(as.numeric(participantAge), na.rm=TRUE),
+            minage=min(as.numeric(participantAge), na.rm=TRUE),
+            maxage=max(as.numeric(participantAge), na.rm=TRUE),
+            stdev=sd(as.numeric(participantAge), na.rm=TRUE),
+            shapeNum=sum(participantOverlapProperty=="shape"),
+            materialNum=sum(participantOverlapProperty=="material"),
+            colorNum=sum(participantOverlapProperty=="color"),
+            shapePercent=shapeNum/subjects,
+            matPercent=materialNum/subjects,
+            colorPercent=colorNum/subjects,
+            .groups = 'drop') |> 
+    ungroup()
+
+#Binomial test
+binomial_result <- binom.test(summary_data$shapeNum, summary_data$subjects, p=1/3)
+
+#Store values of 95% confidence intervals. 
+conf_int <- binomial_result$conf.int # Confidence interval
 ```
 
-Figure 1 shows the proportion of choices of an extension by the type of property (shape, color, material).  
+Figure 1 shows the proportion of choices of an extension by the type of property (shape, color, material).
 
-```{r Figure 1}
-#Plot the data for the first figure. 
-ggplot(statistics_by_property, aes(y = proportion, x = participantLocation, fill = participantOverlapProperty)) +
+```{r Figure 1: Proportion of Choices by Property}
+#Create dataframe for figure. 
+figure_statistics = data_main_analyses_tidy |>  
+  group_by(participantOverlapProperty, participantLocation) |> 
+  summarize(n = n(), proportion = n / nrow(data_main_analyses_tidy), .groups = 'drop') |> 
+  ungroup()
+
+#Plot the data for the first figure and save as a file. 
+ggplot(figure_statistics, aes(y = proportion, x = participantLocation, fill = participantOverlapProperty)) +
   geom_bar(position = "stack", stat = 'identity', width = .7) +
-  #geom_errorbar(aes(ymin = lower, ymax = upper), position = position_stack(vjust = 0.5), width = .2) + #95% confidence interval 
+  geom_errorbar(aes(ymin = binomial_result$conf.int[1], ymax = binomial_result$conf.int[2]), width = .2) +
   theme_minimal() +
-  scale_fill_manual(values = c("#7F92B8", "#6C6969", "#B4DCB9")) + #set the bar colors 
-  scale_x_discrete('Experiment 5: USA Adults') + #x-label
-  scale_y_continuous('Percentage of responses', labels = scales::percent) + #y-label
-  facet_wrap(~participantLocation) + #group responses by population
-  geom_hline(yintercept = (1/3), linetype = 'dotted', color = 'black') + #add dotted chance line 
-  labs(fill = "Choice") + 
+  scale_fill_manual(values = c("#7F92B8", "#6C6969", "#B4DCB9")) +
+  scale_x_discrete('Experiment 5: USA Adults') +
+  scale_y_continuous('Percentage of responses', labels = scales::percent) +
+  facet_wrap(~participantLocation) +
+  geom_hline(yintercept = (1/3), linetype = 'dotted', color = 'black') +
+  labs(fill = "Choice") +
   theme(legend.title = element_text(size = 12, face = "bold"))
+
+img_path <- file.path(getwd(), '..', 'figures', 'choice_by_property_rescue.png')
+ggsave(img_path, device = 'png', dpi=300)
 ```
 
 We also want to calculate the proportion of choice by property for each of the shapes (arch, lamp, snowman).
@@ -391,18 +480,18 @@ count_df <- data_main_analyses_tidy |>
   ungroup()
 
 #Pivot the dataframe.
-statistics_by_shape_property <- pivot_wider(count_df, id_cols = exemplarShape, names_from = participantOverlapProperty, values_from = count)
-statistics_by_shape_property[is.na(statistics_by_shape_property)] <- 0 #Make NULL values 0
+figure_statistics_by_shape_property <- pivot_wider(count_df, id_cols = exemplarShape, names_from = participantOverlapProperty, values_from = count)
+figure_statistics_by_shape_property[is.na(figure_statistics_by_shape_property)] <- 0 #Make NULL values 0
 
 #Calculate the proportion of responses for each property. 
-statistics_by_shape_property$totalCount <- rowSums(statistics_by_shape_property[, -1]) #Calculate the total responses per property 
+figure_statistics_by_shape_property$totalCount <- rowSums(figure_statistics_by_shape_property[, -1]) #Calculate the total responses per property 
 columns_to_calculate <- c("shape", "material", "color")  #All possible properties 
-existing_columns <- intersect(columns_to_calculate, names(statistics_by_shape_property)) #Find columns that actually exist
-statistics_by_shape_property <- statistics_by_shape_property |> 
+existing_columns <- intersect(columns_to_calculate, names(figure_statistics_by_shape_property)) #Find columns that actually exist
+figure_statistics_by_shape_property <- figure_statistics_by_shape_property |> 
   mutate(across(all_of(existing_columns), ~ .x / totalCount, .names = "{.col}Proportion")) #Takes into account if properties don't exist. 
 
 #Pivot the data. 
-statistics_by_shape_property_long <- statistics_by_shape_property |> 
+figure_statistics_by_shape_property_long <- figure_statistics_by_shape_property |> 
   pivot_longer(
     cols = any_of(c("shapeProportion", "materialProportion", "colorProportion")),
     names_to = "exemplarProperty",
@@ -410,14 +499,14 @@ statistics_by_shape_property_long <- statistics_by_shape_property |>
   )
 
 #Clean up the property value names.
-statistics_by_shape_property_long$exemplarProperty <- sub("Proportion", "", statistics_by_shape_property_long$exemplarProperty)
+figure_statistics_by_shape_property_long$exemplarProperty <- sub("Proportion", "", figure_statistics_by_shape_property_long$exemplarProperty)
 ```
 
-Figure 2 shows the proportion of choices by type of extension shape within the three property (shape, color, material) categories. 
+Figure 2 shows the proportion of choices by type of extension shape within the three property (shape, color, material) categories.
 
-```{r Figure 2}
-#Plot the data for the second figure.
-ggplot(statistics_by_shape_property_long, aes(x = exemplarShape, y = proportion, fill = exemplarProperty)) +
+```{r Figure 2: Proportion of Choices by Property and Shape}
+#Plot the data for the second figure and save as a file.
+ggplot(figure_statistics_by_shape_property_long, aes(x = exemplarShape, y = proportion, fill = exemplarProperty)) +
   geom_bar(stat = "identity") + #use the actual proportions
   theme_minimal() + 
   scale_fill_manual(values = c("#7F92B8", "#6C6969", "#B4DCB9")) + #set the bar colors 
@@ -425,26 +514,63 @@ ggplot(statistics_by_shape_property_long, aes(x = exemplarShape, y = proportion,
   scale_y_continuous(labels = scales::percent) + # Convert y-axis labels to percent
   #facet_wrap(~participantLocation) + #group responses by population
   geom_hline(yintercept = (1/3), linetype = 'dotted', color = 'black') + #add dotted chance line 
-  labs(x = "Shape", y = "Proportion", fill = "Material") +
+  labs(x = "Shape", y = "Percentage of Responses", fill = "Material") +
   labs(fill = "Property Choice") + 
   theme(legend.title = element_text(size = 12, face = "bold"))
+
+img_path <- file.path(getwd(), '..', 'figures', 'choice_by_shape_and_property_rescue.png')
+ggsave(img_path, device = 'png', dpi=300)
 ```
 
-2.  I ran a logistic mixed-effects model that predicts the participant's preference for the shape-match object. In the original study, the authors used a baseline probability of 33.3% with the population (U.S. participants) and the age group (adults) dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment number, random intercepts for the exemplar object, random slopes for population as a function of exemplar, and random slopes for age group as a function of exemplar. This model found that U.S. adults were \[\] to generalize the label of a novel object by shape ($\beta = X.XX$, $p < X.XX$).
+2.  I also ran a random effects model, with random intercepts for the exemplar object (`Example`), testing for a participant's preference for shape as a function of the exemplar object: `glmer( Choice=="Shape" ~ offset(Offset) + Location + (1 + Location | Example) )`. The main difference between the model in the first replication and this model is the use of the `Offset` variable, set to the log-odds probability of 1/3.
 
 ```{r Confirmatory Analysis 2}
-#TODO: Fix model. 
-#library (lmerTest)
-#library (lme4)
-#model <- glmer(participantExtensionChoice == "Shape" ~ participantLocation + (1 + participantLocation | exemplarName) + (1 | experiment), data_main_analyses_tidy, family = 'binomial')
-#summary(model)
+#Create a dataset to merge with the original dataset. 
+rescue_data <- data_main_analyses_tidy |> 
+  select(Age = participantAge,
+         Experiment = experiment, 
+         Example = exemplarShape, 
+         Choice = participantOverlapProperty, 
+         AgeGroup = ageGroup, 
+         Location = participantLocation)
+
+#Filter the original dataset for just the Tsimane adult data (Experiment 6, without distractors).   
+tsimane_adult_data <- original_data |> 
+  filter(Experiment == 'Tsi_Adults_Objects') |> 
+  select(Age, Experiment, Example, Choice, AgeGroup, Location) |> 
+  mutate(Example = tolower(Example), Choice = tolower(Choice)) #Make all values in these columns lowercase. 
+
+#Combine the rescue USA adult data and the original data from Experiment 6 (N=39). 
+appended_data <- rbind(rescue_data, tsimane_adult_data)
+
+#Add the offset column. 
+appended_data$Offset <- logit(1/3)
+
+#Run the random effects model. 
+summary(glmer(Choice=="shape" ~ offset(Offset) + Location + (1 + Location | Example), appended_data, family="binomial"))
+```
+
+3.  I also ran the original paper's logistic mixed-effects model that predicts the participant's preference for the shape-match object: `glmer( Choice == "Shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment) )` by swapping out the USA adult data from the original paper with my new USA adult data but keeping all of the other data the same (USA children, Tsimane' adults, and Tsimane' children). In the original study, the authors used a baseline probability of 33.3% with the population (U.S. participants) and the age group (adults) dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment number, random intercepts for the exemplar object, random slopes for population as a function of exemplar, and random slopes for age group as a function of exemplar. This model found that, with a new sample of U.S. adults, they were \[\] to generalize the label of a novel object by shape $(\beta = X.XX$, $p < X.XX)$.
+
+```{r Confirmatory Analysis 3}
+#Filter the original dataset to remove the USA adult data (and not include two if the Tsimane children experiments).   
+original_data_no_USA_adult <- original_data |> 
+  filter(Experiment %in% c("Tsi_Adults_Objects","Tsi_Adults_wDistractor", "Tsi_Child_Objects","US_Children")) |> 
+  filter(Choice!="Distractor") |> 
+  select(Age, Experiment, Example, Choice, AgeGroup, Location) |> 
+  mutate(Example = tolower(Example), Choice = tolower(Choice)) #Make all values in these columns lowercase. 
+
+#Combine the rescue USA adult data and the original data (minus the US_Turk_Adult subjects). 
+appended_data_full <- rbind(rescue_data, original_data_no_USA_adult)
+
+#Add the offset column. 
+appended_data_full$Offset <- logit(1/3)
+
+#Run the logistic mixed-effects model. 
+summary(glmer(Choice == "shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment), appended_data_full, family="binomial"))
 ```
 
 *Three-panel graph with original, 1st replication, and your replication is ideal here*
-
-### Exploratory analyses
-
-I conducted an exploratory analysis to see if the nature of adult participants' early childhood environment affected the strength of their shape bias. I also conducted an exploratory analysis to check if their first language affected the strength of their shape bias.
 
 ## Discussion
 
