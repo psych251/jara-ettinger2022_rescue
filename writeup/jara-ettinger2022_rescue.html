@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Emily Chen (emchen15@stanford.edu)">
+<meta name="dcterms.date" content="2023-12-13">
+
+<title>Replication of The Origins of the Shape Bias: Evidence From the Tsimane’ by Jara-Ettinger et al.&nbsp;(2022, Journal of Experimental Psychology: General)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="jara-ettinger2022_rescue_files/libs/clipboard/clipboard.min.js"></script>
+<script src="jara-ettinger2022_rescue_files/libs/quarto-html/quarto.js"></script>
+<script src="jara-ettinger2022_rescue_files/libs/quarto-html/popper.min.js"></script>
+<script src="jara-ettinger2022_rescue_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="jara-ettinger2022_rescue_files/libs/quarto-html/anchor.min.js"></script>
+<link href="jara-ettinger2022_rescue_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="jara-ettinger2022_rescue_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="jara-ettinger2022_rescue_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="jara-ettinger2022_rescue_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="jara-ettinger2022_rescue_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#summary-of-prior-replication-attempt" id="toc-summary-of-prior-replication-attempt" class="nav-link" data-scroll-target="#summary-of-prior-replication-attempt">Summary of prior replication attempt</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
+  <ul class="collapse">
+  <li><a href="#power-analysis" id="toc-power-analysis" class="nav-link" data-scroll-target="#power-analysis">Power Analysis</a></li>
+  <li><a href="#planned-sample" id="toc-planned-sample" class="nav-link" data-scroll-target="#planned-sample">Planned Sample</a></li>
+  <li><a href="#materials" id="toc-materials" class="nav-link" data-scroll-target="#materials">Materials</a></li>
+  <li><a href="#procedure" id="toc-procedure" class="nav-link" data-scroll-target="#procedure">Procedure</a></li>
+  <li><a href="#controls" id="toc-controls" class="nav-link" data-scroll-target="#controls">Controls</a></li>
+  <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis Plan</a></li>
+  <li><a href="#differences-from-original-study-and-first-replication" id="toc-differences-from-original-study-and-first-replication" class="nav-link" data-scroll-target="#differences-from-original-study-and-first-replication">Differences from Original Study and First Replication</a></li>
+  <li><a href="#methods-addendum-post-data-collection" id="toc-methods-addendum-post-data-collection" class="nav-link" data-scroll-target="#methods-addendum-post-data-collection">Methods Addendum (Post Data Collection)</a></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <ul class="collapse">
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data preparation</a></li>
+  <li><a href="#results-of-control-measures" id="toc-results-of-control-measures" class="nav-link" data-scroll-target="#results-of-control-measures">Results of control measures</a></li>
+  <li><a href="#reproduction-of-original-analyses" id="toc-reproduction-of-original-analyses" class="nav-link" data-scroll-target="#reproduction-of-original-analyses">Reproduction of original analyses</a></li>
+  <li><a href="#confirmatory-analyses" id="toc-confirmatory-analyses" class="nav-link" data-scroll-target="#confirmatory-analyses">Confirmatory analyses</a></li>
+  </ul></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  <li><a href="#mini-meta-analysis" id="toc-mini-meta-analysis" class="nav-link" data-scroll-target="#mini-meta-analysis">Mini meta analysis</a>
+  <ul class="collapse">
+  <li><a href="#summary-of-replication-attempt" id="toc-summary-of-replication-attempt" class="nav-link" data-scroll-target="#summary-of-replication-attempt">Summary of Replication Attempt</a></li>
+  <li><a href="#commentary" id="toc-commentary" class="nav-link" data-scroll-target="#commentary">Commentary</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Replication of <em>The Origins of the Shape Bias: Evidence From the Tsimane’</em> by Jara-Ettinger et al.&nbsp;(2022, Journal of Experimental Psychology: General)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Emily Chen (emchen15@stanford.edu) </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 13, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>I chose to try and rescue the replication of this experiment because I am interested in the intersection of language and spatial/object reasoning. As a developmental cognitive scientist, I also found the comparison of adults and children to be an important element relevant to my research interests. Finally, the cross-cultural comparisons made in this paper are something that I’d like to explore further in my own research, outside of the context of this project.</p>
+<p>The stimuli that will be required to collect additional data for this experiment are available in the repository of the original replication project. The original replication collected data online from 144 U.S. adults, following the paradigm of Experiment 5 in the paper. It won’t be possible to collect additional data from Tsimane’ adults, so a replication of Experiments 6 and 7 cannot be performed. The new replication attempt will feature attention checks and a more detailed questionnaire about the subject’s early geographic environment (e.g., urbanicity of current and childhood environments), given the theoretical claims in the paper about the importance of early environmental factors on the strength of the shape bias in children.</p>
+<p>Click <a href="https://github.com/psych251/jara-ettinger2022_rescue">here</a> for this rescue project’s Github repository. The PDF of the original paper can be found <a href="https://github.com/psych251/jara-ettinger2022_rescue/blob/dc24145deab4f76cf7bd405c77feb28e07fda9af/original_paper/Jara-Ettinger%20et%20al.%202022%20-%20The%20origins%20of%20the%20shape%20bias%20-%20Evidence%20from%20the%20Tsimane'.pdf">here</a>.</p>
+</section>
+<section id="summary-of-prior-replication-attempt" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-prior-replication-attempt">Summary of prior replication attempt</h2>
+<p>The prior replication attempt tried to replicate only Experiment 5 from the original paper (the original paper had seven total experiments), which tested U.S. adults online using Amazon’s Mechanical Turk. While the replication attempt does not specify how they collected the data, I assume that they collected the data using Prolific instead of MTurk.</p>
+<p>The biggest difference between the original study and the first replication is that the original authors used different stimuli from the first replication author. The stimuli in the original paper used the images shown in Table 1, but the first replication used the images shown in Figure 1. The replication author contacted the first author of the study for the original image files, but they were lost, so the replication author used screenshots of the shapes taken from the figures in the paper.</p>
+<p>The demographics of the sample were the same for both the original study (specified as U.S. adults on MTurk) and the first replication (specified as English-speaking adults from the U.S.). The original study had a sample size of N=144 U.S. adults, and the first replication had a sample size of N=142 U.S. adults, with a planned sample of N=144, but two participants did not complete the study and the replication author did not collect two additional data points.</p>
+<p>There are two main analyses:</p>
+<ol type="1">
+<li>Calculating the percentage of participants who chose the object based on <strong>shape</strong> congruency with the exemplar, the percentage of participants who chose the object based on <strong>material</strong> congruency with the exemplar, and the percentage of participants who chose the object based on <strong>color</strong> congruency with the exemplar. Both the original study and the first replication did this analysis the same way.</li>
+<li>Running a logistic mixed-effects model that predicted the participant’s preference for the shape-match object.</li>
+</ol>
+<p>In the original study, the authors used a baseline probability of 33.3% with the population and the age group dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment <code>(1 | Experiment)</code>, random intercepts for the exemplar object (<code>Example</code>), random slopes for population as a function of exemplar <code>(1 + Location + AgeGroup | Example)</code>, and random slopes for age group <code>(1 + Location + AgeGroup | Example)</code> as a function of exemplar: <code>glmer( Choice == "Shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment) )</code>. The population by age interaction effect (<code>Location * AgeGroup</code>) model was not included based on a nested model comparison; instead, only the main effects of <code>Location</code> and <code>AgeGroup</code> were tested without their interaction (<code>Location + AgeGroup</code>). The <code>Offset</code> variable was set to the log-odds probability of 1/3 or 33.3% (<code>logit(1/3)</code>).</p>
+<p>In the first replication, the author used a random effects model, with random intercepts for the exemplar object (<code>Example</code>), testing for a participant’s preference for shape as a function of the exemplar object: <code>glmer( Choice == "Shape" ~ Location  + (1 + Location | Example) )</code>. Notably, the first replication author did not include the <code>offset(Offset)</code> of the log-odds probability of 1/3. They also removed the random slopes for age group as a function of exemplar (<code>(1 + Location | Example)</code> instead of <code>(1 + Location + AgeGroup | Example)</code>) since they were not comparing the adult data to the child data.</p>
+</section>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<section id="power-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="power-analysis">Power Analysis</h3>
+<p>Instead of conducting a power analysis for a logistic mixed effects model, I am going to run 3 times the original sample size (N=144) for a total of N=432 participants, which means 8 subjects per condition (54 conditions in total). While the main hypothesis for the failed first replication is the use of the wrong stimuli, running 3 times the sample size will also increase the power.</p>
+</section>
+<section id="planned-sample" class="level3">
+<h3 class="anchored" data-anchor-id="planned-sample">Planned Sample</h3>
+<p>The sample size for Experiment 5 will be N=432 U.S. adults, whose primary language is English, recruited on Prolific. I will stop the study when I reach 432 participants who complete the task. I will also collect the following demographic information from the adult participants:</p>
+<ul>
+<li><strong>Age</strong>: How old the participant is (in years).</li>
+<li><strong>Nationality</strong>:
+<ul>
+<li>If the participant was born in the USA.</li>
+<li>If the participant spent more than a year in the USA before age 10.</li>
+<li>If the participant currently lives in the USA.</li>
+</ul></li>
+<li><strong>Geographic Location</strong>:
+<ul>
+<li>The first three characters or digits of the participant’s current zipcode.</li>
+<li>The first three characters or digits of the zipcode where the participant spent the most time in growing up.</li>
+</ul></li>
+<li><strong>Urbanicity</strong>:
+<ul>
+<li>How the participant would describe their current home location on a scale from 1-100, with 1 being very rural, 100 being very urban, and 50 being suburban.</li>
+<li>How the participant would describe their childhood home location (if multiple, they are asked to choose the one they spent the most time in before 18 years old) on a scale from 1-100, with 1 being very rural, 100 being very urban, and 50 being suburban.</li>
+</ul></li>
+<li><strong>Languages</strong>:
+<ul>
+<li>The first language the participant learned.</li>
+<li>All languages that the participant currently speaks.</li>
+</ul></li>
+</ul>
+</section>
+<section id="materials" class="level3">
+<h3 class="anchored" data-anchor-id="materials">Materials</h3>
+<p>“Stimuli consisted of solid objects that varied in shape, color, and material…Each experiment consisted of three example objects and three extension objects. Each participant saw only one example object (counterbalanced across participants) and all extension objects…Experiment 5 which used photographs of the objects because it was conducted online” (Jara-Ettinger et al, 2022).</p>
+</section>
+<section id="procedure" class="level3">
+<h3 class="anchored" data-anchor-id="procedure">Procedure</h3>
+<p>Experiment 5 was a “one-shot learning trial and each participant completed one trial only. Although each trial only required one label, we used three different possible labels, randomized across participants. In the experiments with U.S. participants, the example object was called a <em>koba</em>, <em>dax</em>, or <em>fep</em>…Participants saw a single screen where the top said ‘This is a(n) x’ along with a picture of the object. Below, the text read ‘One of these is also a(n) x’ along with three pictures of the three possible extension choices. The text below read ‘Which one is the other x?’ Participants were allowed to select one of the three objects” (Jara-Ettinger et al, 2022).</p>
+</section>
+<section id="controls" class="level3">
+<h3 class="anchored" data-anchor-id="controls">Controls</h3>
+<p>“To ensure that participants were attending to the task, we also asked participants what each object shared in common with the original object. These questions were only included to motivate participants to look at the images carefully” (Jara-Ettinger et al, 2022). <strong>In the original study, answers to these questions were not used as exclusion criteria, but in this study, I will exclude participants who have more than one incorrect answer.</strong></p>
+</section>
+<section id="analysis-plan" class="level3">
+<h3 class="anchored" data-anchor-id="analysis-plan">Analysis Plan</h3>
+<p>Participants will be excluded if they did not answer the main question of interest (choosing an extension object) or if they answer more than one attention check question incorrectly, asking how each extension object relates to the exemplar object. Data will be downloaded from Prolific and scrubbed of all identifying information (e.g., IP addresses) and then cleaned. I will conduct three analyses:</p>
+<ol type="1">
+<li>Calculate the percentage of participants who chose the object based on <strong>shape</strong> congruency with the exemplar, the percentage of participants who chose the object based on <strong>material</strong> congruency with the exemplar, and the percentage of participants who chose the object based on <strong>color</strong> congruency with the exemplar, within the USA adult sample.</li>
+<li>Run a random effects model, with random intercepts for the exemplar object (<code>Example</code>), testing for a participant’s preference for shape as a function of the exemplar object: <code>glmer( Choice=="Shape" ~ offset(Offset) + Location + (1 + Location | Example) )</code>. The main difference between the model in the first replication and this model is the use of the <code>Offset</code> variable, set to the log-odds probability of 1/3.</li>
+<li>Run the original paper’s logistic mixed-effects model that predicts the participant’s preference for the shape-match object: <code>glmer( Choice == "Shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment) )</code>. I will swap out the USA adult data from the original paper with my new USA adult data but keep all of the other data the same (USA children, Tsimane’ adults, and Tsimane’ children).</li>
+</ol>
+<p><strong>Clarify key analysis of interest:</strong> I am primarily interested in replicating the first two analyses listed above to test whether USA adults are more likely to choose the extension object that is matched on the shape property.</p>
+</section>
+<section id="differences-from-original-study-and-first-replication" class="level3">
+<h3 class="anchored" data-anchor-id="differences-from-original-study-and-first-replication">Differences from Original Study and First Replication</h3>
+<p>The only known major difference between <strong>this plan and the first replication</strong> is that the stimuli are images of the physical objects as opposed to artistic renderings of the objects. The random effects model will also include the <code>Offset</code> variable, set to the log-odds probability of 1/3.</p>
+<p>The main difference between <strong>this plan and the original study</strong> is that I collected more demographic information from the participants for exploratory analyses not conducted in the original study if the main analysis of interest did not replicate. I also excluded participants who answered more than one attention check question incorrectly when indicating what each object has in common with the exemplar object.</p>
+</section>
+<section id="methods-addendum-post-data-collection" class="level3">
+<h3 class="anchored" data-anchor-id="methods-addendum-post-data-collection">Methods Addendum (Post Data Collection)</h3>
+<section id="actual-sample" class="level4">
+<h4 class="anchored" data-anchor-id="actual-sample">Actual Sample</h4>
+<p>Sample size, demographics, data exclusions based on rules spelled out in analysis plan</p>
+</section>
+<section id="differences-from-pre-data-collection-methods-plan" class="level4">
+<h4 class="anchored" data-anchor-id="differences-from-pre-data-collection-methods-plan">Differences from pre-data collection methods plan</h4>
+<p>Any differences from what was described as the original plan, or “none”.</p>
+</section>
+</section>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<section id="data-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="data-preparation">Data preparation</h3>
+<p>This section contains the code necessary to prepare the data for analysis. First, load in the raw data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load relevant libraries and functions. </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(tidyverse))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(dplyr))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(ggplot2))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Update this file name. </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>data_file <span class="ot">&lt;-</span> <span class="st">'PilotB_12-04-2023.csv'</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Read in the CSV file.</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>data_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">getwd</span>(), <span class="st">'..'</span>, <span class="st">'data_raw'</span>, data_file)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(data_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Check a few things about the raw data. For example, there should be an equal spread of subjects per condition. Also make sure that all of the images for the subjects loaded successfully (they should, or they would not have been able to complete the study).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Check that there are enough subjects per condition.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data_checks <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(trial_type <span class="sc">==</span> <span class="st">'fullscreen'</span>) <span class="sc">|&gt;</span> <span class="co">#Get one row per subject. </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(condition) <span class="sc">|&gt;</span> <span class="co">#Group by subject.</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">numSubjectsPerCondition =</span> <span class="fu">n_distinct</span>(condition)) <span class="co">#Count the number of times the o</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"There are an equal number of subjects per condition:"</span>, <span class="fu">all</span>(data_checks<span class="sc">$</span>numSubjectsPerCondition <span class="sc">==</span> data_checks<span class="sc">$</span>numSubjectsPerCondition[<span class="dv">1</span>]))) <span class="co">#If true, then there are an equal number of subjects per condition.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "There are an equal number of subjects per condition: TRUE"</code></pre>
+</div>
+</div>
+<p>Check that all of the images for each subject loaded successfully.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(stringr))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Images loaded successfully for all subjects:"</span>, <span class="fu">sum</span>(<span class="fu">str_detect</span>(data<span class="sc">$</span>success, <span class="st">'false'</span>)) <span class="sc">==</span> <span class="dv">0</span>)) <span class="co">#If true, then all images loaded successfully for all subjects.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Images loaded successfully for all subjects: TRUE"</code></pre>
+</div>
+</div>
+<p>Now clean the data. First remove columns that are unnecessary for the main confirmatory analyses and filter out subjects not relevant to the full sample (i.e., pilot subjects). Remove subjects who used phones to complete the study. Then parse the demographic responses into columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Select only relevant columns and rename them. </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data_main_analyses <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">'rt'</span>, <span class="st">'trial_type'</span>, <span class="st">'run_id'</span>, <span class="st">'condition'</span>, <span class="st">'recorded_at'</span>, <span class="st">'device'</span>, <span class="st">'success'</span>, <span class="st">'stimulus'</span>, <span class="st">'response'</span>, <span class="fu">starts_with</span>(<span class="st">'exemplar'</span>), <span class="fu">starts_with</span>(<span class="st">'extension'</span>))) <span class="sc">|&gt;</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">reactionTime =</span> rt, <span class="at">trialType =</span> trial_type, <span class="at">subjectID =</span> run_id, <span class="at">recordedAt =</span> recorded_at, <span class="at">imageLoadSuccess =</span> success) <span class="sc">|&gt;</span> <span class="co">#Rename columns to match naming conventions. </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(subjectID <span class="sc">&gt;</span> <span class="dv">29</span>) <span class="sc">|&gt;</span> <span class="co">#Remove subjects before particular dates (i.e., pilot subjects). </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(device <span class="sc">!=</span> <span class="st">'iPhone'</span>) <span class="sc">|&gt;</span>  <span class="co">#Remove subjects who used phones.</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="st">'device'</span>, <span class="sc">-</span><span class="st">'recordedAt'</span>)) <span class="co">#Remove columns that aren't necessary anymore. </span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Put demographic responses (currently in the 'response' column) into their own columns. </span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (row_index <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(data_main_analyses)) {</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  participant_response <span class="ot">&lt;-</span> data_main_analyses[row_index, <span class="st">'response'</span>] <span class="co">#Create a variable for the response in the current row</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  stimulus <span class="ot">&lt;-</span> data_main_analyses[row_index, <span class="st">'stimulus'</span>] <span class="co">#Create a variable for the stimulus in the current row</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Check that the 'response' is not an empty string.</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">nzchar</span>(participant_response)) { </span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Check if it's a survey response (has {} in the string) and update.</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"{"</span>, participant_response, <span class="at">fixed =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>      <span class="co">#Attention check: left image. </span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">'extensionLeftImg_exemplar_commonalities'</span>, participant_response)) {</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        temp_response <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(participant_response, <span class="st">':'</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>] <span class="co">#Get only the answer</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        temp_response <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'["}]'</span>, <span class="st">''</span>, temp_response) <span class="co">#Trim the extra characters </span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        data_main_analyses[row_index, <span class="st">'extensionLeftImgAttnCheckResponse'</span>] <span class="ot">&lt;-</span> temp_response</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>      <span class="co">#Attention check: center image. </span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">'extensionCenterImg_exemplar_commonalities'</span>, participant_response)) {</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        temp_response <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(participant_response, <span class="st">':'</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>] <span class="co">#Get only the answer</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        temp_response <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'["}]'</span>, <span class="st">''</span>, temp_response) <span class="co">#Trim the extra characters </span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>        data_main_analyses[row_index, <span class="st">'extensionCenterImgAttnCheckResponse'</span>] <span class="ot">&lt;-</span> temp_response</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>      <span class="co">#Attention check: right image.</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">'extensionRightImg_exemplar_commonalities'</span>, participant_response)) {</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>        temp_response <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(participant_response, <span class="st">':'</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>] <span class="co">#Get only the answer</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>        temp_response <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'["}]'</span>, <span class="st">''</span>, temp_response) <span class="co">#Trim the extra characters </span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>        data_main_analyses[row_index, <span class="st">'extensionRightImgAttnCheckResponse'</span>] <span class="ot">&lt;-</span> temp_response</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>      <span class="co">#Participant age.</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">'Age'</span>, participant_response)) {</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>        temp_response <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(participant_response, <span class="st">':'</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>] <span class="co">#Get only the answer</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>        temp_response <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'["}]'</span>, <span class="st">''</span>, temp_response) <span class="co">#Trim the extra characters </span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>        data_main_analyses[row_index, <span class="st">'participantAge'</span>] <span class="ot">&lt;-</span> temp_response</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>      <span class="co">#Geographical location.</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">'CurrentUSA'</span>, participant_response)) {</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>        temp_response <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(participant_response, <span class="st">','</span>) <span class="co">#List of responses for BornUSA, ChildhoodUSA, and CurrentUSA.</span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Participant birth location. </span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">'BornUSA'</span>, temp_response[[<span class="dv">1</span>]][<span class="dv">1</span>])) {</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>          geog_temp_response <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(temp_response[[<span class="dv">1</span>]][<span class="dv">1</span>], <span class="st">':'</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>] <span class="co">#Get only the answer for BornUSA. </span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>          geog_temp_response <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'["}]'</span>, <span class="st">''</span>, geog_temp_response) <span class="co">#Trim the extra characters </span></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>          data_main_analyses[row_index, <span class="st">'participantBornUSA'</span>] <span class="ot">&lt;-</span> geog_temp_response</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Participant childhood location. </span></span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">'ChildhoodUSA'</span>, temp_response[[<span class="dv">1</span>]][<span class="dv">2</span>])) {</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>          geog_temp_response <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(temp_response[[<span class="dv">1</span>]][<span class="dv">2</span>], <span class="st">':'</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>] <span class="co">#Get only the answer for ChildhoodUSA.  </span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>          geog_temp_response <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'["}]'</span>, <span class="st">''</span>, geog_temp_response) <span class="co">#Trim the extra characters </span></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>          data_main_analyses[row_index, <span class="st">'participantChildhoodUSA'</span>] <span class="ot">&lt;-</span> geog_temp_response</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Participant current location. </span></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">'CurrentUSA'</span>, temp_response[[<span class="dv">1</span>]][<span class="dv">3</span>])) {</span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>          geog_temp_response <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(temp_response[[<span class="dv">1</span>]][<span class="dv">3</span>], <span class="st">':'</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>] <span class="co">#Get only the answer for CurrentUSA. </span></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>          geog_temp_response <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'["}]'</span>, <span class="st">''</span>, geog_temp_response) <span class="co">#Trim the extra characters </span></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>          data_main_analyses[row_index, <span class="st">'participantCurrentUSA'</span>] <span class="ot">&lt;-</span> geog_temp_response</span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>      <span class="co">#Zipcodes. </span></span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">'CurrentZipcode'</span>, participant_response)) {</span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>        temp_response <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(participant_response, <span class="st">','</span>) <span class="co">#List of responses for CurrentZipcode and ChildhoodZipcode.</span></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Participant current zipcode. </span></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">'CurrentZipcode'</span>, temp_response[[<span class="dv">1</span>]][<span class="dv">1</span>])) {</span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>          zipcode_temp_response <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(temp_response[[<span class="dv">1</span>]][<span class="dv">1</span>], <span class="st">':'</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>] <span class="co">#Get only the answer for CurrentZipcode.  </span></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>          zipcode_temp_response <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'["}]'</span>, <span class="st">''</span>, zipcode_temp_response) <span class="co">#Trim the extra characters </span></span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>          data_main_analyses[row_index, <span class="st">'participantCurrentZipcode'</span>] <span class="ot">&lt;-</span> zipcode_temp_response</span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Participant childhood zipcode.  </span></span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">'ChildhoodZipcode'</span>, temp_response[[<span class="dv">1</span>]][<span class="dv">2</span>])) {</span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>          zipcode_temp_response <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(temp_response[[<span class="dv">1</span>]][<span class="dv">2</span>], <span class="st">':'</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>] <span class="co">#Get only the answer for ChildhoodZipcode.  </span></span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>          zipcode_temp_response <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'["}]'</span>, <span class="st">''</span>, zipcode_temp_response) <span class="co">#Trim the extra characters </span></span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>          data_main_analyses[row_index, <span class="st">'participantChildhoodZipcode'</span>] <span class="ot">&lt;-</span> zipcode_temp_response</span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>      <span class="co">#Languages. </span></span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">'FirstLanguage'</span>, participant_response)) {</span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>        temp_response <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(participant_response, <span class="st">'",'</span>) <span class="co">#List of responses for FirstLanguage and AllLanguages.</span></span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Participant first language. </span></span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">'FirstLanguage'</span>, temp_response[[<span class="dv">1</span>]][<span class="dv">1</span>])) {</span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>          language_temp_response <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(temp_response[[<span class="dv">1</span>]][<span class="dv">1</span>], <span class="st">':'</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>] <span class="co">#Get only the answer for FirstLanguage. </span></span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>          language_temp_response <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'["}]'</span>, <span class="st">''</span>, language_temp_response) <span class="co">#Trim the extra characters </span></span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>          data_main_analyses[row_index, <span class="st">'participantFirstLanguage'</span>] <span class="ot">&lt;-</span> language_temp_response</span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Participant all languages spoken.  </span></span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">'AllLanguages'</span>, temp_response[[<span class="dv">1</span>]][<span class="dv">2</span>])) {</span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>          language_temp_response <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(temp_response[[<span class="dv">1</span>]][<span class="dv">2</span>], <span class="st">':'</span>)[[<span class="dv">1</span>]][<span class="dv">2</span>] <span class="co">#Get only the answer for AllLanguages.</span></span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>          language_temp_response <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'["}]'</span>, <span class="st">''</span>, language_temp_response) <span class="co">#Trim the extra characters </span></span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>          data_main_analyses[row_index, <span class="st">'participantCurrentLanguages'</span>] <span class="ot">&lt;-</span> language_temp_response</span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Check if it's a numerical response for participant's current location urbanicity rating (1-100). </span></span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="cf">if</span>(<span class="fu">grepl</span>(<span class="st">"^[0-9]+$"</span>, participant_response) <span class="sc">&amp;</span> (<span class="fu">grepl</span>(<span class="st">'currently live'</span>, stimulus, <span class="at">fixed =</span> <span class="cn">TRUE</span>))) {</span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>      data_main_analyses[row_index, <span class="st">'participantCurrentUrbanicity'</span>] <span class="ot">&lt;-</span> participant_response</span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Check if it's a numerical response for participant's childhood location urbanicity rating (1-100). </span></span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="cf">if</span>(<span class="fu">grepl</span>(<span class="st">"^[0-9]+$"</span>, participant_response) <span class="sc">&amp;</span> (<span class="fu">grepl</span>(<span class="st">'grew up'</span>, stimulus, <span class="at">fixed =</span> <span class="cn">TRUE</span>))) {</span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>      <span class="co">#Participant's childhood location urbanicity. </span></span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a>      data_main_analyses[row_index, <span class="st">'participantChildhoodUrbanicity'</span>] <span class="ot">&lt;-</span> participant_response</span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Check if it's an image response (choosing the shape image). </span></span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="cf">if</span>(<span class="fu">grepl</span>(<span class="st">"^[0-9]+$"</span>, participant_response) <span class="sc">&amp;</span> (<span class="fu">grepl</span>(<span class="st">'img'</span>, stimulus, <span class="at">fixed =</span> <span class="cn">TRUE</span>))) {</span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>      data_main_analyses[row_index, <span class="st">'participantExtensionChoice'</span>] <span class="ot">&lt;-</span> participant_response</span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Interpret the participantExtensionChoice column to make the numerical answer choice values meaningful.</span></span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>  participant_image_choice <span class="ot">&lt;-</span> data_main_analyses[row_index, <span class="st">'participantExtensionChoice'</span>]</span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(participant_image_choice) <span class="sc">&amp;&amp;</span> <span class="fu">length</span>(participant_image_choice) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Participant chose the left image. </span></span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(participant_image_choice <span class="sc">==</span> <span class="st">"0"</span>) {</span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>      data_main_analyses[row_index, <span class="st">'participantExtensionChoiceImage'</span>] <span class="ot">&lt;-</span> data_main_analyses[row_index, <span class="st">'extensionLeftImg'</span>]</span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Participant chose the center image.</span></span>
+<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="cf">if</span>(participant_image_choice <span class="sc">==</span> <span class="st">"1"</span>) {</span>
+<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a>      data_main_analyses[row_index, <span class="st">'participantExtensionChoiceImage'</span>] <span class="ot">&lt;-</span> data_main_analyses[row_index, <span class="st">'extensionCenterImg'</span>]</span>
+<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Participant chose the right image. </span></span>
+<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="cf">if</span>(participant_image_choice <span class="sc">==</span> <span class="st">"2"</span>) {</span>
+<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a>      data_main_analyses[row_index, <span class="st">'participantExtensionChoiceImage'</span>] <span class="ot">&lt;-</span> data_main_analyses[row_index, <span class="st">'extensionRightImg'</span>]</span>
+<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a><span class="co">#Combine subject rows into a single row and remove the extra columns. </span></span>
+<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a>data_main_analyses_tidy <span class="ot">&lt;-</span> data_main_analyses <span class="sc">|&gt;</span> </span>
+<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>reactionTime, <span class="sc">-</span>trialType, <span class="sc">-</span>imageLoadSuccess, <span class="sc">-</span>stimulus, <span class="sc">-</span>response) <span class="sc">|&gt;</span> </span>
+<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">ifelse</span>(. <span class="sc">==</span> <span class="st">""</span>, <span class="cn">NA</span>, .))) <span class="sc">|&gt;</span>  <span class="co">#Replace empty strings with NA</span></span>
+<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subjectID) <span class="sc">|&gt;</span> </span>
+<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="cf">if</span> (<span class="fu">all</span>(<span class="fu">is.na</span>(.))) {<span class="cn">NA</span>} <span class="cf">else</span> {<span class="fu">na.omit</span>(.)[<span class="dv">1</span>]}), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that the data are cleaned and in a tidy format, figure out whether participants were choosing based on color, material, or shape. To do so, analyze <code>exemplarImg</code> and <code>participantExtensionChoiceImage</code> to figure out what the common property is between the exemplar and the extension choice. Put the overlapping information into a new column called <code>participantOverlapProperty</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Go through each subject. </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (row_index <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(data_main_analyses_tidy)) {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Get the exemplar the participant saw.</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  participant_exemplar <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">strsplit</span>(<span class="fu">as.character</span>(data_main_analyses_tidy[row_index, <span class="st">'exemplarImg'</span>]), <span class="st">'_'</span>))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Get the extension the participant chose. </span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  participant_extension_choice <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">strsplit</span>(<span class="fu">as.character</span>(data_main_analyses_tidy[row_index, <span class="st">'participantExtensionChoiceImage'</span>]), <span class="st">'_'</span>))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Get the shape of the exemplar object and put into a new column called exemplarShape. </span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  exemplar_shape <span class="ot">&lt;-</span> participant_exemplar[<span class="dv">3</span>]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  data_main_analyses_tidy[row_index, <span class="st">'exemplarShape'</span>] <span class="ot">&lt;-</span> exemplar_shape</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Get the overlapping property. </span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  overlap <span class="ot">&lt;-</span> <span class="fu">intersect</span>(participant_exemplar, participant_extension_choice)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Put the overlapping property into a new column. </span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  data_main_analyses_tidy[row_index, <span class="st">'participantOverlapAnswer'</span>] <span class="ot">&lt;-</span> overlap</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Interpret the overlapping answer</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(overlap <span class="sc">==</span> <span class="st">'red'</span> <span class="sc">|</span> overlap <span class="sc">==</span> <span class="st">'blue'</span> <span class="sc">|</span> overlap <span class="sc">==</span> <span class="st">'yellow'</span>) {</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    data_main_analyses_tidy[row_index, <span class="st">'participantOverlapProperty'</span>] <span class="ot">&lt;-</span> <span class="st">'color'</span> </span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> <span class="cf">if</span>(overlap <span class="sc">==</span> <span class="st">'crepe'</span> <span class="sc">|</span> overlap <span class="sc">==</span> <span class="st">'foam'</span> <span class="sc">|</span> overlap <span class="sc">==</span> <span class="st">'yarn'</span>) {</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    data_main_analyses_tidy[row_index, <span class="st">'participantOverlapProperty'</span>] <span class="ot">&lt;-</span> <span class="st">'material'</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> <span class="cf">if</span>(overlap <span class="sc">==</span> <span class="st">'arch'</span> <span class="sc">|</span> overlap <span class="sc">==</span> <span class="st">'lamp'</span> <span class="sc">|</span> overlap <span class="sc">==</span> <span class="st">'snowman'</span>) {</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    data_main_analyses_tidy[row_index, <span class="st">'participantOverlapProperty'</span>] <span class="ot">&lt;-</span> <span class="st">'shape'</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Finally, reorder the columns into a logical order and add information about the participant group and experiment type.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data_main_analyses_tidy <span class="ot">&lt;-</span> data_main_analyses_tidy <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">participantLocation =</span> <span class="st">'US'</span>, <span class="at">experiment=</span> <span class="st">'USA_Adults'</span>, <span class="at">ageGroup =</span> <span class="st">'Adults'</span>, <span class="at">exclude =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(subjectID, condition, experiment, ageGroup, participantLocation, exemplarName, exemplarImg, exemplarShape, participantOverlapAnswer, participantOverlapProperty, participantExtensionChoice, participantExtensionChoiceImage, extensionLeftImg, extensionCenterImg, extensionRightImg, extensionLeftImgAttnCheckResponse, extensionCenterImgAttnCheckResponse, extensionRightImgAttnCheckResponse, participantAge, participantBornUSA, participantChildhoodUSA, participantCurrentUSA, participantCurrentZipcode, participantChildhoodZipcode, participantFirstLanguage, participantCurrentLanguages, participantCurrentUrbanicity, participantChildhoodUrbanicity, exclude)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="results-of-control-measures" class="level3">
+<h3 class="anchored" data-anchor-id="results-of-control-measures">Results of control measures</h3>
+<p>I examined the answers to the attention check question “what does each object share in common with the original object?” to verify that participants understood the task and were paying attention. I manually excluded participants who answered these questions incorrectly more than once. The default <code>exclude</code> value is 0.</p>
+</section>
+<section id="reproduction-of-original-analyses" class="level3">
+<h3 class="anchored" data-anchor-id="reproduction-of-original-analyses">Reproduction of original analyses</h3>
+<p>I want to make sure that I can get the same results as the original authors from their analysis code. Here, I am going to load in the original data and adapt the code from the original authors, accessible <a href="https://osf.io/egc9y/">here</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load libraries</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(tidyverse))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(boot))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(lme4))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>original_data_file <span class="ot">&lt;-</span> <span class="st">"Original_ShapeBias_Data.csv"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>original_data_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">getwd</span>(), <span class="st">'..'</span>, <span class="st">'data'</span>, original_data_file)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>original_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(original_data_path)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(original_data<span class="sc">$</span>Experiment) <span class="co">#Contains data from all 7 experiments.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+       Tsi_Adults_Objects    Tsi_Adults_wDistractor         Tsi_Child_Objects 
+                       39                        41                        37 
+   Tsi_Child_ShapeVsColor Tsi_Child_ShapeVsMaterial               US_Children 
+                       30                        42                        30 
+           US_Turk_Adults 
+                      144 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Number of participants</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>original_data <span class="sc">|&gt;</span> <span class="fu">group_by</span>(AgeGroup,Location) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">subjects=</span><span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">'drop'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  AgeGroup Location subjects
+  &lt;chr&gt;    &lt;chr&gt;       &lt;int&gt;
+1 Adults   Bolivia        80
+2 Adults   US            144
+3 Children Bolivia       109
+4 Children US             30</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Stats by experiment</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>summary_data_original <span class="ot">&lt;-</span> original_data <span class="sc">|&gt;</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Experiment) <span class="sc">|&gt;</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">subjects=</span><span class="fu">n</span>(), </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">average=</span><span class="fu">mean</span>(Age,<span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">minage=</span><span class="fu">min</span>(Age,<span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">maxage=</span><span class="fu">max</span>(Age,<span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">stdev=</span><span class="fu">sd</span>(Age,<span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">ShapeNo=</span><span class="fu">sum</span>(Choice<span class="sc">==</span><span class="st">"Shape"</span>),</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">MatNo=</span><span class="fu">sum</span>(Choice<span class="sc">==</span><span class="st">"Material"</span>),</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">ColorNo=</span><span class="fu">sum</span>(Choice<span class="sc">==</span><span class="st">"Color"</span>),</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">DistNo=</span><span class="fu">sum</span>(Choice<span class="sc">==</span><span class="st">"Distractor"</span>),</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">ShapePerc=</span>ShapeNo<span class="sc">/</span>subjects,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">MatPerc=</span>MatNo<span class="sc">/</span>subjects,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">ColorPerc=</span>ColorNo<span class="sc">/</span>subjects,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">DistPerc=</span>DistNo<span class="sc">/</span>subjects)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>summary_data_original<span class="sc">$</span>ExpNo <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">5</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>summary_data_original <span class="ot">&lt;-</span> <span class="fu">arrange</span>(summary_data_original,ExpNo)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Results</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>summary_data_original <span class="sc">|&gt;</span> </span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(ExpNo, Experiment, subjects, ShapeNo, MatNo, ColorNo, DistNo, ShapePerc, MatPerc, ColorPerc, DistPerc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 11
+  ExpNo Experiment       subjects ShapeNo MatNo ColorNo DistNo ShapePerc MatPerc
+  &lt;dbl&gt; &lt;chr&gt;               &lt;int&gt;   &lt;int&gt; &lt;int&gt;   &lt;int&gt;  &lt;int&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1     1 US_Children            30      18    10       2      0     0.6     0.333
+2     2 Tsi_Child_Objec…       37      12    16       9      0     0.324   0.432
+3     3 Tsi_Child_Shape…       42      12    27       0      3     0.286   0.643
+4     4 Tsi_Child_Shape…       30      10     0      17      3     0.333   0    
+5     5 US_Turk_Adults        144      99    41       4      0     0.688   0.285
+6     6 Tsi_Adults_Obje…       39      18     8      13      0     0.462   0.205
+7     7 Tsi_Adults_wDis…       41      17    12      11      1     0.415   0.293
+# ℹ 2 more variables: ColorPerc &lt;dbl&gt;, DistPerc &lt;dbl&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reproduce the binomial test for Experiment 5: US_Turk_Adults.</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>CurrExp <span class="ot">&lt;-</span> summary_data_original <span class="sc">|&gt;</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ExpNo<span class="sc">==</span><span class="dv">5</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(CurrExp<span class="sc">$</span>ShapeNo, CurrExp<span class="sc">$</span>subjects, <span class="at">p=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Exact binomial test
+
+data:  CurrExp$ShapeNo and CurrExp$subjects
+number of successes = 99, number of trials = 144, p-value &lt; 2.2e-16
+alternative hypothesis: true probability of success is not equal to 0.3333333
+95 percent confidence interval:
+ 0.6050180 0.7620797
+sample estimates:
+probability of success 
+                0.6875 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This model predicts the participant's preference for the shape-match object. </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>CurrExp <span class="ot">&lt;-</span> original_data <span class="sc">|&gt;</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Experiment <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Tsi_Adults_Objects"</span>,<span class="st">"Tsi_Adults_wDistractor"</span>, <span class="st">"US_Turk_Adults"</span>,<span class="st">"Tsi_Child_Objects"</span>,<span class="st">"US_Children"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Choice<span class="sc">!=</span><span class="st">"Distractor"</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>CurrExp<span class="sc">$</span>Offset <span class="ot">&lt;-</span> <span class="fu">logit</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">glmer</span>(Choice<span class="sc">==</span><span class="st">"Shape"</span> <span class="sc">~</span> <span class="fu">offset</span>(Offset) <span class="sc">+</span> Location <span class="sc">*</span> AgeGroup <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> Location <span class="sc">+</span> AgeGroup<span class="sc">|</span> Example) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> Experiment),CurrExp,<span class="at">family=</span><span class="st">"binomial"</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: Choice == "Shape" ~ offset(Offset) + Location * AgeGroup + (1 +  
+    Location + AgeGroup | Example) + (1 | Experiment)
+   Data: CurrExp
+
+     AIC      BIC   logLik deviance df.resid 
+   376.3    416.7   -177.2    354.3      279 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.3934 -0.8253  0.4178  0.8957  2.2925 
+
+Random effects:
+ Groups     Name             Variance  Std.Dev.  Corr       
+ Experiment (Intercept)      1.540e-08 0.0001241            
+ Example    (Intercept)      1.230e-01 0.3506452            
+            LocationUS       2.197e-01 0.4687695  0.81      
+            AgeGroupChildren 1.089e+00 1.0436391 -0.67 -0.11
+Number of obs: 290, groups:  Experiment, 5; Example, 3
+
+Fixed effects:
+                            Estimate Std. Error z value Pr(&gt;|z|)   
+(Intercept)                   0.4550     0.3073   1.480  0.13877   
+LocationUS                    1.1373     0.4080   2.787  0.00532 **
+AgeGroupChildren             -0.8325     0.7718  -1.079  0.28070   
+LocationUS:AgeGroupChildren   0.4077     0.6807   0.599  0.54918   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Correlation of Fixed Effects:
+            (Intr) LctnUS AgGrpC
+LocationUS  -0.072              
+AgGrpChldrn -0.567  0.108       
+LctnUS:AgGC  0.257 -0.331 -0.455</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Actual model: main effects of `Location` and `AgeGroup` tested without their interaction. </span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>m0 <span class="ot">&lt;-</span> <span class="fu">glmer</span>(Choice<span class="sc">==</span><span class="st">"Shape"</span> <span class="sc">~</span> <span class="fu">offset</span>(Offset) <span class="sc">+</span> Location <span class="sc">+</span> AgeGroup <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> Location <span class="sc">+</span> AgeGroup <span class="sc">|</span> Example) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> Experiment),CurrExp,<span class="at">family=</span><span class="st">"binomial"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>boundary (singular) fit: see help('isSingular')</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m,m0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Data: CurrExp
+Models:
+m0: Choice == "Shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment)
+m: Choice == "Shape" ~ offset(Offset) + Location * AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment)
+   npar    AIC    BIC  logLik deviance Chisq Df Pr(&gt;Chisq)
+m0   10 374.68 411.38 -177.34   354.68                    
+m    11 376.32 416.69 -177.16   354.32 0.365  1     0.5457</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: Choice == "Shape" ~ offset(Offset) + Location + AgeGroup + (1 +  
+    Location + AgeGroup | Example) + (1 | Experiment)
+   Data: CurrExp
+
+     AIC      BIC   logLik deviance df.resid 
+   374.7    411.4   -177.3    354.7      280 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.4474 -0.8063  0.4086  0.9219  2.0617 
+
+Random effects:
+ Groups     Name             Variance Std.Dev. Corr       
+ Experiment (Intercept)      0.0000   0.0000              
+ Example    (Intercept)      0.1284   0.3583              
+            LocationUS       0.2202   0.4693    0.82      
+            AgeGroupChildren 0.9782   0.9890   -0.68 -0.13
+Number of obs: 290, groups:  Experiment, 5; Example, 3
+
+Fixed effects:
+                 Estimate Std. Error z value Pr(&gt;|z|)   
+(Intercept)        0.4061     0.2999   1.354  0.17560   
+LocationUS         1.2215     0.3844   3.178  0.00148 **
+AgeGroupChildren  -0.6236     0.6569  -0.949  0.34239   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Correlation of Fixed Effects:
+            (Intr) LctnUS
+LocationUS   0.030       
+AgGrpChldrn -0.540 -0.060
+optimizer (Nelder_Mead) convergence code: 0 (OK)
+boundary (singular) fit: see help('isSingular')</code></pre>
+</div>
+</div>
+<p><strong>Based on the calculations above, I successfully reproduced the original results: “This model…showed that U.S. participants were significantly more likely to generalize the label by shape <span class="math inline">\((\beta = 1.22\)</span>; <span class="math inline">\(p &lt; .01)\)</span> and no difference across age groups <span class="math inline">\((\beta = -.62\)</span>; <span class="math inline">\(p = .34)\)</span>”.</strong></p>
+</section>
+<section id="confirmatory-analyses" class="level3">
+<h3 class="anchored" data-anchor-id="confirmatory-analyses">Confirmatory analyses</h3>
+<p>I conducted three main analyses:</p>
+<ol type="1">
+<li>I calculated the percentage of participants who chose the object based on <strong>shape</strong> congruency with the exemplar, the percentage of participants who chose the object based on <strong>material</strong> congruency with the exemplar, and the percentage of participants who chose the object based on <strong>color</strong> congruency with the exemplar. XX% of participants chose the object based on <strong>shape</strong> congruency with the exemplar, XX% of participants chose the object based on <strong>material</strong> congruency with the exemplar, and XX% of participants chose the object based on <strong>color</strong> congruency with the exemplar. A binomial test showed whether U.S. adults were significantly more likely to choose the shape match as opposed to the color or material matches. The results did/did not replicate with the original study.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Summary statistics  </span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>summary_data <span class="ot">&lt;-</span> data_main_analyses_tidy <span class="sc">|&gt;</span>  </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">subjects=</span><span class="fu">n</span>(), </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">average=</span><span class="fu">mean</span>(<span class="fu">as.numeric</span>(participantAge), <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">minage=</span><span class="fu">min</span>(<span class="fu">as.numeric</span>(participantAge), <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">maxage=</span><span class="fu">max</span>(<span class="fu">as.numeric</span>(participantAge), <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">stdev=</span><span class="fu">sd</span>(<span class="fu">as.numeric</span>(participantAge), <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">shapeNum=</span><span class="fu">sum</span>(participantOverlapProperty<span class="sc">==</span><span class="st">"shape"</span>),</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">materialNum=</span><span class="fu">sum</span>(participantOverlapProperty<span class="sc">==</span><span class="st">"material"</span>),</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">colorNum=</span><span class="fu">sum</span>(participantOverlapProperty<span class="sc">==</span><span class="st">"color"</span>),</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">shapePercent=</span>shapeNum<span class="sc">/</span>subjects,</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">matPercent=</span>materialNum<span class="sc">/</span>subjects,</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">colorPercent=</span>colorNum<span class="sc">/</span>subjects,</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">'drop'</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ungroup</span>()</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Binomial test</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>binomial_result <span class="ot">&lt;-</span> <span class="fu">binom.test</span>(summary_data<span class="sc">$</span>shapeNum, summary_data<span class="sc">$</span>subjects, <span class="at">p=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="co">#Store values of 95% confidence intervals. </span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>conf_int <span class="ot">&lt;-</span> binomial_result<span class="sc">$</span>conf.int <span class="co"># Confidence interval</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Figure 1 shows the proportion of choices of an extension by the type of property (shape, color, material).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create dataframe for figure. </span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>figure_statistics <span class="ot">=</span> data_main_analyses_tidy <span class="sc">|&gt;</span>  </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(participantOverlapProperty, participantLocation) <span class="sc">|&gt;</span> </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">proportion =</span> n <span class="sc">/</span> <span class="fu">nrow</span>(data_main_analyses_tidy), <span class="at">.groups =</span> <span class="st">'drop'</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot the data for the first figure and save as a file. </span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(figure_statistics, <span class="fu">aes</span>(<span class="at">y =</span> proportion, <span class="at">x =</span> participantLocation, <span class="at">fill =</span> participantOverlapProperty)) <span class="sc">+</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"stack"</span>, <span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">width =</span> .<span class="dv">7</span>) <span class="sc">+</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> binomial_result<span class="sc">$</span>conf.int[<span class="dv">1</span>], <span class="at">ymax =</span> binomial_result<span class="sc">$</span>conf.int[<span class="dv">2</span>]), <span class="at">width =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#7F92B8"</span>, <span class="st">"#6C6969"</span>, <span class="st">"#B4DCB9"</span>)) <span class="sc">+</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="st">'Experiment 5: USA Adults'</span>) <span class="sc">+</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">'Percentage of responses'</span>, <span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>participantLocation) <span class="sc">+</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> (<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>), <span class="at">linetype =</span> <span class="st">'dotted'</span>, <span class="at">color =</span> <span class="st">'black'</span>) <span class="sc">+</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Choice"</span>) <span class="sc">+</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="jara-ettinger2022_rescue_files/figure-html/Figure%201-%20Proportion%20of%20Choices%20by%20Property-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>img_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">getwd</span>(), <span class="st">'..'</span>, <span class="st">'figures'</span>, <span class="st">'choice_by_property_rescue.png'</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(img_path, <span class="at">device =</span> <span class="st">'png'</span>, <span class="at">dpi=</span><span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Saving 7 x 5 in image</code></pre>
+</div>
+</div>
+<p>We also want to calculate the proportion of choice by property for each of the shapes (arch, lamp, snowman).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculate the percentages of each choice by property and output into a dataframe. </span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>count_df <span class="ot">&lt;-</span> data_main_analyses_tidy <span class="sc">|&gt;</span> </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(exemplarShape, participantOverlapProperty, experiment) <span class="sc">|&gt;</span> </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">'drop'</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivot the dataframe.</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>figure_statistics_by_shape_property <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(count_df, <span class="at">id_cols =</span> exemplarShape, <span class="at">names_from =</span> participantOverlapProperty, <span class="at">values_from =</span> count)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>figure_statistics_by_shape_property[<span class="fu">is.na</span>(figure_statistics_by_shape_property)] <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co">#Make NULL values 0</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculate the proportion of responses for each property. </span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>figure_statistics_by_shape_property<span class="sc">$</span>totalCount <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(figure_statistics_by_shape_property[, <span class="sc">-</span><span class="dv">1</span>]) <span class="co">#Calculate the total responses per property </span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>columns_to_calculate <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"shape"</span>, <span class="st">"material"</span>, <span class="st">"color"</span>)  <span class="co">#All possible properties </span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>existing_columns <span class="ot">&lt;-</span> <span class="fu">intersect</span>(columns_to_calculate, <span class="fu">names</span>(figure_statistics_by_shape_property)) <span class="co">#Find columns that actually exist</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>figure_statistics_by_shape_property <span class="ot">&lt;-</span> figure_statistics_by_shape_property <span class="sc">|&gt;</span> </span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(existing_columns), <span class="sc">~</span> .x <span class="sc">/</span> totalCount, <span class="at">.names =</span> <span class="st">"{.col}Proportion"</span>)) <span class="co">#Takes into account if properties don't exist. </span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivot the data. </span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>figure_statistics_by_shape_property_long <span class="ot">&lt;-</span> figure_statistics_by_shape_property <span class="sc">|&gt;</span> </span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">"shapeProportion"</span>, <span class="st">"materialProportion"</span>, <span class="st">"colorProportion"</span>)),</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"exemplarProperty"</span>,</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"proportion"</span></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a><span class="co">#Clean up the property value names.</span></span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>figure_statistics_by_shape_property_long<span class="sc">$</span>exemplarProperty <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"Proportion"</span>, <span class="st">""</span>, figure_statistics_by_shape_property_long<span class="sc">$</span>exemplarProperty)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Figure 2 shows the proportion of choices by type of extension shape within the three property (shape, color, material) categories.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot the data for the second figure and save as a file.</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(figure_statistics_by_shape_property_long, <span class="fu">aes</span>(<span class="at">x =</span> exemplarShape, <span class="at">y =</span> proportion, <span class="at">fill =</span> exemplarProperty)) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span> <span class="co">#use the actual proportions</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#7F92B8"</span>, <span class="st">"#6C6969"</span>, <span class="st">"#B4DCB9"</span>)) <span class="sc">+</span> <span class="co">#set the bar colors </span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="st">'Extension Shape'</span>) <span class="sc">+</span> <span class="co">#x-label</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span> <span class="co"># Convert y-axis labels to percent</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#facet_wrap(~participantLocation) + #group responses by population</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> (<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>), <span class="at">linetype =</span> <span class="st">'dotted'</span>, <span class="at">color =</span> <span class="st">'black'</span>) <span class="sc">+</span> <span class="co">#add dotted chance line </span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Shape"</span>, <span class="at">y =</span> <span class="st">"Percentage of Responses"</span>, <span class="at">fill =</span> <span class="st">"Material"</span>) <span class="sc">+</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">"Property Choice"</span>) <span class="sc">+</span> </span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="jara-ettinger2022_rescue_files/figure-html/Figure%202-%20Proportion%20of%20Choices%20by%20Property%20and%20Shape-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>img_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">getwd</span>(), <span class="st">'..'</span>, <span class="st">'figures'</span>, <span class="st">'choice_by_shape_and_property_rescue.png'</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(img_path, <span class="at">device =</span> <span class="st">'png'</span>, <span class="at">dpi=</span><span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Saving 7 x 5 in image</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>I also ran a random effects model, with random intercepts for the exemplar object (<code>Example</code>), testing for a participant’s preference for shape as a function of the exemplar object: <code>glmer( Choice=="Shape" ~ offset(Offset) + Location + (1 + Location | Example) )</code>. The main difference between the model in the first replication and this model is the use of the <code>Offset</code> variable, set to the log-odds probability of 1/3.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a dataset to merge with the original dataset. </span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>rescue_data <span class="ot">&lt;-</span> data_main_analyses_tidy <span class="sc">|&gt;</span> </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">Age =</span> participantAge,</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">Experiment =</span> experiment, </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">Example =</span> exemplarShape, </span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">Choice =</span> participantOverlapProperty, </span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">AgeGroup =</span> ageGroup, </span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">Location =</span> participantLocation)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter the original dataset for just the Tsimane adult data (Experiment 6, without distractors).   </span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>tsimane_adult_data <span class="ot">&lt;-</span> original_data <span class="sc">|&gt;</span> </span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Experiment <span class="sc">==</span> <span class="st">'Tsi_Adults_Objects'</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Age, Experiment, Example, Choice, AgeGroup, Location) <span class="sc">|&gt;</span> </span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Example =</span> <span class="fu">tolower</span>(Example), <span class="at">Choice =</span> <span class="fu">tolower</span>(Choice)) <span class="co">#Make all values in these columns lowercase. </span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Combine the rescue USA adult data and the original data from Experiment 6 (N=39). </span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>appended_data <span class="ot">&lt;-</span> <span class="fu">rbind</span>(rescue_data, tsimane_adult_data)</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a><span class="co">#Add the offset column. </span></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>appended_data<span class="sc">$</span>Offset <span class="ot">&lt;-</span> <span class="fu">logit</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a><span class="co">#Run the random effects model. </span></span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glmer</span>(Choice<span class="sc">==</span><span class="st">"shape"</span> <span class="sc">~</span> <span class="fu">offset</span>(Offset) <span class="sc">+</span> Location <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> Location <span class="sc">|</span> Example), appended_data, <span class="at">family=</span><span class="st">"binomial"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>boundary (singular) fit: see help('isSingular')</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: Choice == "shape" ~ offset(Offset) + Location + (1 + Location |  
+    Example)
+   Data: appended_data
+
+     AIC      BIC   logLik deviance df.resid 
+    70.5     79.5    -30.2     60.5       40 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-1.0900 -0.9244 -0.7220  1.0092  1.3616 
+
+Random effects:
+ Groups  Name        Variance Std.Dev. Corr
+ Example (Intercept) 0.2185   0.4675       
+         LocationUS  0.5546   0.7447   1.00
+Number of obs: 45, groups:  Example, 3
+
+Fixed effects:
+            Estimate Std. Error z value Pr(&gt;|z|)
+(Intercept)   0.5282     0.4263   1.239    0.215
+LocationUS   -0.8666     1.4358  -0.604    0.546
+
+Correlation of Fixed Effects:
+           (Intr)
+LocationUS 0.012 
+optimizer (Nelder_Mead) convergence code: 0 (OK)
+boundary (singular) fit: see help('isSingular')</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li>I also ran the original paper’s logistic mixed-effects model that predicts the participant’s preference for the shape-match object: <code>glmer( Choice == "Shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment) )</code> by swapping out the USA adult data from the original paper with my new USA adult data but keeping all of the other data the same (USA children, Tsimane’ adults, and Tsimane’ children). In the original study, the authors used a baseline probability of 33.3% with the population (U.S. participants) and the age group (adults) dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment number, random intercepts for the exemplar object, random slopes for population as a function of exemplar, and random slopes for age group as a function of exemplar. This model found that, with a new sample of U.S. adults, they were [] to generalize the label of a novel object by shape <span class="math inline">\((\beta = X.XX\)</span>, <span class="math inline">\(p &lt; X.XX)\)</span>.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filter the original dataset to remove the USA adult data (and not include two if the Tsimane children experiments).   </span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>original_data_no_USA_adult <span class="ot">&lt;-</span> original_data <span class="sc">|&gt;</span> </span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Experiment <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Tsi_Adults_Objects"</span>,<span class="st">"Tsi_Adults_wDistractor"</span>, <span class="st">"Tsi_Child_Objects"</span>,<span class="st">"US_Children"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Choice<span class="sc">!=</span><span class="st">"Distractor"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Age, Experiment, Example, Choice, AgeGroup, Location) <span class="sc">|&gt;</span> </span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Example =</span> <span class="fu">tolower</span>(Example), <span class="at">Choice =</span> <span class="fu">tolower</span>(Choice)) <span class="co">#Make all values in these columns lowercase. </span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Combine the rescue USA adult data and the original data (minus the US_Turk_Adult subjects). </span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>appended_data_full <span class="ot">&lt;-</span> <span class="fu">rbind</span>(rescue_data, original_data_no_USA_adult)</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Add the offset column. </span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>appended_data_full<span class="sc">$</span>Offset <span class="ot">&lt;-</span> <span class="fu">logit</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Run the logistic mixed-effects model. </span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glmer</span>(Choice <span class="sc">==</span> <span class="st">"shape"</span> <span class="sc">~</span> <span class="fu">offset</span>(Offset) <span class="sc">+</span> Location <span class="sc">+</span> AgeGroup <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">+</span> Location <span class="sc">+</span> AgeGroup <span class="sc">|</span> Example) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> Experiment), appended_data_full, <span class="at">family=</span><span class="st">"binomial"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv, :
+unable to evaluate scaled gradient</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv, :
+Model failed to converge: degenerate Hessian with 1 negative eigenvalues</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace
+  Approximation) [glmerMod]
+ Family: binomial  ( logit )
+Formula: Choice == "shape" ~ offset(Offset) + Location + AgeGroup + (1 +  
+    Location + AgeGroup | Example) + (1 | Experiment)
+   Data: appended_data_full
+
+     AIC      BIC   logLik deviance df.resid 
+   216.1    246.3    -98.0    196.1      142 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.5121 -0.8458 -0.5993  1.1791  1.6813 
+
+Random effects:
+ Groups     Name             Variance  Std.Dev.  Corr     
+ Experiment (Intercept)      7.330e-07 0.0008562          
+ Example    (Intercept)      4.785e-05 0.0069170          
+            LocationUS       1.133e+00 1.0646353 0.51     
+            AgeGroupChildren 2.188e-01 0.4677830 0.49 1.00
+Number of obs: 152, groups:  Experiment, 5; Example, 3
+
+Fixed effects:
+                 Estimate Std. Error z value Pr(&gt;|z|)
+(Intercept)        0.3594     0.2233   1.609    0.108
+LocationUS         0.9014     0.8003   1.126    0.260
+AgeGroupChildren  -0.3196     0.4833  -0.661    0.508
+
+Correlation of Fixed Effects:
+            (Intr) LctnUS
+LocationUS  -0.070       
+AgGrpChldrn -0.407  0.210
+optimizer (Nelder_Mead) convergence code: 0 (OK)
+unable to evaluate scaled gradient
+Model failed to converge: degenerate  Hessian with 1 negative eigenvalues</code></pre>
+</div>
+</div>
+<p><em>Three-panel graph with original, 1st replication, and your replication is ideal here</em></p>
+</section>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+</section>
+<section id="mini-meta-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="mini-meta-analysis">Mini meta analysis</h2>
+<p>Combining across the original paper, 1st replication, and 2nd replication, what is the aggregate effect size?</p>
+<section id="summary-of-replication-attempt" class="level3">
+<h3 class="anchored" data-anchor-id="summary-of-replication-attempt">Summary of Replication Attempt</h3>
+<p>Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.</p>
+</section>
+<section id="commentary" class="level3">
+<h3 class="anchored" data-anchor-id="commentary">Commentary</h3>
+<p>Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt. None of these need to be long.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
