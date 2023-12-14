@@ -14,9 +14,9 @@ format:
 
 I chose to try and rescue the replication of this experiment because I am interested in the intersection of language and spatial/object reasoning. As a developmental cognitive scientist, I also found the comparison of adults and children to be an important element relevant to my research interests. Finally, the cross-cultural comparisons made in this paper are something that I'd like to explore further in my own research, outside of the context of this project.
 
-The stimuli that will be required to collect additional data for this experiment are available in the repository of the original replication project. The original replication collected data online from 144 U.S. adults, following the paradigm of Experiment 5 in the paper. It won't be possible to collect additional data from Tsimane' adults, so a replication of Experiments 6 and 7 cannot be performed. The new replication attempt will feature attention checks and a more detailed questionnaire about the subject's early geographic environment (e.g., urbanicity of current and childhood environments), given the theoretical claims in the paper about the importance of early environmental factors on the strength of the shape bias in children.
+The stimuli that will be required to collect additional data for this experiment are available in the repository of the original replication project. The original replication collected data online from 144 U.S. adults, following the paradigm of Experiment 5 in the paper. It won't be possible to collect additional data from Tsimane' adults, so a replication of Experiments 6 and 7 cannot be performed. The new replication attempt will feature attention checks and a demographic questionnaire about the subject's early geographic environment (e.g., urbanicity of current and childhood environments), given the theoretical claims in the paper about the importance of early environmental factors on the strength of the shape bias in children.
 
-Click [here](https://github.com/psych251/jara-ettinger2022_rescue) for this rescue project's Github repository. The PDF of the original paper can be found [here](https://github.com/psych251/jara-ettinger2022_rescue/blob/dc24145deab4f76cf7bd405c77feb28e07fda9af/original_paper/Jara-Ettinger%20et%20al.%202022%20-%20The%20origins%20of%20the%20shape%20bias%20-%20Evidence%20from%20the%20Tsimane'.pdf).
+Click [here](https://github.com/psych251/jara-ettinger2022_rescue) for this rescue project's Github repository. The PDF of the original paper can be found [here](https://github.com/psych251/jara-ettinger2022_rescue/blob/dc24145deab4f76cf7bd405c77feb28e07fda9af/original_paper/Jara-Ettinger%20et%20al.%202022%20-%20The%20origins%20of%20the%20shape%20bias%20-%20Evidence%20from%20the%20Tsimane'.pdf). The experiment, hosted on [cognition.run](https://cognition.run/), can be accessed [here](https://g5esfxmrfk.cognition.run/). 
 
 ## Summary of prior replication attempt
 
@@ -28,18 +28,21 @@ The demographics of the sample were the same for both the original study (specif
 
 There are two main analyses:
 
-1.  Calculating the percentage of participants who chose the object based on **shape** congruency with the exemplar, the percentage of participants who chose the object based on **material** congruency with the exemplar, and the percentage of participants who chose the object based on **color** congruency with the exemplar. Both the original study and the first replication did this analysis the same way.
-2.  Running a logistic mixed-effects model that predicted the participant's preference for the shape-match object.
+1. Calculating the percentage of participants who chose the object based on **shape** congruency with the exemplar, the percentage of participants who chose the object based on **material** congruency with the exemplar, and the percentage of participants who chose the object based on **color** congruency with the exemplar. 
 
-In the original study, the authors used a baseline probability of 33.3% with the population and the age group dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment `(1 | Experiment)`, random intercepts for the exemplar object (`Example`), random slopes for population as a function of exemplar `(1 + Location + AgeGroup | Example)`, and random slopes for age group `(1 + Location + AgeGroup | Example)` as a function of exemplar: `glmer( Choice == "Shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment) )`. The population by age interaction effect (`Location * AgeGroup`) model was not included based on a nested model comparison; instead, only the main effects of `Location` and `AgeGroup` were tested without their interaction (`Location + AgeGroup`). The `Offset` variable was set to the log-odds probability of 1/3 or 33.3% (`logit(1/3)`).
+In the original study, the authors used a binomial test with chance set to 1/3 to test whether U.S. adults were significantly more likely to choose the shape match as opposed to the color or material matches within just the U.S. adult experiment. The first replication did not run this test.  
 
-In the first replication, the author used a random effects model, with random intercepts for the exemplar object (`Example`), testing for a participant's preference for shape as a function of the exemplar object: `glmer( Choice == "Shape" ~ Location  + (1 + Location | Example) )`. Notably, the first replication author did not include the `offset(Offset)` of the log-odds probability of 1/3. They also removed the random slopes for age group as a function of exemplar (`(1 + Location | Example)` instead of `(1 + Location + AgeGroup | Example)`) since they were not comparing the adult data to the child data.
+2. Running a logistic mixed-effects model that predicted the participant's preference for the shape-match object.
+
+In the original study, the authors used a baseline probability of 33.3% with the population and the age group dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment `(1 | Experiment)`, random intercepts for the exemplar object (`Example`), random slopes for population as a function of exemplar `(1 + Location + AgeGroup | Example)`, and random slopes for age group `(1 + Location + AgeGroup | Example)` as a function of exemplar: `glmer( Choice == "shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment) )`. The population by age interaction effect (`Location * AgeGroup`) model was not included based on a nested model comparison; instead, only the main effects of `Location` and `AgeGroup` were tested without their interaction (`Location + AgeGroup`). The `Offset` variable was set to the log-odds probability of 1/3 or 33.3% (`logit(1/3)`).
+
+In the first replication, the author used a random effects model, with random intercepts for the exemplar object (`Example`), testing for a participant's preference for shape as a function of the exemplar object: `glmer( Choice == "shape" ~ Location  + (1 + Location | Example) )`. Notably, the first replication author did not include the `offset(Offset)` of the log-odds probability of 1/3. They also removed the random slopes for age group as a function of exemplar (`(1 + Location | Example)` instead of `(1 + Location + AgeGroup | Example)`) since they were not comparing the adult data to the child data.
 
 ## Methods
 
 ### Power Analysis
 
-Instead of conducting a power analysis for a logistic mixed effects model, I am going to run 3 times the original sample size (N=144) for a total of N=432 participants, which means 8 subjects per condition (54 conditions in total). While the main hypothesis for the failed first replication is the use of the wrong stimuli, running 3 times the sample size will also increase the power.
+Instead of conducting a power analysis for a logistic mixed effects model, I am going to run 3 times the original sample size (N=144) for a total of N=432 participants, which means 8 subjects per condition (54 conditions in total). While the main hypothesis for the failed first replication is the use of the wrong stimuli, running 3 times the sample size will also increase the power. I will also take into the account the stimulus-level random effects observed in the first replication by testing whether U.S. adults were significantly more likely to choose the shape match as opposed to the color or material matches against chance in an exploratory analysis. 
 
 ### Planned Sample
 
@@ -74,11 +77,17 @@ Experiment 5 was a "one-shot learning trial and each participant completed one t
 
 ### Analysis Plan
 
-Participants will be excluded if they did not answer the main question of interest (choosing an extension object) or if they answer more than one attention check question incorrectly, asking how each extension object relates to the exemplar object. Data will be downloaded from Prolific and scrubbed of all identifying information (e.g., IP addresses) and then cleaned. I will conduct three analyses:
+Participants will be excluded if they did not answer the main question of interest (choosing an extension object) or if they answer more than one attention check question incorrectly, asking how each extension object relates to the exemplar object. Data will be downloaded from Prolific and scrubbed of all identifying information (e.g., IP addresses) and then cleaned. I will conduct one main analysis and three exploratory analyses:
 
-1.  Calculate the percentage of participants who chose the object based on **shape** congruency with the exemplar, the percentage of participants who chose the object based on **material** congruency with the exemplar, and the percentage of participants who chose the object based on **color** congruency with the exemplar, within the USA adult sample.
-2.  Run a random effects model, with random intercepts for the exemplar object (`Example`), testing for a participant's preference for shape as a function of the exemplar object: `glmer( Choice=="Shape" ~ offset(Offset) + Location + (1 + Location | Example) )`. The main difference between the model in the first replication and this model is the use of the `Offset` variable, set to the log-odds probability of 1/3.
-3.  Run the original paper's logistic mixed-effects model that predicts the participant's preference for the shape-match object: `glmer( Choice == "Shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment) )`. I will swap out the USA adult data from the original paper with my new USA adult data but keep all of the other data the same (USA children, Tsimane' adults, and Tsimane' children).
+_Main analysis:_
+
+1. A binomial test with chance set to 1/3 tested whether U.S. adults were significantly more likely to choose the shape match as opposed to the color or material matches within just the U.S. adult experiment. This test matches the statistical test run by the original authors. 
+
+_Exploratory analyses:_
+
+2. A random effects model that takes into account the stimulus-level random effects by testing against chance within just the U.S. adult sample: `glmer( Choice=="shape" ~ offset(Offset) + 1 + (1 + Example) )`. This model tests, given an offset of 1/3, if the intercept is significantly different from chance while accounting for random effects.
+3. A random effects model, with random intercepts for the exemplar object (`Example`), testing for a participant's preference for shape as a function of the exemplar object and the population group (`Location`): `glmer( Choice=="shape" ~ offset(Offset) + Location + (1 + Location | Example) )`. The main difference between the model in the first replication and this model is the use of the `Offset` variable, set to the log-odds probability of 1/3.
+4. The original paper's logistic mixed-effects model that predicts the participant's preference for the shape-match object: `glmer( Choice == "shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment) )`. I will swap out the USA adult data from the original paper with my new USA adult data but keep all of the other data the same (USA children, Tsimane' adults, and Tsimane' children).
 
 **Clarify key analysis of interest:** I am primarily interested in replicating the first two analyses listed above to test whether USA adults are more likely to choose the extension object that is matched on the shape property.
 
@@ -414,11 +423,11 @@ summary(m0)
 
 **Based on the calculations above, I successfully reproduced the original results: "This model...showed that U.S. participants were significantly more likely to generalize the label by shape $(\beta = 1.22$; $p < .01)$ and no difference across age groups $(\beta = -.62$; $p = .34)$".**
 
-### Confirmatory analyses
+### Confirmatory analysis
 
-I conducted three main analyses:
+I conducted one main confirmatory analysis:
 
-1.  I calculated the percentage of participants who chose the object based on **shape** congruency with the exemplar, the percentage of participants who chose the object based on **material** congruency with the exemplar, and the percentage of participants who chose the object based on **color** congruency with the exemplar. XX% of participants chose the object based on **shape** congruency with the exemplar, XX% of participants chose the object based on **material** congruency with the exemplar, and XX% of participants chose the object based on **color** congruency with the exemplar. A binomial test showed whether U.S. adults were significantly more likely to choose the shape match as opposed to the color or material matches. The results did/did not replicate with the original study.
+1. A binomial test with chance set to 1/3 tested whether U.S. adults were significantly more likely to choose the shape match as opposed to the color or material matches within just this experiment. This test matches the statistical test run by the original authors. The results did/did not replicate with the original study.
 
 ```{r Confirmatory Analysis 1.1}
 #Summary statistics  
@@ -448,7 +457,7 @@ Figure 1 shows the proportion of choices of an extension by the type of property
 
 ```{r Figure 1: Proportion of Choices by Property}
 #Create dataframe for figure. 
-figure_statistics = data_main_analyses_tidy |>  
+figure_statistics <- data_main_analyses_tidy |>  
   group_by(participantOverlapProperty, participantLocation) |> 
   summarize(n = n(), proportion = n / nrow(data_main_analyses_tidy), .groups = 'drop') |> 
   ungroup()
@@ -522,9 +531,30 @@ img_path <- file.path(getwd(), '..', 'figures', 'choice_by_shape_and_property_re
 ggsave(img_path, device = 'png', dpi=300)
 ```
 
-2.  I also ran a random effects model, with random intercepts for the exemplar object (`Example`), testing for a participant's preference for shape as a function of the exemplar object: `glmer( Choice=="Shape" ~ offset(Offset) + Location + (1 + Location | Example) )`. The main difference between the model in the first replication and this model is the use of the `Offset` variable, set to the log-odds probability of 1/3.
+### Exploratory analyses
 
-```{r Confirmatory Analysis 2}
+1. Given that the first replication author observed stimulus-level random effects, the first exploratory analysis is a model that takes into account these random effects: `glmer( Choice=="shape" ~ offset(Offset) + 1 + (1 + Example) )`. This model tests, given an offset of 1/3, if the intercept is significantly different from 0 while accounting for random effects.
+
+```{r Exploratory Analysis 1}
+#Create a dataframe for the analysis. 
+rescue_data <- data_main_analyses_tidy |> 
+  select(Age = participantAge,
+         Experiment = experiment, 
+         Example = exemplarShape, 
+         Choice = participantOverlapProperty, 
+         AgeGroup = ageGroup, 
+         Location = participantLocation)
+
+#Add the offset column. 
+rescue_data$Offset <- logit(1/3)
+
+#Run the random effects model against chance. 
+summary(glmer(Choice=="shape" ~ offset(Offset) + 1 + (1 | Example), rescue_data, family="binomial"))
+```
+
+2.  I also ran a random effects model, with random intercepts for the exemplar object (`Example`), testing for a participant's preference for shape as a function of the exemplar object: `glmer( Choice=="shape" ~ offset(Offset) + Location + (1 + Location | Example) )`. The main difference between the model in the first replication and this model is the use of the `Offset` variable, set to the log-odds probability of 1/3.
+
+```{r Exploratory Analysis 2}
 #Create a dataset to merge with the original dataset. 
 rescue_data <- data_main_analyses_tidy |> 
   select(Age = participantAge,
@@ -550,7 +580,7 @@ appended_data$Offset <- logit(1/3)
 summary(glmer(Choice=="shape" ~ offset(Offset) + Location + (1 + Location | Example), appended_data, family="binomial"))
 ```
 
-3.  I also ran the original paper's logistic mixed-effects model that predicts the participant's preference for the shape-match object: `glmer( Choice == "Shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment) )` by swapping out the USA adult data from the original paper with my new USA adult data but keeping all of the other data the same (USA children, Tsimane' adults, and Tsimane' children). In the original study, the authors used a baseline probability of 33.3% with the population (U.S. participants) and the age group (adults) dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment number, random intercepts for the exemplar object, random slopes for population as a function of exemplar, and random slopes for age group as a function of exemplar. This model found that, with a new sample of U.S. adults, they were \[\] to generalize the label of a novel object by shape $(\beta = X.XX$, $p < X.XX)$.
+3.  I also ran the original paper's logistic mixed-effects model that predicts the participant's preference for the shape-match object: `glmer( Choice == "shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment) )` by swapping out the USA adult data from the original paper with my new USA adult data but keeping all of the other data the same (USA children, Tsimane' adults, and Tsimane' children). In the original study, the authors used a baseline probability of 33.3% with the population (U.S. participants) and the age group (adults) dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment number, random intercepts for the exemplar object, random slopes for population as a function of exemplar, and random slopes for age group as a function of exemplar. This model found that, with a new sample of U.S. adults, they were \[\] to generalize the label of a novel object by shape $(\beta = X.XX$, $p < X.XX)$.
 
 ```{r Confirmatory Analysis 3}
 #Filter the original dataset to remove the USA adult data (and not include two if the Tsimane children experiments).   
