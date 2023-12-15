@@ -36,13 +36,13 @@ In the original study, the authors used a binomial test with chance set to 1/3 t
 
 In the original study, the authors used a baseline probability of 33.3% with the population and the age group dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment `(1 | Experiment)`, random intercepts for the exemplar object (`Example`), random slopes for population as a function of exemplar `(1 + Location + AgeGroup | Example)`, and random slopes for age group `(1 + Location + AgeGroup | Example)` as a function of exemplar: `glmer( Choice == "shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment) )`. The population by age interaction effect (`Location * AgeGroup`) model was not included based on a nested model comparison; instead, only the main effects of `Location` and `AgeGroup` were tested without their interaction (`Location + AgeGroup`). The `Offset` variable was set to the log-odds probability of 1/3 or 33.3% (`logit(1/3)`).
 
-In the first replication, the author used a random effects model, with random intercepts for the exemplar object (`Example`), testing for a participant's preference for shape as a function of the exemplar object: `glmer( Choice == "shape" ~ Location  + (1 + Location | Example) )`. Notably, the first replication author did not include the `offset(Offset)` of the log-odds probability of 1/3. They also removed the random slopes for age group as a function of exemplar (`(1 + Location | Example)` instead of `(1 + Location + AgeGroup | Example)`) since they were not comparing the adult data to the child data.
+In the first replication, the author used a random effects model as their key analysis of interest, with random intercepts for the exemplar object (`Example`), testing for a participant's preference for shape as a function of the exemplar object: `glmer( Choice == "shape" ~ Location  + (1 + Location | Example) )`. Notably, the first replication author did not include the `offset(Offset)` of the log-odds probability of 1/3. They also removed the random slopes for age group as a function of exemplar (`(1 + Location | Example)` instead of `(1 + Location + AgeGroup | Example)`) since they were not comparing the adult data to the child data. Using this random effects model, the first replication author obtained an unsignificant result with a p-value of 0.318 and a small estimate of 1.138.
 
 ## Methods
 
 ### Power Analysis
 
-Instead of conducting a power analysis for a logistic mixed effects model, I am going to run 3 times the original sample size (N=144) for a total of N=432 participants, which means 8 subjects per condition (54 conditions in total). While the main hypothesis for the failed first replication is the use of the wrong stimuli, running 3 times the sample size will also increase the power. I will also take into the account the stimulus-level random effects observed in the first replication by testing whether U.S. adults were significantly more likely to choose the shape match as opposed to the color or material matches against chance in an exploratory analysis. 
+Because of uncertainty about the true effect size, I am going to use a small telescopes approach and run 3 times the original sample size (N=144) for a total of N=432 participants, which means 8 subjects per condition (54 conditions in total). While the main hypothesis for the failed first replication is the use of the wrong stimuli, running 3 times the sample size will also increase the power.
 
 ### Planned Sample
 
@@ -89,7 +89,7 @@ _Exploratory analyses:_
 3. A random effects model, with random intercepts for the exemplar object (`Example`), testing for a participant's preference for shape as a function of the exemplar object and the population group (`Location`): `glmer( Choice=="shape" ~ offset(Offset) + Location + (1 + Location | Example) )`. The main difference between the model in the first replication and this model is the use of the `Offset` variable, set to the log-odds probability of 1/3.
 4. The original paper's logistic mixed-effects model that predicts the participant's preference for the shape-match object: `glmer( Choice == "shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment) )`. I will swap out the USA adult data from the original paper with my new USA adult data but keep all of the other data the same (USA children, Tsimane' adults, and Tsimane' children).
 
-**Clarify key analysis of interest:** I am primarily interested in replicating the first two analyses listed above to test whether USA adults are more likely to choose the extension object that is matched on the shape property.
+**Clarify key analysis of interest:** I am primarily interested in replicating the result in the original paper, using the binomial test statistic described under "Main analysis" above, that U.S. adults are more likely to choose the extension object that is matched on the shape property compared to the color or material matches.
 
 ### Differences from Original Study and First Replication
 
@@ -111,7 +111,7 @@ Any differences from what was described as the original plan, or "none".
 
 ### Data preparation
 
-This section contains the code necessary to prepare the data for analysis. First, load in the raw data.
+This section contains the code necessary to prepare the data for analysis. First, load in the raw data. The data were collected in 8 batches of 54 subjects, where each subject saw a different condition in each batch. The data were collected in batches because cognition.run limits the number of subjects that can be run at a time. We're going to import and stitch together the eight data files here. 
 
 ```{r Import Data}
 #Load relevant libraries and functions. 
@@ -119,19 +119,49 @@ suppressMessages(library(tidyverse))
 suppressMessages(library(dplyr))
 suppressMessages(library(ggplot2))
 
-#Update this file name. 
-data_file <- 'PilotB_12-04-2023.csv'
+#Get all data file names from the data_raw folder. 
+folder_path <- file.path(getwd(), '..', 'data_raw')
 
-#Read in the CSV file.
-data_path <- file.path(getwd(), '..', 'data_raw', data_file)
-data <- read.csv(data_path)
+# Get all file names in the folder, ignoring sub-directories. 
+file_names <- list.files(path = folder_path, full.names = FALSE, recursive = FALSE)
+
+# Filter to include only files (exclude directories). 
+file_names <- file_names[!file.info(file.path(folder_path, file_names))$isdir]
+
+#Check if there are any files in the list
+if (length(file_names) == 0) {
+  print("No files found in the specified folder.")
+} else {
+  
+  #Create an empty dataframe to store all of the data
+  full_raw_data <- data.frame()
+  
+  #Loop through each of the files
+  for (file in file_names) {
+    
+    #Construct the full path to the file
+    file_path <- file.path(folder_path, file)
+    
+    #Check if the file exists
+    if (file.exists(file_path)) {
+      
+      #Read the data from the file
+      temp_data <- read.csv(file_path)
+      
+      # Append the data to the full_raw_data dataframe
+      full_raw_data <- rbind(full_raw_data, temp_data)
+    } else {
+      print(paste("File not found:", file_path))
+    }
+  }
+}
 ```
 
 Check a few things about the raw data. For example, there should be an equal spread of subjects per condition. Also make sure that all of the images for the subjects loaded successfully (they should, or they would not have been able to complete the study).
 
 ```{r Validate Equal Condition Spread}
 #Check that there are enough subjects per condition.
-data_checks <- data |> 
+data_checks <- full_raw_data |> 
   filter(trial_type == 'fullscreen') |> #Get one row per subject. 
   group_by(condition) |> #Group by subject.
   summarize(numSubjectsPerCondition = n_distinct(condition)) #Count the number of times the o
@@ -142,14 +172,14 @@ print(paste("There are an equal number of subjects per condition:", all(data_che
 Check that all of the images for each subject loaded successfully.
 ```{r Validate Successful Image Loading}
 suppressMessages(library(stringr))
-print(paste("Images loaded successfully for all subjects:", sum(str_detect(data$success, 'false')) == 0)) #If true, then all images loaded successfully for all subjects.
+print(paste("Images loaded successfully for all subjects:", sum(str_detect(full_raw_data$success, 'false')) == 0)) #If true, then all images loaded successfully for all subjects.
 ```
 
 Now clean the data. First remove columns that are unnecessary for the main confirmatory analyses and filter out subjects not relevant to the full sample (i.e., pilot subjects). Remove subjects who used phones to complete the study. Then parse the demographic responses into columns.
 
 ```{r Clean Data}
 #Select only relevant columns and rename them. 
-data_main_analyses <- data |> 
+data_main_analyses <- full_raw_data |> 
   select(c('rt', 'trial_type', 'run_id', 'condition', 'recorded_at', 'device', 'success', 'stimulus', 'response', starts_with('exemplar'), starts_with('extension'))) |> 
   rename(reactionTime = rt, trialType = trial_type, subjectID = run_id, recordedAt = recorded_at, imageLoadSuccess = success) |> #Rename columns to match naming conventions. 
   filter(subjectID > 29) |> #Remove subjects before particular dates (i.e., pilot subjects). 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Emily Chen (emchen15@stanford.edu)">
-<meta name="dcterms.date" content="2023-12-14">
+<meta name="dcterms.date" content="2023-12-15">
 
 <title>Replication of The Origins of the Shape Bias: Evidence From the Tsimane’ by Jara-Ettinger et al. (2022, Journal of Experimental Psychology: General)</title>
 <style>
@@ -3210,7 +3210,7 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.mhchemParser=void 0;var r=fun
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 14, 2023</p>
+      <p class="date">December 15, 2023</p>
     </div>
   </div>
   
@@ -3241,13 +3241,13 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.mhchemParser=void 0;var r=fun
 <li>Running a logistic mixed-effects model that predicted the participant’s preference for the shape-match object.</li>
 </ol>
 <p>In the original study, the authors used a baseline probability of 33.3% with the population and the age group dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment <code>(1 | Experiment)</code>, random intercepts for the exemplar object (<code>Example</code>), random slopes for population as a function of exemplar <code>(1 + Location + AgeGroup | Example)</code>, and random slopes for age group <code>(1 + Location + AgeGroup | Example)</code> as a function of exemplar: <code>glmer( Choice == &quot;shape&quot; ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment) )</code>. The population by age interaction effect (<code>Location * AgeGroup</code>) model was not included based on a nested model comparison; instead, only the main effects of <code>Location</code> and <code>AgeGroup</code> were tested without their interaction (<code>Location + AgeGroup</code>). The <code>Offset</code> variable was set to the log-odds probability of 1/3 or 33.3% (<code>logit(1/3)</code>).</p>
-<p>In the first replication, the author used a random effects model, with random intercepts for the exemplar object (<code>Example</code>), testing for a participant’s preference for shape as a function of the exemplar object: <code>glmer( Choice == &quot;shape&quot; ~ Location  + (1 + Location | Example) )</code>. Notably, the first replication author did not include the <code>offset(Offset)</code> of the log-odds probability of 1/3. They also removed the random slopes for age group as a function of exemplar (<code>(1 + Location | Example)</code> instead of <code>(1 + Location + AgeGroup | Example)</code>) since they were not comparing the adult data to the child data.</p>
+<p>In the first replication, the author used a random effects model as their key analysis of interest, with random intercepts for the exemplar object (<code>Example</code>), testing for a participant’s preference for shape as a function of the exemplar object: <code>glmer( Choice == &quot;shape&quot; ~ Location  + (1 + Location | Example) )</code>. Notably, the first replication author did not include the <code>offset(Offset)</code> of the log-odds probability of 1/3. They also removed the random slopes for age group as a function of exemplar (<code>(1 + Location | Example)</code> instead of <code>(1 + Location + AgeGroup | Example)</code>) since they were not comparing the adult data to the child data. Using this random effects model, the first replication author obtained an unsignificant result with a p-value of 0.318 and a small estimate of 1.138.</p>
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
 <section id="power-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="power-analysis">Power Analysis</h3>
-<p>Instead of conducting a power analysis for a logistic mixed effects model, I am going to run 3 times the original sample size (N=144) for a total of N=432 participants, which means 8 subjects per condition (54 conditions in total). While the main hypothesis for the failed first replication is the use of the wrong stimuli, running 3 times the sample size will also increase the power. I will also take into the account the stimulus-level random effects observed in the first replication by testing whether U.S. adults were significantly more likely to choose the shape match as opposed to the color or material matches against chance in an exploratory analysis.</p>
+<p>Because of uncertainty about the true effect size, I am going to use a small telescopes approach and run 3 times the original sample size (N=144) for a total of N=432 participants, which means 8 subjects per condition (54 conditions in total). While the main hypothesis for the failed first replication is the use of the wrong stimuli, running 3 times the sample size will also increase the power.</p>
 </section>
 <section id="planned-sample" class="level3">
 <h3 class="anchored" data-anchor-id="planned-sample">Planned Sample</h3>
@@ -3302,7 +3302,7 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.mhchemParser=void 0;var r=fun
 <li>A random effects model, with random intercepts for the exemplar object (<code>Example</code>), testing for a participant’s preference for shape as a function of the exemplar object and the population group (<code>Location</code>): <code>glmer( Choice==&quot;shape&quot; ~ offset(Offset) + Location + (1 + Location | Example) )</code>. The main difference between the model in the first replication and this model is the use of the <code>Offset</code> variable, set to the log-odds probability of 1/3.</li>
 <li>The original paper’s logistic mixed-effects model that predicts the participant’s preference for the shape-match object: <code>glmer( Choice == &quot;shape&quot; ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment) )</code>. I will swap out the USA adult data from the original paper with my new USA adult data but keep all of the other data the same (USA children, Tsimane’ adults, and Tsimane’ children).</li>
 </ol>
-<p><strong>Clarify key analysis of interest:</strong> I am primarily interested in replicating the first two analyses listed above to test whether USA adults are more likely to choose the extension object that is matched on the shape property.</p>
+<p><strong>Clarify key analysis of interest:</strong> I am primarily interested in replicating the result in the original paper, using the binomial test statistic described under “Main analysis” above, that U.S. adults are more likely to choose the extension object that is matched on the shape property compared to the color or material matches.</p>
 </section>
 <section id="differences-from-original-study-and-first-replication" class="level3">
 <h3 class="anchored" data-anchor-id="differences-from-original-study-and-first-replication">Differences from Original Study and First Replication</h3>
@@ -3325,24 +3325,54 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.mhchemParser=void 0;var r=fun
 <h2 class="anchored" data-anchor-id="results">Results</h2>
 <section id="data-preparation" class="level3">
 <h3 class="anchored" data-anchor-id="data-preparation">Data preparation</h3>
-<p>This section contains the code necessary to prepare the data for analysis. First, load in the raw data.</p>
+<p>This section contains the code necessary to prepare the data for analysis. First, load in the raw data. The data were collected in 8 batches of 54 subjects, where each subject saw a different condition in each batch. The data were collected in batches because cognition.run limits the number of subjects that can be run at a time. We’re going to import and stitch together the eight data files here.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load relevant libraries and functions. </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(tidyverse))</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(dplyr))</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(ggplot2))</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Update this file name. </span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>data_file <span class="ot">&lt;-</span> <span class="st">&#39;PilotB_12-04-2023.csv&#39;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Get all data file names from the data_raw folder. </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>folder_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">getwd</span>(), <span class="st">&#39;..&#39;</span>, <span class="st">&#39;data_raw&#39;</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Read in the CSV file.</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>data_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">getwd</span>(), <span class="st">&#39;..&#39;</span>, <span class="st">&#39;data_raw&#39;</span>, data_file)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(data_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Get all file names in the folder, ignoring sub-directories. </span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>file_names <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> folder_path, <span class="at">full.names =</span> <span class="cn">FALSE</span>, <span class="at">recursive =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter to include only files (exclude directories). </span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>file_names <span class="ot">&lt;-</span> file_names[<span class="sc">!</span><span class="fu">file.info</span>(<span class="fu">file.path</span>(folder_path, file_names))<span class="sc">$</span>isdir]</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#Check if there are any files in the list</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(file_names) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;No files found in the specified folder.&quot;</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Create an empty dataframe to store all of the data</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  full_raw_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Loop through each of the files</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (file <span class="cf">in</span> file_names) {</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Construct the full path to the file</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    file_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(folder_path, file)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Check if the file exists</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">file.exists</span>(file_path)) {</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>      <span class="co">#Read the data from the file</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>      temp_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(file_path)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Append the data to the full_raw_data dataframe</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>      full_raw_data <span class="ot">&lt;-</span> <span class="fu">rbind</span>(full_raw_data, temp_data)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>      <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;File not found:&quot;</span>, file_path))</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Check a few things about the raw data. For example, there should be an equal spread of subjects per condition. Also make sure that all of the images for the subjects loaded successfully (they should, or they would not have been able to complete the study).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Check that there are enough subjects per condition.</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data_checks <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data_checks <span class="ot">&lt;-</span> full_raw_data <span class="sc">|&gt;</span> </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(trial_type <span class="sc">==</span> <span class="st">&#39;fullscreen&#39;</span>) <span class="sc">|&gt;</span> <span class="co">#Get one row per subject. </span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(condition) <span class="sc">|&gt;</span> <span class="co">#Group by subject.</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">numSubjectsPerCondition =</span> <span class="fu">n_distinct</span>(condition)) <span class="co">#Count the number of times the o</span></span>
@@ -3355,7 +3385,7 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.mhchemParser=void 0;var r=fun
 <p>Check that all of the images for each subject loaded successfully.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(stringr))</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Images loaded successfully for all subjects:&quot;</span>, <span class="fu">sum</span>(<span class="fu">str_detect</span>(data<span class="sc">$</span>success, <span class="st">&#39;false&#39;</span>)) <span class="sc">==</span> <span class="dv">0</span>)) <span class="co">#If true, then all images loaded successfully for all subjects.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Images loaded successfully for all subjects:&quot;</span>, <span class="fu">sum</span>(<span class="fu">str_detect</span>(full_raw_data<span class="sc">$</span>success, <span class="st">&#39;false&#39;</span>)) <span class="sc">==</span> <span class="dv">0</span>)) <span class="co">#If true, then all images loaded successfully for all subjects.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;Images loaded successfully for all subjects: TRUE&quot;</code></pre>
 </div>
@@ -3363,7 +3393,7 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.mhchemParser=void 0;var r=fun
 <p>Now clean the data. First remove columns that are unnecessary for the main confirmatory analyses and filter out subjects not relevant to the full sample (i.e., pilot subjects). Remove subjects who used phones to complete the study. Then parse the demographic responses into columns.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Select only relevant columns and rename them. </span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data_main_analyses <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data_main_analyses <span class="ot">&lt;-</span> full_raw_data <span class="sc">|&gt;</span> </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">&#39;rt&#39;</span>, <span class="st">&#39;trial_type&#39;</span>, <span class="st">&#39;run_id&#39;</span>, <span class="st">&#39;condition&#39;</span>, <span class="st">&#39;recorded_at&#39;</span>, <span class="st">&#39;device&#39;</span>, <span class="st">&#39;success&#39;</span>, <span class="st">&#39;stimulus&#39;</span>, <span class="st">&#39;response&#39;</span>, <span class="fu">starts_with</span>(<span class="st">&#39;exemplar&#39;</span>), <span class="fu">starts_with</span>(<span class="st">&#39;extension&#39;</span>))) <span class="sc">|&gt;</span> </span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">reactionTime =</span> rt, <span class="at">trialType =</span> trial_type, <span class="at">subjectID =</span> run_id, <span class="at">recordedAt =</span> recorded_at, <span class="at">imageLoadSuccess =</span> success) <span class="sc">|&gt;</span> <span class="co">#Rename columns to match naming conventions. </span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(subjectID <span class="sc">&gt;</span> <span class="dv">29</span>) <span class="sc">|&gt;</span> <span class="co">#Remove subjects before particular dates (i.e., pilot subjects). </span></span>
