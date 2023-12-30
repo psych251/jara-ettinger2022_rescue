@@ -9,6 +9,6 @@
 figures/comparison_figures.key
 
 #Writeup files 
-writeup/rsconnect 
-writeup/jara-ettinger2022_rescue_files
+writeup/rsconnect/*
+writeup/jara-ettinger2022_rescue_files/*
 writeup/.Rhistory

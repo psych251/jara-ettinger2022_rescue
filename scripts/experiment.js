@@ -1,10 +1,13 @@
+/*
+This code runs on cognition.run. The experimemt is accessible at https://g5esfxmrfk.cognition.run. The platform uses jsPsych library version 7.3. 
+*/
+
 //Initialize jspsych
-var jspsych = initJsPsych(
-  {
-      on_finish: function() {
-        window.location.href = "https://www.prolific.com/"
-      }
+var jspsych = initJsPsych( {
+  on_finish: function() {
+    window.location.href = "https://app.prolific.com/submissions/complete?cc=C13GGTO8"
   }
+}
 );
 
 //Create timeline (array)
@@ -12,20 +15,20 @@ var timeline = [];
 
 //Create experiment
 var welcome = {
-  type: jsPsychInstructions,
-  pages: [
-  'Welcome to the experiment! Please click "Next" to begin.'
-  ],
-  show_clickable_nav: true
+type: jsPsychInstructions,
+pages: [
+'Welcome to the experiment! This experiment works best on a computer. Please click "Next" to begin.'
+],
+show_clickable_nav: true
 }
 
 //Main experiment instructions
 var instructions_1 = {
-  type: jsPsychInstructions,
-  pages: [
-  'In the first part of this experiment, we will ask you to answer some questions about a group of objects.'
-  ],
-  show_clickable_nav: true
+type: jsPsychInstructions,
+pages: [
+'In the first part of this experiment, we will ask you to answer some questions about a group of objects.'
+],
+show_clickable_nav: true
 }
 
 //All possible object names 
@@ -66,20 +69,24 @@ stimuli = findCondition(findCombos(object_names, exemplar_stimuli, extension_sti
 
 //Set the specific conditions
 let exemplarName = stimuli[0];
+console.log(exemplarName)
 let exemplarImg = stimuli[1]; 
+console.log(exemplarImg)
 let extensionLeftImg = stimuli[2].left_obj;
 let extensionCenterImg = stimuli[2].center_obj;
 let extensionRightImg = stimuli[2].right_obj;
 
 //Preload the images
 var intro_preload = {
-  type: jsPsychPreload,
-  images: exemplar_stimuli,
+type: jsPsychPreload,
+images: exemplar_stimuli,
+message: "Experiment is loading..."
 }
 
 var test_preload = {
-  type: jsPsychPreload,
-  auto_preload: true,
+type: jsPsychPreload,
+auto_preload: true,
+message: "Experiment is loading..."
 }
 
 //Build stimulus text in HTML
@@ -93,22 +100,24 @@ var test_stimulus =
 <p>One of these is also a ${exemplarName}.</p>`
 
 var intro_trial = {
-  type: jsPsychHtmlButtonResponse,
-  stimulus: intro_stimulus,
-  choices: "",
-  trial_duration: 5000,
+type: jsPsychHtmlButtonResponse,
+stimulus: intro_stimulus,
+choices: "",
+trial_duration: 5000,
+data: {exemplarName, exemplarImg}
 }; 
 
 var test_trial = {
-  type: jsPsychHtmlButtonResponse,
-  stimulus: test_stimulus,
-  prompt: `Which one is the other ${exemplarName}?`,
-  button_html: '<img height="300" src="%choice%"></img>',
-  choices: [
-    extensionLeftImg,
-    extensionCenterImg,
-    extensionRightImg,
-  ],
+type: jsPsychHtmlButtonResponse,
+stimulus: test_stimulus,
+prompt: `Which one is the other ${exemplarName}?`,
+button_html: '<img height="300" src="%choice%"></img>',
+choices: [
+extensionLeftImg,
+extensionCenterImg,
+extensionRightImg,
+],
+data: {extensionLeftImg, extensionCenterImg, extensionRightImg}
 };
 
 //Attention check questions 
@@ -116,129 +125,155 @@ var attention_check_1 = {
 type: jsPsychSurveyText,
 preamble: `<img src="${exemplarImg}" height="300" width="300"></img><img src="${extensionLeftImg}" height="300" width="300"></img>`,
 questions: [
-  {prompt: 'You just saw these two objects. What do they have in common?', rows: 3, required: true}
+{
+prompt: 'You just saw these two objects. What do they have in common?', 
+rows: 3, 
+required: true, 
+name: 'extensionLeftImg_exemplar_commonalities'
+}
 ],
+data: {exemplarImg, extensionLeftImg}
 };
 
 var attention_check_2 = {
 type: jsPsychSurveyText,
 preamble: `<img src="${extensionCenterImg}" height="300" width="300"></img><img src="${exemplarImg}" height="300" width="300"></img>`,
 questions: [
-  {prompt: 'You just saw these two objects. What do they have in common?', rows: 3, required: true}
+{
+prompt: 'You just saw these two objects. What do they have in common?', 
+rows: 3, 
+required: true, 
+name: 'extensionCenterImg_exemplar_commonalities'
+}  
 ],
+data: {exemplarImg, extensionCenterImg}
 };
 
 var attention_check_3 = {
 type: jsPsychSurveyText,
 preamble: `<img src="${exemplarImg}" height="300" width="300"></img><img src="${extensionRightImg}" height="300" width="300"></img>`,
 questions: [
-  {prompt: 'You just saw these two objects. What do they have in common?', rows: 3, required: true}
+{
+prompt: 'You just saw these two objects. What do they have in common?', 
+rows: 3, 
+required: true, 
+name: 'extensionRightImg_exemplar_commonalities'
+}  
 ],
+data: {exemplarImg, extensionRightImg}
 };
 
 //Demographic instructions
 var instructions_2 = {
-  type: jsPsychInstructions,
-  pages: [
-    'We are now going to ask you some questions about yourself. You are welcome to skip any questions that you are not comfortable answering.'
-  ],
-  show_clickable_nav: true
+type: jsPsychInstructions,
+pages: [
+'We are now going to ask you some questions about yourself. You are welcome to skip any questions that you are not comfortable answering.'
+],
+show_clickable_nav: true
 };
 
 //Collect demographic information
 var demographic_survey_age = {
 type: jsPsychSurveyText,
 questions: [
-  {
-    prompt: 'How old are you (in years)?',
-    rows: 1, 
-    required: false
-  },
-]
+{
+prompt: 'How old are you (in years)?',
+name: 'Age',
+rows: 1, 
+required: false
+},
+], 
+
 };
 
 var demographic_survey_location = {
 type: jsPsychSurveyMultiChoice,
 questions: [
-  {
-    prompt: 'Were you born in the United States?', 
-    name: 'BornUSA', 
-    options: ['Yes', "No"], 
-    required: false,
-    horizontal: true
-  }, 
-  {
-    prompt: 'Did you spend more than a year in the United States before age 10?', 
-    name: 'ChildhoodUSA', 
-    options: ['Yes', "No"], 
-    required: false,
-    horizontal: true
-  }, 
-  {
-    prompt: 'Do you currently live in the United States?', 
-    name: 'CurrentUSA', 
-    options: ['Yes', "No"], 
-    required: false,
-    horizontal: true
-  }, 
+{
+prompt: 'Were you born in the United States?', 
+name: 'BornUSA', 
+options: ['Yes', "No"], 
+required: false,
+horizontal: true
+}, 
+{
+prompt: 'Did you spend more than a year in the United States before age 10?', 
+name: 'ChildhoodUSA', 
+options: ['Yes', "No"], 
+required: false,
+horizontal: true
+}, 
+{
+prompt: 'Do you currently live in the United States?', 
+name: 'CurrentUSA', 
+options: ['Yes', "No"], 
+required: false,
+horizontal: true
+}, 
 ]
 };
 
 var demographic_survey_zipcode = {
 type: jsPsychSurveyText,
 questions: [
-  {
-    prompt: `<p>What are the first three characters or digits of your <b>current</b> zip code?`, 
-    rows: 1, 
-    required: false
-  }, 
-  {
-    prompt: `What were the first three characters or digits of the zip code <b>for the place where you spent the most time in growing up</b>?`, 
-    rows: 1, 
-    required: false
-  }, 
+{
+prompt: `<p>What are the first three characters or digits of your <b>current</b> zip code?`, 
+name: 'CurrentZipcode',
+rows: 1, 
+required: false
+}, 
+{
+prompt: `What were the first three characters or digits of the zip code <b>for the place where you spent the most time in growing up</b>?`, 
+name: 'ChildhoodZipcode',
+rows: 1, 
+required: false
+}, 
 ]
 };
 
 var demographic_survey_language = {
 type: jsPsychSurveyText,
 questions: [
-  {
-    prompt: 'What was the first language you learned?', 
-    rows: 1, 
-    required: false
-  }, 
-  {
-    prompt: 'Please list all languages that you currently speak.', 
-    rows: 2, 
-    required: false
-  }, 
+{
+prompt: 'What was the first language you learned?', 
+name: 'FirstLanguage',
+rows: 1, 
+required: false
+}, 
+{
+prompt: 'Please list all languages that you currently speak.', 
+name: 'AllLanguages',
+rows: 2, 
+required: false
+}, 
 ]
 };
 
 var demographic_survey_current_urbanicity = {
-  type: jsPsychHtmlSliderResponse,
-  stimulus: `<p>How would you describe the location <b>where you currently live</b>?</p>`,
-  require_movement: true,
-  labels: ['Rural', 'Suburban', 'Urban']
+type: jsPsychHtmlSliderResponse,
+stimulus: `<p>How would you describe the location <b>where you currently live</b>?</p>`,
+name: 'CurrentLocationType',
+require_movement: true,
+labels: ['Rural', 'Suburban', 'Urban']
 }; 
 
 var demographic_survey_childhood_urbanicity = {
-  type: jsPsychHtmlSliderResponse,
-  stimulus: `<p>How would you describe the location <b>where you grew up</b> (if multiple, choose the one that you spent the most time in before 18 years old)?</p>`,
-  require_movement: true,
-  labels: ['Rural', 'Suburban', 'Urban']
+type: jsPsychHtmlSliderResponse,
+stimulus: `<p>How would you describe the location <b>where you grew up</b> (if multiple, choose the one that you spent the most time in before 18 years old)?</p>`,
+name: 'ChildhoodLocationType', 
+require_movement: true,
+labels: ['Rural', 'Suburban', 'Urban']
 }; 
 
 var thankyou = {
-  type: jsPsychInstructions,
-  pages: [
-  `<p>You have completed the experiment. Thank you for your participation!</p> 
-  <small>This experiment tests whether adults categorize objects by their shape (known as the "shape bias") more so than by color or material. We are also interested in testing if various demographic factors, including early environments, might influence the prevalence of the shape bias.
-  <p>If you have questions about this research, please contact us at stanfordpsych251@gmail.com.</p></small>
-  <b>Please submit your data by pressing "Next."</b>`
-  ],
-  show_clickable_nav: true,
+type: jsPsychInstructions,
+pages: [
+`<p>You have completed the experiment. Thank you for your participation!</p> 
+<small>This experiment tests whether adults categorize objects by their shape (known as the "shape bias") more so than by color or material. We are also interested in testing if various demographic factors, including early environments, might influence the prevalence of the shape bias.
+<p>If you have questions about this research, please contact us at stanfordpsych251@gmail.com.</p></small>
+<b>Please submit your data by pressing "Next."</b>`
+],
+show_clickable_nav: true,
 }; 
 
 //Add stuff to timeline
