@@ -7,14 +7,12 @@ import pandas as pd
 from argparse import ArgumentParser
 
 cols_to_drop = [
-    "RecipientLastName",
-    "RecipientFirstName",
-    "RecipientEmail",
-    "ExternalDataReference",
-    "IPAddress",
-    "LocationLatitude",
-    "LocationLongitude",
-    "PROLIFIC_PID",
+    'recorded_at', 
+    'ip', 
+    'user_agent', 
+    'browser_version', 
+    'referer', 
+    'PROLIFIC_PID'
 ]
 
 
