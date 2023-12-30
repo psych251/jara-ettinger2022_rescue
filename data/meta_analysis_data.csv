@@ -1,0 +1,4 @@
+Study,N,binomial_test_probability_of_success,binomial_test_confidence_interval_low,binomial_test_confidence_interval_high,random_effects_model_estimate,random_effects_model_p_value,random_effects_model_SE,logistic_mixed_effects_model_estimate,logistic_mixed_effects_model_p_value,logistic_mixed_effects_model_SE
+Jara-Ettinger et al. (2022),144,0.6875,0.6050180,0.7620797,NA,NA,NA,1.22,0.00148,0.3844
+Abdelrahim (2022),142,NA,NA,NA,1.1379,0.318,1.1403,NA,NA,NA
+Chen (2023),426,0.4483568,0.4004589,0.4969768,-0.06279,0.863,0.36386,0.309283,0.562,0.532994

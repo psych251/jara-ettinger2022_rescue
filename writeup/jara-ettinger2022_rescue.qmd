@@ -5,7 +5,7 @@ date: "`r format(Sys.time(), '%B %d, %Y')`"
 format:
   html:
     toc: true
-    toc_depth: 3
+    toc_depth: 10
 ---
 
 <!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
@@ -101,11 +101,11 @@ The main difference between **this plan and the original study** is that I colle
 
 #### Actual Sample
 
-Sample size, demographics, data exclusions based on rules spelled out in analysis plan
+The data were collected in eight batches of N=54 subjects each, one at a time so that subjects who participated in the previous batches could be excluded from participating. Each batch had 54 unique conditions, one for each subject who participated. The anticipated total number of subjects was N=432. Across the eight batches, N=426 unique subjects participated in the study. Subjects opted out of participating in the study by not answering or completing the study, and rows in the dataset that had `NA` values for the main question of interest were excluded. Despite implementing an exclusion rule for each subsequent experimental batch, N=9 subjects participated twice. However, since duplicate participation was not an exclusion criteria in the original analysis plan, these subjects were not removed from the final dataset. 
 
 #### Differences from pre-data collection methods plan
 
-Any differences from what was described as the original plan, or "none".
+None. 
 
 ## Results
 
@@ -122,14 +122,14 @@ suppressMessages(library(ggplot2))
 #Get all data file names from the data_raw folder. 
 folder_path <- file.path(getwd(), '..', 'data_raw')
 
-# Get all file names in the folder, ignoring sub-directories. 
+#Get all file names in the folder, ignoring sub-directories. 
 file_names <- list.files(path = folder_path, full.names = FALSE, recursive = FALSE)
 
-# Filter to include only files (exclude directories). 
+#Filter to include only files (exclude directories). 
 file_names <- file_names[!file.info(file.path(folder_path, file_names))$isdir]
 
 #Check if there are any files in the list
-if (length(file_names) == 0) {
+if(length(file_names) == 0) {
   print("No files found in the specified folder.")
 } else {
   
@@ -137,18 +137,18 @@ if (length(file_names) == 0) {
   full_raw_data <- data.frame()
   
   #Loop through each of the files
-  for (file in file_names) {
+  for(file in file_names) {
     
     #Construct the full path to the file
     file_path <- file.path(folder_path, file)
     
     #Check if the file exists
-    if (file.exists(file_path)) {
+    if(file.exists(file_path)) {
       
       #Read the data from the file
       temp_data <- read.csv(file_path)
       
-      # Append the data to the full_raw_data dataframe
+      #Append the data to the full_raw_data dataframe
       full_raw_data <- rbind(full_raw_data, temp_data)
     } else {
       print(paste("File not found:", file_path))
@@ -157,37 +157,52 @@ if (length(file_names) == 0) {
 }
 ```
 
-Check a few things about the raw data. For example, there should be an equal spread of subjects per condition. Also make sure that all of the images for the subjects loaded successfully (they should, or they would not have been able to complete the study).
+Check the raw data to make sure that all of the images for the subjects loaded successfully (they should, or they would not have been able to complete the study).
 
-```{r Validate Equal Condition Spread}
-#Check that there are enough subjects per condition.
-data_checks <- full_raw_data |> 
-  filter(trial_type == 'fullscreen') |> #Get one row per subject. 
-  group_by(condition) |> #Group by subject.
-  summarize(numSubjectsPerCondition = n_distinct(condition)) #Count the number of times the o
-
-print(paste("There are an equal number of subjects per condition:", all(data_checks$numSubjectsPerCondition == data_checks$numSubjectsPerCondition[1]))) #If true, then there are an equal number of subjects per condition.
-```
-
-Check that all of the images for each subject loaded successfully.
 ```{r Validate Successful Image Loading}
 suppressMessages(library(stringr))
-print(paste("Images loaded successfully for all subjects:", sum(str_detect(full_raw_data$success, 'false')) == 0)) #If true, then all images loaded successfully for all subjects.
+
+#If true, then all images loaded successfully for all subjects.
+print(paste("Images loaded successfully for all subjects:", sum(str_detect(full_raw_data$success, 'false')) == 0)) 
+```
+
+Check how many unique subjects there are based on their `PROLIFIC_PID`. 
+
+```{r Check Number of Unique Subjects}
+subject_check <- full_raw_data |> 
+  group_by(PROLIFIC_PID) |> 
+  summarize(numRows = n())
+
+#If a subject completed the study once, they should have 18 rows. 
+repeat_subjects <- subset(subject_check, numRows > 18)
+
+cat(nrow(repeat_subjects), "subjects did the study more than once.")
 ```
 
 Now clean the data. First remove columns that are unnecessary for the main confirmatory analyses and filter out subjects not relevant to the full sample (i.e., pilot subjects). Remove subjects who used phones to complete the study. Then parse the demographic responses into columns.
 
 ```{r Clean Data}
+#Since the data were collected in 8 batches, there are repeat subject IDs (`batchSubjectID`). Create a new column called `subjectID` and make each one unique to the combined dataset. Each subject has one 'fullscreen' trial so use that to assign a unique subject ID.  
+suppressMessages(library(data.table))
+
+#Convert the dataframe to a data.table
+setDT(full_raw_data)
+
+#Create a new column 'subjectID' based on unique subject codes
+full_raw_data[, subjectID := .GRP, by = PROLIFIC_PID]
+
+#Convert data.table back to a dataframe
+full_raw_data <- as.data.frame(full_raw_data)
+
 #Select only relevant columns and rename them. 
 data_main_analyses <- full_raw_data |> 
-  select(c('rt', 'trial_type', 'run_id', 'condition', 'recorded_at', 'device', 'success', 'stimulus', 'response', starts_with('exemplar'), starts_with('extension'))) |> 
-  rename(reactionTime = rt, trialType = trial_type, subjectID = run_id, recordedAt = recorded_at, imageLoadSuccess = success) |> #Rename columns to match naming conventions. 
-  filter(subjectID > 29) |> #Remove subjects before particular dates (i.e., pilot subjects). 
+  select(c('rt', 'trial_type', 'run_id', 'subjectID', 'condition', 'recorded_at', 'device', 'success', 'stimulus', 'response', starts_with('exemplar'), starts_with('extension'))) |> 
+  rename(reactionTime = rt, trialType = trial_type, batchSubjectID = run_id, recordedAt = recorded_at, imageLoadSuccess = success) |> #Rename columns to match naming conventions. 
   filter(device != 'iPhone') |>  #Remove subjects who used phones.
   select(c(-'device', -'recordedAt')) #Remove columns that aren't necessary anymore. 
 
 #Put demographic responses (currently in the 'response' column) into their own columns. 
-for (row_index in 1:nrow(data_main_analyses)) {
+for(row_index in 1:nrow(data_main_analyses)) {
   
   participant_response <- data_main_analyses[row_index, 'response'] #Create a variable for the response in the current row
   stimulus <- data_main_analyses[row_index, 'stimulus'] #Create a variable for the stimulus in the current row
@@ -196,56 +211,56 @@ for (row_index in 1:nrow(data_main_analyses)) {
   if(nzchar(participant_response)) { 
     
     #Check if it's a survey response (has {} in the string) and update.
-    if (grepl("{", participant_response, fixed = TRUE)) {
+    if(grepl("{", participant_response, fixed = TRUE)) {
       
       #Attention check: left image. 
-      if (grepl('extensionLeftImg_exemplar_commonalities', participant_response)) {
+      if(grepl('extensionLeftImg_exemplar_commonalities', participant_response)) {
         temp_response <- strsplit(participant_response, ':')[[1]][2] #Get only the answer
         temp_response <- gsub('["}]', '', temp_response) #Trim the extra characters 
         data_main_analyses[row_index, 'extensionLeftImgAttnCheckResponse'] <- temp_response
       }
       
       #Attention check: center image. 
-      else if (grepl('extensionCenterImg_exemplar_commonalities', participant_response)) {
+      else if(grepl('extensionCenterImg_exemplar_commonalities', participant_response)) {
         temp_response <- strsplit(participant_response, ':')[[1]][2] #Get only the answer
         temp_response <- gsub('["}]', '', temp_response) #Trim the extra characters 
         data_main_analyses[row_index, 'extensionCenterImgAttnCheckResponse'] <- temp_response
       }
       
       #Attention check: right image.
-      else if (grepl('extensionRightImg_exemplar_commonalities', participant_response)) {
+      else if(grepl('extensionRightImg_exemplar_commonalities', participant_response)) {
         temp_response <- strsplit(participant_response, ':')[[1]][2] #Get only the answer
         temp_response <- gsub('["}]', '', temp_response) #Trim the extra characters 
         data_main_analyses[row_index, 'extensionRightImgAttnCheckResponse'] <- temp_response
       }
       
       #Participant age.
-      else if (grepl('Age', participant_response)) {
+      else if(grepl('Age', participant_response)) {
         temp_response <- strsplit(participant_response, ':')[[1]][2] #Get only the answer
         temp_response <- gsub('["}]', '', temp_response) #Trim the extra characters 
         data_main_analyses[row_index, 'participantAge'] <- temp_response
       }
       
       #Geographical location.
-      else if (grepl('CurrentUSA', participant_response)) {
+      else if(grepl('CurrentUSA', participant_response)) {
         temp_response <- strsplit(participant_response, ',') #List of responses for BornUSA, ChildhoodUSA, and CurrentUSA.
         
         #Participant birth location. 
-        if (grepl('BornUSA', temp_response[[1]][1])) {
+        if(grepl('BornUSA', temp_response[[1]][1])) {
           geog_temp_response <- strsplit(temp_response[[1]][1], ':')[[1]][2] #Get only the answer for BornUSA. 
           geog_temp_response <- gsub('["}]', '', geog_temp_response) #Trim the extra characters 
           data_main_analyses[row_index, 'participantBornUSA'] <- geog_temp_response
         }
         
         #Participant childhood location. 
-        if (grepl('ChildhoodUSA', temp_response[[1]][2])) {
+        if(grepl('ChildhoodUSA', temp_response[[1]][2])) {
           geog_temp_response <- strsplit(temp_response[[1]][2], ':')[[1]][2] #Get only the answer for ChildhoodUSA.  
           geog_temp_response <- gsub('["}]', '', geog_temp_response) #Trim the extra characters 
           data_main_analyses[row_index, 'participantChildhoodUSA'] <- geog_temp_response
         }
         
         #Participant current location. 
-        if (grepl('CurrentUSA', temp_response[[1]][3])) {
+        if(grepl('CurrentUSA', temp_response[[1]][3])) {
           geog_temp_response <- strsplit(temp_response[[1]][3], ':')[[1]][2] #Get only the answer for CurrentUSA. 
           geog_temp_response <- gsub('["}]', '', geog_temp_response) #Trim the extra characters 
           data_main_analyses[row_index, 'participantCurrentUSA'] <- geog_temp_response
@@ -253,18 +268,18 @@ for (row_index in 1:nrow(data_main_analyses)) {
       }
       
       #Zipcodes. 
-      else if (grepl('CurrentZipcode', participant_response)) {
+      else if(grepl('CurrentZipcode', participant_response)) {
         temp_response <- strsplit(participant_response, ',') #List of responses for CurrentZipcode and ChildhoodZipcode.
         
         #Participant current zipcode. 
-        if (grepl('CurrentZipcode', temp_response[[1]][1])) {
+        if(grepl('CurrentZipcode', temp_response[[1]][1])) {
           zipcode_temp_response <- strsplit(temp_response[[1]][1], ':')[[1]][2] #Get only the answer for CurrentZipcode.  
           zipcode_temp_response <- gsub('["}]', '', zipcode_temp_response) #Trim the extra characters 
           data_main_analyses[row_index, 'participantCurrentZipcode'] <- zipcode_temp_response
         }
         
         #Participant childhood zipcode.  
-        if (grepl('ChildhoodZipcode', temp_response[[1]][2])) {
+        if(grepl('ChildhoodZipcode', temp_response[[1]][2])) {
           zipcode_temp_response <- strsplit(temp_response[[1]][2], ':')[[1]][2] #Get only the answer for ChildhoodZipcode.  
           zipcode_temp_response <- gsub('["}]', '', zipcode_temp_response) #Trim the extra characters 
           data_main_analyses[row_index, 'participantChildhoodZipcode'] <- zipcode_temp_response
@@ -272,18 +287,18 @@ for (row_index in 1:nrow(data_main_analyses)) {
       }
       
       #Languages. 
-      else if (grepl('FirstLanguage', participant_response)) {
+      else if(grepl('FirstLanguage', participant_response)) {
         temp_response <- strsplit(participant_response, '",') #List of responses for FirstLanguage and AllLanguages.
 
         #Participant first language. 
-        if (grepl('FirstLanguage', temp_response[[1]][1])) {
+        if(grepl('FirstLanguage', temp_response[[1]][1])) {
           language_temp_response <- strsplit(temp_response[[1]][1], ':')[[1]][2] #Get only the answer for FirstLanguage. 
           language_temp_response <- gsub('["}]', '', language_temp_response) #Trim the extra characters 
           data_main_analyses[row_index, 'participantFirstLanguage'] <- language_temp_response
         }
         
         #Participant all languages spoken.  
-        if (grepl('AllLanguages', temp_response[[1]][2])) {
+        if(grepl('AllLanguages', temp_response[[1]][2])) {
           language_temp_response <- strsplit(temp_response[[1]][2], ':')[[1]][2] #Get only the answer for AllLanguages.
           language_temp_response <- gsub('["}]', '', language_temp_response) #Trim the extra characters 
           data_main_analyses[row_index, 'participantCurrentLanguages'] <- language_temp_response
@@ -310,7 +325,7 @@ for (row_index in 1:nrow(data_main_analyses)) {
   
   #Interpret the participantExtensionChoice column to make the numerical answer choice values meaningful.
   participant_image_choice <- data_main_analyses[row_index, 'participantExtensionChoice']
-  if (!is.na(participant_image_choice) && length(participant_image_choice) > 0) {
+  if(!is.na(participant_image_choice) && length(participant_image_choice) > 0) {
     
     #Participant chose the left image. 
     if(participant_image_choice == "0") {
@@ -331,17 +346,55 @@ for (row_index in 1:nrow(data_main_analyses)) {
 
 #Combine subject rows into a single row and remove the extra columns. 
 data_main_analyses_tidy <- data_main_analyses |> 
-  select(-reactionTime, -trialType, -imageLoadSuccess, -stimulus, -response) |> 
+  select(-reactionTime, -trialType, -imageLoadSuccess, -stimulus, -response, -batchSubjectID) |> 
   mutate(across(everything(), ~ ifelse(. == "", NA, .))) |>  #Replace empty strings with NA
   group_by(subjectID) |> 
-  summarize(across(everything(), ~ if (all(is.na(.))) {NA} else {na.omit(.)[1]}), .groups = "drop")
+  summarize(across(everything(), ~ if(all(is.na(.))) {NA} else {na.omit(.)[1]}), .groups = "drop")
+```
+
+Check the pre-processed data to see if there is an equal spread of subjects per condition.
+
+```{r Validate Equal Condition Spread}
+#Check that there are enough subjects per condition.
+condition_check <- data_main_analyses_tidy |> 
+  group_by(condition) |> 
+  summarize(numSubjectsPerCondition = n()) #Count the number of times the condition comes up
+
+print(paste("There are an equal number of subjects per condition:", all(condition_check$numSubjectsPerCondition == condition_check$numSubjectsPerCondition[1]))) #If true, then there are an equal number of subjects per condition.
+```
+
+Remove the rows that are empty (no data collected) and that have repeat subject IDs.
+
+```{r Filter Dataset}
+#Check if there are null (NA) values in participantExtensionChoice.  
+null_values <- sum(is.na(data_main_analyses_tidy$participantExtensionChoice))
+
+#Print the result
+if (null_values > 0) {
+  cat("Out of", nrow(data_main_analyses_tidy), "subjects, there are", null_values, "null values in the column 'participantExtensionChoice.'.\n")
+} else {
+  cat("Out of", nrow(data_main_analyses_tidy), "subjects, there are no null values in the column 'participantExtensionChoice.'.\n")
+}
+
+#Remove rows that don't have a response in participantExtensionChoice.
+data_main_analyses_tidy <- data_main_analyses_tidy[!is.na(data_main_analyses_tidy$participantExtensionChoice), ]
+  
+#Check if the data were removed. 
+null_values <- sum(is.na(data_main_analyses_tidy$participantExtensionChoice))
+
+#Print the result
+if (null_values > 0) {
+  cat("After data cleaning, there are", null_values, "null values in the column 'participantExtensionChoice' and", nrow(data_main_analyses_tidy), "total subjects. \n")
+} else {
+  cat("After data cleaning, there are no null values in the column 'participantExtensionChoice' and", nrow(data_main_analyses_tidy), "total subjects. \n")
+}
 ```
 
 Now that the data are cleaned and in a tidy format, figure out whether participants were choosing based on color, material, or shape. To do so, analyze `exemplarImg` and `participantExtensionChoiceImage` to figure out what the common property is between the exemplar and the extension choice. Put the overlapping information into a new column called `participantOverlapProperty`.
 
 ```{r Check Property Choice}
 #Go through each subject. 
-for (row_index in 1:nrow(data_main_analyses_tidy)) {
+for(row_index in 1:nrow(data_main_analyses_tidy)) {
   #Get the exemplar the participant saw.
   participant_exemplar <- unlist(strsplit(as.character(data_main_analyses_tidy[row_index, 'exemplarImg']), '_'))
   
@@ -377,7 +430,7 @@ Finally, reorder the columns into a logical order and add information about the 
 
 ```{r Reorder Columns}
 data_main_analyses_tidy <- data_main_analyses_tidy |> 
-  mutate(participantLocation = 'US', experiment= 'USA_Adults', ageGroup = 'Adults', exclude = 0) |> 
+  mutate(participantLocation = 'US', experiment = 'USA_Adults', ageGroup = 'Adults', exclude = 0) |> 
   select(subjectID, condition, experiment, ageGroup, participantLocation, exemplarName, exemplarImg, exemplarShape, participantOverlapAnswer, participantOverlapProperty, participantExtensionChoice, participantExtensionChoiceImage, extensionLeftImg, extensionCenterImg, extensionRightImg, extensionLeftImgAttnCheckResponse, extensionCenterImgAttnCheckResponse, extensionRightImgAttnCheckResponse, participantAge, participantBornUSA, participantChildhoodUSA, participantCurrentUSA, participantCurrentZipcode, participantChildhoodZipcode, participantFirstLanguage, participantCurrentLanguages, participantCurrentUrbanicity, participantChildhoodUrbanicity, exclude)
 ```
 
@@ -395,7 +448,7 @@ suppressMessages(library(tidyverse))
 suppressMessages(library(boot))
 suppressMessages(library(lme4))
 
-# Load data
+#Load data
 original_data_file <- "Original_ShapeBias_Data.csv"
 original_data_path <- file.path(getwd(), '..', 'data', original_data_file)
 original_data <- read.csv(original_data_path)
@@ -424,7 +477,7 @@ summary_data_original <- original_data |>
 summary_data_original$ExpNo <- c(6,7,2,4,3,1,5)
 summary_data_original <- arrange(summary_data_original,ExpNo)
 
-# Results
+#Results
 summary_data_original |> 
   dplyr::select(ExpNo, Experiment, subjects, ShapeNo, MatNo, ColorNo, DistNo, ShapePerc, MatPerc, ColorPerc, DistPerc)
 
@@ -434,7 +487,7 @@ CurrExp <- summary_data_original |>
 binom.test(CurrExp$ShapeNo, CurrExp$subjects, p=1/3)
 ```
 
-```{r Reproduce the main logistic mixed-effects model}
+```{r Reproduce Logistic Mixed-Effects Model}
 #This model predicts the participant's preference for the shape-match object. 
 CurrExp <- original_data |> 
   filter(Experiment %in% c("Tsi_Adults_Objects","Tsi_Adults_wDistractor", "US_Turk_Adults","Tsi_Child_Objects","US_Children")) |> 
@@ -457,9 +510,9 @@ summary(m0)
 
 I conducted one main confirmatory analysis:
 
-1. A binomial test with chance set to 1/3 tested whether U.S. adults were significantly more likely to choose the shape match as opposed to the color or material matches within just this experiment. This test matches the statistical test run by the original authors. The results did/did not replicate with the original study.
+1. A binomial test with chance set to 1/3 tested whether U.S. adults were significantly more likely to choose the shape match as opposed to the color or material matches within just this experiment. This test matches the statistical test run by the original authors. **The results replicated with the original study $(P_{success} = 0.45, p < 0.001)$.**
 
-```{r Confirmatory Analysis 1.1}
+```{r Confirmatory Analysis 1.1: Binomial Test}
 #Summary statistics  
 summary_data <- data_main_analyses_tidy |>  
   summarize(subjects=n(), 
@@ -478,14 +531,16 @@ summary_data <- data_main_analyses_tidy |>
 
 #Binomial test
 binomial_result <- binom.test(summary_data$shapeNum, summary_data$subjects, p=1/3)
+binomial_result
 
 #Store values of 95% confidence intervals. 
-conf_int <- binomial_result$conf.int # Confidence interval
+conf_int <- binomial_result$conf.int 
 ```
 
+#### Figure 1: Rescue vs. Replication vs. Original Paper Results for Shape Preference
 Figure 1 shows the proportion of choices of an extension by the type of property (shape, color, material).
 
-```{r Figure 1: Proportion of Choices by Property}
+```{r Create Figure 1: Proportion of Choices by Property}
 #Create dataframe for figure. 
 figure_statistics <- data_main_analyses_tidy |>  
   group_by(participantOverlapProperty, participantLocation) |> 
@@ -495,9 +550,9 @@ figure_statistics <- data_main_analyses_tidy |>
 #Plot the data for the first figure and save as a file. 
 ggplot(figure_statistics, aes(y = proportion, x = participantLocation, fill = participantOverlapProperty)) +
   geom_bar(position = "stack", stat = 'identity', width = .7) +
-  geom_errorbar(aes(ymin = binomial_result$conf.int[1], ymax = binomial_result$conf.int[2]), width = .2) +
+  geom_errorbar(aes(ymin = conf_int[1], ymax = conf_int[2]), width = .2) +
   theme_minimal() +
-  scale_fill_manual(values = c("#7F92B8", "#6C6969", "#B4DCB9")) +
+  scale_fill_manual(values = c("#B4DCB9", "#7F92B8", "#6C6969")) +
   scale_x_discrete('Experiment 5: USA Adults') +
   scale_y_continuous('Percentage of responses', labels = scales::percent) +
   facet_wrap(~participantLocation) +
@@ -509,9 +564,9 @@ img_path <- file.path(getwd(), '..', 'figures', 'choice_by_property_rescue.png')
 ggsave(img_path, device = 'png', dpi=300)
 ```
 
-We also want to calculate the proportion of choice by property for each of the shapes (arch, lamp, snowman).
+We also want to calculate the proportion of choice by property for each of the shapes (arch, lamp, snowman). **The results partially replicated with the original study, with participants choosing the shape match for the arch and lamp exemplars $(P_{success_{arch}} = 0.64, p < 0.001), (P_{success_{lamp}} = 0.51, p < 0.001)$ but not for the snowman exemplars $(P_{success_{snowman}} = 0.21, p < 0.01)$.**
 
-```{r Confirmatory Analysis 1.2}
+```{r Confirmatory Analysis 1.2: Binomial Test by Shape}
 #Calculate the percentages of each choice by property and output into a dataframe. 
 count_df <- data_main_analyses_tidy |> 
   group_by(exemplarShape, participantOverlapProperty, experiment) |> 
@@ -539,19 +594,41 @@ figure_statistics_by_shape_property_long <- figure_statistics_by_shape_property 
 
 #Clean up the property value names.
 figure_statistics_by_shape_property_long$exemplarProperty <- sub("Proportion", "", figure_statistics_by_shape_property_long$exemplarProperty)
+
+#Binomial tests. 
+binomial_result_arch <- binom.test(figure_statistics_by_shape_property$shape[figure_statistics_by_shape_property$exemplarShape == 'arch'], figure_statistics_by_shape_property$totalCount[figure_statistics_by_shape_property$exemplarShape == 'arch'], p=1/3)
+binomial_result_arch
+
+binomial_result_lamp <- binom.test(figure_statistics_by_shape_property$shape[figure_statistics_by_shape_property$exemplarShape == 'lamp'], figure_statistics_by_shape_property$totalCount[figure_statistics_by_shape_property$exemplarShape == 'lamp'], p=1/3)
+binomial_result_lamp
+
+binomial_result_snowman <- binom.test(figure_statistics_by_shape_property$shape[figure_statistics_by_shape_property$exemplarShape == 'snowman'], figure_statistics_by_shape_property$totalCount[figure_statistics_by_shape_property$exemplarShape == 'snowman'], p=1/3)
+binomial_result_snowman
+
+#Store values of 95% confidence intervals. 
+conf_int_arch <- binomial_result_arch$conf.int 
+conf_int_lamp <- binomial_result_lamp$conf.int 
+conf_int_snowman <- binomial_result_snowman$conf.int 
 ```
 
+#### Figure 2: Rescue vs. Replication vs. Original Paper Results for Shape Preference by Shape Type 
 Figure 2 shows the proportion of choices by type of extension shape within the three property (shape, color, material) categories.
 
-```{r Figure 2: Proportion of Choices by Property and Shape}
+```{r Create Figure 2: Proportion of Choices by Property and Shape}
 #Plot the data for the second figure and save as a file.
 ggplot(figure_statistics_by_shape_property_long, aes(x = exemplarShape, y = proportion, fill = exemplarProperty)) +
   geom_bar(stat = "identity") + #use the actual proportions
+  geom_errorbar(aes(ymin = ifelse(exemplarShape == "arch", conf_int_arch[1], 
+                                  ifelse(exemplarShape == "lamp", conf_int_lamp[1],
+                                         conf_int_snowman[1])),
+                    ymax = ifelse(exemplarShape == "arch", conf_int_arch[2],
+                                               ifelse(exemplarShape == "lamp", conf_int_lamp[2],
+                                                      conf_int_snowman[2]))),
+                width = .2) +
   theme_minimal() + 
-  scale_fill_manual(values = c("#7F92B8", "#6C6969", "#B4DCB9")) + #set the bar colors 
+  scale_fill_manual(values = c("#B4DCB9", "#7F92B8", "#6C6969")) + #set the bar colors 
   scale_x_discrete('Extension Shape') + #x-label
-  scale_y_continuous(labels = scales::percent) + # Convert y-axis labels to percent
-  #facet_wrap(~participantLocation) + #group responses by population
+  scale_y_continuous(labels = scales::percent) + #convert y-axis labels to percent
   geom_hline(yintercept = (1/3), linetype = 'dotted', color = 'black') + #add dotted chance line 
   labs(x = "Shape", y = "Percentage of Responses", fill = "Material") +
   labs(fill = "Property Choice") + 
@@ -563,9 +640,9 @@ ggsave(img_path, device = 'png', dpi=300)
 
 ### Exploratory analyses
 
-1. Given that the first replication author observed stimulus-level random effects, the first exploratory analysis is a model that takes into account these random effects: `glmer( Choice=="shape" ~ offset(Offset) + 1 + (1 + Example) )`. This model tests, given an offset of 1/3, if the intercept is significantly different from 0 while accounting for random effects.
+1. Given that the first replication author observed stimulus-level random effects, the first exploratory analysis is a model that takes into account these random effects: `glmer( Choice=="shape" ~ offset(Offset) + 1 + (1 + Example) )`. This model tests, given an offset of 1/3, if the intercept is significantly different from 0 while accounting for random effects. **The model yielded an insignificant result $(\beta = 0.45, p = 0.33)$.**
 
-```{r Exploratory Analysis 1}
+```{r Exploratory Analysis 1: Model for Stimulus-Level Random Effects}
 #Create a dataframe for the analysis. 
 rescue_data <- data_main_analyses_tidy |> 
   select(Age = participantAge,
@@ -582,9 +659,9 @@ rescue_data$Offset <- logit(1/3)
 summary(glmer(Choice=="shape" ~ offset(Offset) + 1 + (1 | Example), rescue_data, family="binomial"))
 ```
 
-2.  I also ran a random effects model, with random intercepts for the exemplar object (`Example`), testing for a participant's preference for shape as a function of the exemplar object: `glmer( Choice=="shape" ~ offset(Offset) + Location + (1 + Location | Example) )`. The main difference between the model in the first replication and this model is the use of the `Offset` variable, set to the log-odds probability of 1/3.
+2.  I also ran a random effects model, with random intercepts for the exemplar object (`Example`), testing for a participant's preference for shape as a function of the exemplar object: `glmer( Choice=="shape" ~ offset(Offset) + Location + (1 + Location | Example) )`. The main difference between the model in the first replication and this model is the use of the `Offset` variable, set to the log-odds probability of 1/3. **The model yielded an insignificant result $(\beta = -0.06, p = 0.86)$.**
 
-```{r Exploratory Analysis 2}
+```{r Exploratory Analysis 2: Random Effects Model as a Function of Exemplar}
 #Create a dataset to merge with the original dataset. 
 rescue_data <- data_main_analyses_tidy |> 
   select(Age = participantAge,
@@ -610,9 +687,9 @@ appended_data$Offset <- logit(1/3)
 summary(glmer(Choice=="shape" ~ offset(Offset) + Location + (1 + Location | Example), appended_data, family="binomial"))
 ```
 
-3.  I also ran the original paper's logistic mixed-effects model that predicts the participant's preference for the shape-match object: `glmer( Choice == "shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment) )` by swapping out the USA adult data from the original paper with my new USA adult data but keeping all of the other data the same (USA children, Tsimane' adults, and Tsimane' children). In the original study, the authors used a baseline probability of 33.3% with the population (U.S. participants) and the age group (adults) dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment number, random intercepts for the exemplar object, random slopes for population as a function of exemplar, and random slopes for age group as a function of exemplar. This model found that, with a new sample of U.S. adults, they were \[\] to generalize the label of a novel object by shape $(\beta = X.XX$, $p < X.XX)$.
+3.  I also ran the original paper's logistic mixed-effects model that predicts the participant's preference for the shape-match object: `glmer( Choice == "shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment) )` by swapping out the USA adult data from the original paper with my new USA adult data but keeping all of the other data the same (USA children, Tsimane' adults, and Tsimane' children). In the original study, the authors used a baseline probability of 33.3% with the population (U.S. participants) and the age group (adults) dummy coded as independent variables. To control for the role of exemplar, the regression included random intercepts for the experiment number, random intercepts for the exemplar object, random slopes for population as a function of exemplar, and random slopes for age group as a function of exemplar. **This model found that, with a new sample of U.S. adults, they were _not_ more likely to generalize the label of a novel object by shape $(\beta = 0.31$, $p = 0.56)$.**
 
-```{r Confirmatory Analysis 3}
+```{r Confirmatory Analysis 3: Logistic Mixed-Effects Model}
 #Filter the original dataset to remove the USA adult data (and not include two if the Tsimane children experiments).   
 original_data_no_USA_adult <- original_data |> 
   filter(Experiment %in% c("Tsi_Adults_Objects","Tsi_Adults_wDistractor", "Tsi_Child_Objects","US_Children")) |> 
@@ -630,18 +707,137 @@ appended_data_full$Offset <- logit(1/3)
 summary(glmer(Choice == "shape" ~ offset(Offset) + Location + AgeGroup + (1 + Location + AgeGroup | Example) + (1 | Experiment), appended_data_full, family="binomial"))
 ```
 
-*Three-panel graph with original, 1st replication, and your replication is ideal here*
+#### Figure 3: Rescue vs. Replication vs. Original Paper Results for Shape Preference 
+
+```{r Display Figures: Shape Preference}
+suppressMessages(library(knitr))
+
+#Get figure file name.   
+image_path <- 'choice_by_property_comparison.jpeg'
+
+#Print out the figure. 
+knitr::include_graphics(image_path)
+```
+#### Figure 4: Rescue vs. Replication vs. Original Paper Results for Shape Preference by Shape Type 
+
+```{r Display Figures: Shape Preference by Shape Type}
+suppressMessages(library(knitr))
+
+#Get figure file name.   
+image_path_by_shape <- 'choice_by_shape_and_property_comparison.jpeg'
+
+#Print out the figures. 
+knitr::include_graphics(image_path_by_shape)
+```
 
 ## Discussion
 
 ## Mini meta analysis
 
-Combining across the original paper, 1st replication, and 2nd replication, what is the aggregate effect size?
+I am not able to fully combine data across the original paper (Jara-Ettinger et al., 2022), the first replication (Abdelrahim, 2022), and second replication (Chen, 2023) because each of the replications did not have the same models. For example, Jara-Ettinger et al., 2022 and Chen, 2023 ran a binomial test and a logistic mixed-effects model (Chen, 2023 used new data for the U.S. adult sample for this model but the rest of the data came from Jara-Ettinger et al., 2022), while Abdelrahim, 2022 and Chen, 2023 used a random effects model that Jara-Ettinger et al., 2022 did not use. Below are two different meta-analysis models obtaining the aggregate estimates from the random effects models (Abdelrahim, 2022 and Chen, 2023) and the logistic mixed-effects models (Jara-Ettinger et al., 2022 and Chen, 2023). 
 
-### Summary of Replication Attempt
+```{r Print Mini Meta-Analysis Data}
+suppressMessages(library(metafor))
 
-Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.
+#Import meta-analysis data. 
+meta_analysis_file <- 'meta_analysis_data.csv'
+meta_analysis_data <- read.csv(file.path(getwd(), '..', 'data', meta_analysis_file))
+
+#Print out the data. 
+knitr::kable(meta_analysis_data,
+             table.attr = "class=\"striped\"",
+             format = "html")
+```
+
+The aggregate effect size between the Abdelrahim (2022) replication project and the Chen (2023) rescue replication project for the random effects model is extremely small: 0.0512. 
+
+```{r Run Mini Meta-Analysis 1}
+#Run meta-analysis model for Abdelrahim (2022) and Chen (2023)
+meta_analysis_model_random_effects <- rma(yi=random_effects_model_estimate, sei = random_effects_model_SE, slab=Study, data=meta_analysis_data) 
+summary(meta_analysis_model_random_effects)
+```
+
+The aggregate effect size between the Jara-Ettinger et al. (2022) replication project and the Chen (2023) rescue replication project for the logistic mixed-effects model is also extremely small: 0.8395. 
+
+```{r Run Mini Meta-Analysis 2}
+#Run meta-analysis model for Jara-Ettinger et al. (2022) and Chen (2023)
+meta_analysis_model_logistic_mixed_effects <- rma(yi=logistic_mixed_effects_model_estimate, sei = logistic_mixed_effects_model_SE, slab=Study, data=meta_analysis_data) 
+summary(meta_analysis_model_logistic_mixed_effects)
+```
+
+#### Figure 6: Estimated Effect Sizes for the Random Effects Model (Abdelrahim, 2022 and Chen, 2023)
+
+Visualize the effect sizes of the Abdelrahim (2022) replication project and the Chen (2023) rescue replication project for the random effects model. 
+
+```{r Visualize Mini Meta-Analysis Results 1} 
+#Filter out study without this model. 
+meta_analysis_data_random_effects <- meta_analysis_data |> 
+  filter(Study != "Jara-Ettinger et al. (2022)")
+
+# Plot mini meta-analysis results. 
+ggplot(meta_analysis_data_random_effects, aes(x = Study, y = random_effects_model_estimate, size = N)) +
+  geom_point(data = meta_analysis_data_random_effects) +
+  coord_flip() +
+  ylim(-2, 2) +
+  scale_size_area() +
+  geom_hline(yintercept = 0, color = "black") +
+  theme_linedraw() +
+  theme(legend.position = "none") +
+  labs(y = "Main effect size on original scale", x = "")
+```
+
+#### Figure 7: Estimated Effect Sizes for the Logistic Mixed-Effects Model (Jara-Ettinger et al., 2022 and Chen, 2023)
+
+Visualize the effect sizes of the Jara-Ettinger et al. (2022) replication project and the Chen (2023) rescue replication project for the logistic mixed-effects model. 
+
+```{r Visualize Mini Meta-Analysis Results 2} 
+#Filter out study without this model. 
+meta_analysis_data_logistic_mixed_effects <- meta_analysis_data |> 
+  filter(Study != "Abdelrahim (2022)")
+
+# Plot mini meta-analysis results. 
+ggplot(meta_analysis_data_logistic_mixed_effects, aes(x = Study, y = logistic_mixed_effects_model_estimate, size = N)) +
+  geom_point(data = meta_analysis_data_logistic_mixed_effects) +
+  coord_flip() +
+  ylim(-2, 2) +
+  scale_size_area() +
+  geom_hline(yintercept = 0, color = "black") +
+  theme_linedraw() +
+  theme(legend.position = "none") +
+  labs(y = "Main effect size on original scale", x = "")
+```
+
+#### Figure 8: Forest Plot for the Random Effects Model (Abdelrahim, 2022 and Chen, 2023)
+
+```{r Forest Plot for Mini Meta-Analysis Results 1}
+forest(meta_analysis_model_random_effects)
+```
+#### Figure 9: Forest Plot for the Logistic Mixed-Effects Model (Jara-Ettinger et al., 2022 and Chen, 2023)
+
+```{r Forest Plot for Mini Meta-Analysis Results 2}
+forest(meta_analysis_model_logistic_mixed_effects)
+```
+
+#### Figure 10: Funnel Plot for the Random Effects Model (Abdelrahim, 2022 and Chen, 2023)
+
+```{r Funnel Plot for Mini Meta-Analysis Results 1}
+funnel(meta_analysis_model_random_effects)
+```
+
+#### Figure 11: Funnel Plot for the Logistic Mixed-Effects Model (Jara-Ettinger et al., 2022 and Chen, 2023)
+
+```{r Funnel Plot for Mini Meta-Analysis Results 2}
+funnel(meta_analysis_model_logistic_mixed_effects)
+```
+
+### Summary of Rescue Replication Attempt
+
+This rescue replication tested if U.S. adults were more likely to match a novel object with an exemplar based on shape, material, or color. Using a binomial test as my key analysis of interest, I found that U.S. adults were more likely to match based on shape overall $(P_{success} = 0.45, p < 0.001)$, but that this result depended on the exemplar shape, since I replicated the results in the original paper for the arch and lamp exemplars that the probability of success was greater than 1/3 $(P_{success_{arch}} = 0.64, p < 0.001), (P_{success_{lamp}} = 0.51, p < 0.001)$ but not for the snowman exemplar $(P_{success_{snowman}} = 0.21, p < 0.01)$. 
 
 ### Commentary
 
-Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt. None of these need to be long.
+I also ran some follow-up exploratory analyses to (1) account for stimulus-level random effects, (2) test my U.S. adult data against the first replication author's data using their key analysis of a random effects model, and (3) test how my U.S. adult data compared with the rest of the data in the original paper from Tsimane' adults, Tsimane' children, and U.S. children. For Aim 1, I found that the model that takes into account the stimulus-level random effects yielded an insignificant result $(\beta = 0.45, p = 0.33)$, showing that U.S. adults were not more likely to choose the shape match when accounting for the exemplar type. For Aim 2, I found that the random effects model with random intercepts for the exemplar object, testing for a participant's preference for shape as a function of the exemplar object, yielded an insignificant result $(\beta = -0.06, p = 0.86)$, which aligned with the first replication author's finding. Lastly, for Aim 3, with a new sample of U.S. adults, the original paper's logistic mixed-effects model that predicts the participant's preference for the shape-match object found that U.S. adults were _not_ more likely to generalize the label of a novel object by shape $(\beta = 0.31$, $p = 0.56)$.
+
+The implementation of attention checks found that participants understood the differences between the exemplar and the three extension objects, so the inability to replicate the shape match probability for all exemplars does not seem to be from participants guessing randomly or not understanding how the extension objects relate to the exemplar. Material was the property that was guessed the most often for the snowman exemplar, which suggests that perhaps the snowman shape was a little less distinctive relative to the arch and lamp shapes, such that the material became a more salient property on which to match the exemplar and extension objects. 
+
+Overall, increasing the sample size, using the correct stimuli, and asking participants to share what properties each extension object had with the exemplar object were important changes to ensure a robust replication. Future work could ensure that the shape of the objects are very distinctive, such that other properties like the material do not hinder the participant's ability to appreciate the object's shape. Asking participants to answer more than one trial with a greater variety of shapes, materials, and colors may also address individual differences in trial performance or trial-level errors that occur when using a one-trial paradigm. Lastly, it is possible that subject-specific demographics (e.g., the urbanicity of their early environment) may be moderating what property match they choose. 
