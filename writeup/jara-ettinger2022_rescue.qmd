@@ -107,7 +107,7 @@ The main difference between **this plan and the original study** is that I colle
 
 #### Actual Sample
 
-The data were collected in eight batches of N=54 subjects each, one at a time so that subjects who participated in the previous batches could be excluded from participating. Each batch had 54 unique conditions, one for each subject who participated. The anticipated total number of subjects was N=432. Across the eight batches, N=426 unique subjects participated in the study. Subjects opted out of participating in the study by not answering or completing the study, and rows in the dataset that had `NA` values for the main question of interest were excluded. Despite implementing an exclusion rule for each subsequent experimental batch, N=9 subjects participated twice. However, since duplicate participation was not an exclusion criteria in the original analysis plan, these subjects were not removed from the final dataset. 
+The data were collected in eight batches of N=54 subjects each, one at a time so that subjects who participated in the previous batches could be excluded from participating. Each batch had 54 unique conditions, one for each subject who participated. The anticipated total number of subjects was N=432. The raw data contains N=429 subjects collected, but across the eight batches, N=426 unique subjects participated in the study. Subjects opted out of participating in the study by not answering or completing the study, and rows in the dataset that had `NA` values for the main question of interest were excluded. Despite implementing an exclusion rule for each subsequent experimental batch, N=9 subjects participated twice. However, since duplicate participation was not an exclusion criteria in the original analysis plan, these subjects were not removed from the final dataset. 
 
 #### Differences from pre-data collection methods plan
 
@@ -306,8 +306,8 @@ for(row_index in 1:nrow(data_main_analyses)) {
       data_main_analyses[row_index, 'participant_extension_choice'] <- participant_response
     }
   }
-  
-  # Interpret the participant_extension_choice column to make the numerical answer choice values meaningful.
+
+# Interpret the participant_extension_choice column to make the numerical answer choice values meaningful.
   participant_image_choice <- data_main_analyses[row_index, 'participant_extension_choice']
   if(!is.na(participant_image_choice) && length(participant_image_choice) > 0) {
     
