@@ -52,7 +52,7 @@ def get_raw_data_files(root_dir):
                 filename.split(".")[-1] == "csv"
                 and filename.split("-")[-1] != "anon.csv"
             ):
-                all_data_files.append("/".join([path[0], filename]))
+                all_data_files.append("/".join(['data', filename]))
 
     return all_data_files
 
