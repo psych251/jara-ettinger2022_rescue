@@ -307,23 +307,23 @@ for(row_index in 1:nrow(data_main_analyses)) {
     }
   }
   
-  # Interpret the participantExtensionChoice column to make the numerical answer choice values meaningful.
-  participant_image_choice <- data_main_analyses[row_index, 'participantExtensionChoice']
+  # Interpret the participant_extension_choice column to make the numerical answer choice values meaningful.
+  participant_image_choice <- data_main_analyses[row_index, 'participant_extension_choice']
   if(!is.na(participant_image_choice) && length(participant_image_choice) > 0) {
     
     # Participant chose the left image. 
     if(participant_image_choice == "0") {
-      data_main_analyses[row_index, 'participant_extension_choice_image'] <- data_main_analyses[row_index, 'extensionLeftImg']
+      data_main_analyses[row_index, 'participant_extension_choice_image'] <- data_main_analyses[row_index, 'extension_left_img']
     }
     
     # Participant chose the center image.
     else if(participant_image_choice == "1") {
-      data_main_analyses[row_index, 'participant_extension_choice_image'] <- data_main_analyses[row_index, 'extensionCenterImg']
+      data_main_analyses[row_index, 'participant_extension_choice_image'] <- data_main_analyses[row_index, 'extension_center_img']
     }
     
     # Participant chose the right image. 
     else if(participant_image_choice == "2") {
-      data_main_analyses[row_index, 'participant_extension_choice_image'] <- data_main_analyses[row_index, 'extensionRightImg']
+      data_main_analyses[row_index, 'participant_extension_choice_image'] <- data_main_analyses[row_index, 'extension_right_img']
     }
   }
 }
@@ -354,36 +354,36 @@ print(paste("There are an equal number of subjects per condition:", all(conditio
 Remove the rows that are empty (no data collected) and that have repeat subject IDs.
 
 ```{r Filter Dataset}
-#Check if there are null (NA) values in participantExtensionChoice.  
-null_values <- sum(is.na(data_main_analyses_tidy$participantExtensionChoice))
+#Check if there are null (NA) values in participant_extension_choice.  
+null_values <- sum(is.na(data_main_analyses_tidy$participant_extension_choice))
 
 #Print the result
 if (null_values > 0) {
   cat("Out of", nrow(data_main_analyses_tidy), 
       "subjects, there are", null_values, 
-      "null values in the column 'participantExtensionChoice.'.\n")
+      "null values in the column 'participant_extension_choice.'.\n")
 } else {
   cat("Out of", nrow(data_main_analyses_tidy), 
-      "subjects, there are no null values in the column 'participantExtensionChoice.'.\n")
+      "subjects, there are no null values in the column 'participant_extension_choice.'.\n")
 }
 
-#Remove rows that don't have a response in participantExtensionChoice.
+#Remove rows that don't have a response in participant_extension_choice.
 data_main_analyses_tidy <- 
-  data_main_analyses_tidy[!is.na(data_main_analyses_tidy$participantExtensionChoice), ]
+  data_main_analyses_tidy[!is.na(data_main_analyses_tidy$participant_extension_choice), ]
   
 #Check if the data were removed. 
-null_values <- sum(is.na(data_main_analyses_tidy$participantExtensionChoice))
+null_values <- sum(is.na(data_main_analyses_tidy$participant_extension_choice))
 
 #Print the result
 if (null_values > 0) {
   cat("After data cleaning, there are", 
-      null_values, "null values in the column 'participantExtensionChoice' and", nrow(data_main_analyses_tidy), "total subjects. \n")
+      null_values, "null values in the column 'participant_extension_choice' and", nrow(data_main_analyses_tidy), "total subjects. \n")
 } else {
-  cat("After data cleaning, there are no null values in the column 'participantExtensionChoice' and", nrow(data_main_analyses_tidy), "total subjects. \n")
+  cat("After data cleaning, there are no null values in the column 'participant_extension_choice' and", nrow(data_main_analyses_tidy), "total subjects. \n")
 }
 ```
 
-Now that the data are cleaned and in a tidy format, figure out whether participants were choosing based on color, material, or shape. To do so, analyze `exemplarImg` and `participantExtensionChoiceImage` to figure out what the common property is between the exemplar and the extension choice. Put the overlapping information into a new column called `participantOverlapProperty`.
+Now that the data are cleaned and in a tidy format, figure out whether participants were choosing based on color, material, or shape. To do so, analyze `exemplarImg` and `participant_extension_choiceImage` to figure out what the common property is between the exemplar and the extension choice. Put the overlapping information into a new column called `participantOverlapProperty`.
 
 ```{r Check Property Choice}
 #Go through each subject. 
@@ -391,12 +391,12 @@ for(row_index in 1:nrow(data_main_analyses_tidy)) {
   #Get the exemplar the participant saw.
   participant_exemplar <- 
     unlist(strsplit(as.character(data_main_analyses_tidy[row_index, 
-                                                         'exemplarImg']), '_'))
+                                                         'exemplar_img']), '_'))
   
   #Get the extension the participant chose. 
   participant_extension_choice <- 
     unlist(strsplit(as.character(data_main_analyses_tidy[row_index, 
-                                                         'participantExtensionChoiceImage']), '_'))
+                                                         'participant_extension_choice_image']), '_'))
   
   #Get the shape of the exemplar object and put into a new column called exemplarShape. 
   exemplar_shape <- participant_exemplar[3]
@@ -430,21 +430,21 @@ data_main_analyses_tidy <- data_main_analyses_tidy |>
   mutate(participantLocation = 'US', 
          experiment = 'USA_Adults', 
          ageGroup = 'Adults', 
-         exclude = 0) |> 
-  select(subject_id, condition, experiment, ageGroup, participantLocation, 
-         exemplarName, exemplarImg, exemplarShape, participantOverlapAnswer, 
-         participantOverlapProperty, 
-         participantExtensionChoice, 
-         participantExtensionChoiceImage, 
-         extensionLeftImg, extensionCenterImg, extensionRightImg, 
-         extensionLeftImgAttnCheckResponse, 
-         extensionCenterImgAttnCheckResponse, 
-         extensionRightImgAttnCheckResponse, 
-         participantAge, participantBornUSA, 
-         participantChildhoodUSA, participantCurrentUSA, 
-         participantCurrentZipcode, participantChildhoodZipcode, 
-         participantFirstLanguage, participantCurrentLanguages, 
-         participantCurrentUrbanicity, participantChildhoodUrbanicity, exclude)
+         exclude = 0)
+  # select(subject_id, condition, experiment, ageGroup, participantLocation, 
+  #        exemplar_name, exemplar_img, exemplarShape, participantOverlapAnswer, 
+  #        participantOverlapProperty, 
+  #        participant_extension_choice, 
+  #        participant_extension_choice_image, 
+  #        extensionLeftImg, extensionCenterImg, extensionRightImg, 
+  #        extensionLeftImgAttnCheckResponse, 
+  #        extensionCenterImgAttnCheckResponse, 
+  #        extensionRightImgAttnCheckResponse, 
+  #        participant_age, participantBornUSA, 
+  #        participantChildhoodUSA, participantCurrentUSA, 
+  #        participantCurrentZipcode, participantChildhoodZipcode, 
+  #        participantFirstLanguage, participantCurrentLanguages, 
+  #        participantCurrentUrbanicity, participantChildhoodUrbanicity, exclude)
 ```
 
 ### Results of control measures
@@ -531,10 +531,10 @@ I conducted one main confirmatory analysis:
 #Summary statistics  
 summary_data <- data_main_analyses_tidy |>  
   summarize(subjects=n(), 
-            average=mean(as.numeric(participantAge), na.rm=TRUE),
-            minage=min(as.numeric(participantAge), na.rm=TRUE),
-            maxage=max(as.numeric(participantAge), na.rm=TRUE),
-            stdev=sd(as.numeric(participantAge), na.rm=TRUE),
+            average=mean(as.numeric(participant_age), na.rm=TRUE),
+            minage=min(as.numeric(participant_age), na.rm=TRUE),
+            maxage=max(as.numeric(participant_age), na.rm=TRUE),
+            stdev=sd(as.numeric(participant_age), na.rm=TRUE),
             shapeNum=sum(participantOverlapProperty=="shape"),
             materialNum=sum(participantOverlapProperty=="material"),
             colorNum=sum(participantOverlapProperty=="color"),
@@ -660,7 +660,7 @@ ggsave(img_path, device = 'png', dpi=300)
 ```{r Exploratory Analysis 1: Model for Stimulus-Level Random Effects}
 #Create a dataframe for the analysis. 
 rescue_data <- data_main_analyses_tidy |> 
-  select(Age = participantAge,
+  select(Age = participant_age,
          Experiment = experiment, 
          Example = exemplarShape, 
          Choice = participantOverlapProperty, 
@@ -679,7 +679,7 @@ summary(glmer(Choice=="shape" ~ offset(Offset) + 1 + (1 | Example), rescue_data,
 ```{r Exploratory Analysis 2: Random Effects Model as a Function of Exemplar}
 #Create a dataset to merge with the original dataset. 
 rescue_data <- data_main_analyses_tidy |> 
-  select(Age = participantAge,
+  select(Age = participant_age,
          Experiment = experiment, 
          Example = exemplarShape, 
          Choice = participantOverlapProperty, 
