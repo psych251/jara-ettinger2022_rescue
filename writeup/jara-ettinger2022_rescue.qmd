@@ -10,13 +10,19 @@ format:
 
 <!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
 
+## Links 
+* [Paper](https://github.com/psych251/jara-ettinger2022_rescue/blob/dc24145deab4f76cf7bd405c77feb28e07fda9af/original_paper/Jara-Ettinger%20et%20al.%202022%20-%20The%20origins%20of%20the%20shape%20bias%20-%20Evidence%20from%20the%20Tsimane'.pdf)
+* [Github](https://github.com/psych251/jara-ettinger2022_rescue)
+* [Preregistration](https://osf.io/trb42)
+* [Experiment](https://g5esfxmrfk.cognition.run/)
+
 ## Introduction
 
 I chose to try and rescue the replication of this experiment because I am interested in the intersection of language and spatial/object reasoning. As a developmental cognitive scientist, I also found the comparison of adults and children to be an important element relevant to my research interests. Finally, the cross-cultural comparisons made in this paper are something that I'd like to explore further in my own research, outside of the context of this project.
 
 The stimuli that will be required to collect additional data for this experiment are available in the repository of the original replication project. The original replication collected data online from 144 U.S. adults, following the paradigm of Experiment 5 in the paper. It won't be possible to collect additional data from Tsimane' adults, so a replication of Experiments 6 and 7 cannot be performed. The new replication attempt will feature attention checks and a demographic questionnaire about the subject's early geographic environment (e.g., urbanicity of current and childhood environments), given the theoretical claims in the paper about the importance of early environmental factors on the strength of the shape bias in children.
 
-Click [here](https://github.com/psych251/jara-ettinger2022_rescue) for this rescue project's Github repository. The PDF of the original paper can be found [here](https://github.com/psych251/jara-ettinger2022_rescue/blob/dc24145deab4f76cf7bd405c77feb28e07fda9af/original_paper/Jara-Ettinger%20et%20al.%202022%20-%20The%20origins%20of%20the%20shape%20bias%20-%20Evidence%20from%20the%20Tsimane'.pdf). The experiment, hosted on [cognition.run](https://cognition.run/), can be accessed [here](https://g5esfxmrfk.cognition.run/). 
+**The PDF of the original paper can be found [here](https://github.com/psych251/jara-ettinger2022_rescue/blob/dc24145deab4f76cf7bd405c77feb28e07fda9af/original_paper/Jara-Ettinger%20et%20al.%202022%20-%20The%20origins%20of%20the%20shape%20bias%20-%20Evidence%20from%20the%20Tsimane'.pdf). The project's Github repository with all data, scripts, and the source code for this writeup can be found [here](https://github.com/psych251/jara-ettinger2022_rescue). The preregistration can be found [here](https://osf.io/trb42). The experiment, hosted on [cognition.run](https://cognition.run/), can be found [here](https://g5esfxmrfk.cognition.run/).**
 
 ## Summary of prior replication attempt
 
@@ -114,47 +120,14 @@ None.
 This section contains the code necessary to prepare the data for analysis. First, load in the raw data. The data were collected in 8 batches of 54 subjects, where each subject saw a different condition in each batch. The data were collected in batches because cognition.run limits the number of subjects that can be run at a time. We're going to import and stitch together the eight data files here. 
 
 ```{r Import Data}
-#Load relevant libraries and functions. 
+# Load relevant libraries and functions. 
 suppressMessages(library(tidyverse))
 suppressMessages(library(dplyr))
 suppressMessages(library(ggplot2))
 
-#Get all data file names from the data_raw folder. 
-folder_path <- file.path(getwd(), '..', 'data_raw')
-
-#Get all file names in the folder, ignoring sub-directories. 
-file_names <- list.files(path = folder_path, full.names = FALSE, recursive = FALSE)
-
-#Filter to include only files (exclude directories). 
-file_names <- file_names[!file.info(file.path(folder_path, file_names))$isdir]
-
-#Check if there are any files in the list
-if(length(file_names) == 0) {
-  print("No files found in the specified folder.")
-} else {
-  
-  #Create an empty dataframe to store all of the data
-  full_raw_data <- data.frame()
-  
-  #Loop through each of the files
-  for(file in file_names) {
-    
-    #Construct the full path to the file
-    file_path <- file.path(folder_path, file)
-    
-    #Check if the file exists
-    if(file.exists(file_path)) {
-      
-      #Read the data from the file
-      temp_data <- read.csv(file_path)
-      
-      #Append the data to the full_raw_data dataframe
-      full_raw_data <- rbind(full_raw_data, temp_data)
-    } else {
-      print(paste("File not found:", file_path))
-    }
-  }
-}
+# Load data 
+all_data <- read_csv('../data/fullsample_anonymized.csv',
+                     show_col_types = FALSE)
 ```
 
 Check the raw data to make sure that all of the images for the subjects loaded successfully (they should, or they would not have been able to complete the study).
@@ -162,193 +135,205 @@ Check the raw data to make sure that all of the images for the subjects loaded s
 ```{r Validate Successful Image Loading}
 suppressMessages(library(stringr))
 
-#If true, then all images loaded successfully for all subjects.
-print(paste("Images loaded successfully for all subjects:", sum(str_detect(full_raw_data$success, 'false')) == 0)) 
+# If true, then all images loaded successfully for all subjects.
+print(paste("Images loaded successfully for all subjects:", 
+            sum(str_detect(all_data$success, 'false'), na.rm = TRUE) == 0)) 
 ```
 
-Check how many unique subjects there are based on their `PROLIFIC_PID`. 
+Check how many unique subjects there are based on their `prolific_id`. 
 
 ```{r Check Number of Unique Subjects}
-subject_check <- full_raw_data |> 
-  group_by(PROLIFIC_PID) |> 
+subject_check <- all_data |> 
+  group_by(prolific_id) |> 
   summarize(numRows = n())
 
-#If a subject completed the study once, they should have 18 rows. 
+# If a subject completed the study once, they should have 18 rows. 
 repeat_subjects <- subset(subject_check, numRows > 18)
 
 cat(nrow(repeat_subjects), "subjects did the study more than once.")
 ```
 
-Now clean the data. First remove columns that are unnecessary for the main confirmatory analyses and filter out subjects not relevant to the full sample (i.e., pilot subjects). Remove subjects who used phones to complete the study. Then parse the demographic responses into columns.
+Now clean the data. First remove columns that are unnecessary for the main confirmatory analyses and filter out subjects not relevant to the full sample (i.e., pilot subjects). Remove subjects who used phones to complete the study, since the exemplar and the extension stimuli are not displayed in one view on phones and thus participants would not be able to see all options at once. Then parse the demographic responses into columns.
 
 ```{r Clean Data}
-#Since the data were collected in 8 batches, there are repeat subject IDs (`batchSubjectID`). Create a new column called `subjectID` and make each one unique to the combined dataset. Each subject has one 'fullscreen' trial so use that to assign a unique subject ID.  
+# Since the data were collected in 8 batches, there are repeat subject IDs 
+  #(`batchSubjectID`). Create a new column called `subject_id` and make each 
+  #one unique to the combined dataset. Each subject has one 'fullscreen' trial 
+  #so use that to assign a unique subject ID.  
+
 suppressMessages(library(data.table))
 
-#Convert the dataframe to a data.table
-setDT(full_raw_data)
+# Convert the dataframe to a data.table
+setDT(all_data)
 
-#Create a new column 'subjectID' based on unique subject codes
-full_raw_data[, subjectID := .GRP, by = PROLIFIC_PID]
+# Create a new column 'subject_id' based on unique subject codes
+all_data[, subject_id := .GRP, by = prolific_id]
 
-#Convert data.table back to a dataframe
-full_raw_data <- as.data.frame(full_raw_data)
+# Convert data.table back to a dataframe
+all_data <- as.data.frame(all_data)
 
-#Select only relevant columns and rename them. 
-data_main_analyses <- full_raw_data |> 
-  select(c('rt', 'trial_type', 'run_id', 'subjectID', 'condition', 'recorded_at', 'device', 'success', 'stimulus', 'response', starts_with('exemplar'), starts_with('extension'))) |> 
-  rename(reactionTime = rt, trialType = trial_type, batchSubjectID = run_id, recordedAt = recorded_at, imageLoadSuccess = success) |> #Rename columns to match naming conventions. 
-  filter(device != 'iPhone') |>  #Remove subjects who used phones.
-  select(c(-'device', -'recordedAt')) #Remove columns that aren't necessary anymore. 
+# Remove subjects who used phones.
+data_main_analyses <- all_data |> 
+  #filter(device != 'iPhone') |> 
+  select(c(-'device')) # Remove column since it isn't necessary anymore. 
 
-#Put demographic responses (currently in the 'response' column) into their own columns. 
+# Put demographic responses (currently in the 'response' column) into their own columns. 
 for(row_index in 1:nrow(data_main_analyses)) {
   
-  participant_response <- data_main_analyses[row_index, 'response'] #Create a variable for the response in the current row
-  stimulus <- data_main_analyses[row_index, 'stimulus'] #Create a variable for the stimulus in the current row
+  # Create a variable for the response in the current row
+  participant_response <- data_main_analyses[row_index, 'response'] 
   
-  #Check that the 'response' is not an empty string.
+  # Create a variable for the stimulus in the current row
+  stimulus <- data_main_analyses[row_index, 'stimulus'] 
+  
+  # Check that the 'response' is not an empty string.
   if(nzchar(participant_response)) { 
     
-    #Check if it's a survey response (has {} in the string) and update.
+    # Check if it's a survey response (has {} in the string) and update.
     if(grepl("{", participant_response, fixed = TRUE)) {
       
-      #Attention check: left image. 
+      # Attention check: left image. 
       if(grepl('extensionLeftImg_exemplar_commonalities', participant_response)) {
-        temp_response <- strsplit(participant_response, ':')[[1]][2] #Get only the answer
-        temp_response <- gsub('["}]', '', temp_response) #Trim the extra characters 
-        data_main_analyses[row_index, 'extensionLeftImgAttnCheckResponse'] <- temp_response
+        temp_response <- strsplit(participant_response, ':')[[1]][2] # Get only the answer
+        temp_response <- gsub('["}]', '', temp_response) # Trim the extra characters 
+        data_main_analyses[row_index, 'extension_left_img_attn_check_response'] <- temp_response
       }
       
-      #Attention check: center image. 
+      # Attention check: center image. 
       else if(grepl('extensionCenterImg_exemplar_commonalities', participant_response)) {
-        temp_response <- strsplit(participant_response, ':')[[1]][2] #Get only the answer
-        temp_response <- gsub('["}]', '', temp_response) #Trim the extra characters 
-        data_main_analyses[row_index, 'extensionCenterImgAttnCheckResponse'] <- temp_response
+        temp_response <- strsplit(participant_response, ':')[[1]][2] # Get only the answer
+        temp_response <- gsub('["}]', '', temp_response) # Trim the extra characters 
+        data_main_analyses[row_index, 'extension_center_img_attn_check_response'] <- temp_response
       }
       
-      #Attention check: right image.
+      # Attention check: right image.
       else if(grepl('extensionRightImg_exemplar_commonalities', participant_response)) {
-        temp_response <- strsplit(participant_response, ':')[[1]][2] #Get only the answer
-        temp_response <- gsub('["}]', '', temp_response) #Trim the extra characters 
-        data_main_analyses[row_index, 'extensionRightImgAttnCheckResponse'] <- temp_response
+        temp_response <- strsplit(participant_response, ':')[[1]][2] # Get only the answer
+        temp_response <- gsub('["}]', '', temp_response) # Trim the extra characters 
+        data_main_analyses[row_index, 'extension_right_img_attn_check_response'] <- temp_response
       }
       
-      #Participant age.
+      # Participant age.
       else if(grepl('Age', participant_response)) {
-        temp_response <- strsplit(participant_response, ':')[[1]][2] #Get only the answer
-        temp_response <- gsub('["}]', '', temp_response) #Trim the extra characters 
-        data_main_analyses[row_index, 'participantAge'] <- temp_response
+        temp_response <- strsplit(participant_response, ':')[[1]][2] # Get only the answer
+        temp_response <- gsub('["}]', '', temp_response) # Trim the extra characters 
+        data_main_analyses[row_index, 'participant_age'] <- temp_response
       }
       
-      #Geographical location.
+      # Geographical location.
       else if(grepl('CurrentUSA', participant_response)) {
-        temp_response <- strsplit(participant_response, ',') #List of responses for BornUSA, ChildhoodUSA, and CurrentUSA.
+        # List of responses for BornUSA, ChildhoodUSA, and CurrentUSA.
+        temp_response <- strsplit(participant_response, ',') 
         
-        #Participant birth location. 
+        # Participant birth location. 
         if(grepl('BornUSA', temp_response[[1]][1])) {
-          geog_temp_response <- strsplit(temp_response[[1]][1], ':')[[1]][2] #Get only the answer for BornUSA. 
-          geog_temp_response <- gsub('["}]', '', geog_temp_response) #Trim the extra characters 
-          data_main_analyses[row_index, 'participantBornUSA'] <- geog_temp_response
+          
+          # Get only the answer for BornUSA. 
+          geog_temp_response <- strsplit(temp_response[[1]][1], ':')[[1]][2] 
+          
+          # Trim the extra characters. 
+          geog_temp_response <- gsub('["}]', '', geog_temp_response) 
+          data_main_analyses[row_index, 'participant_born_USA'] <- geog_temp_response
         }
         
-        #Participant childhood location. 
+        # Participant childhood location. 
         if(grepl('ChildhoodUSA', temp_response[[1]][2])) {
           geog_temp_response <- strsplit(temp_response[[1]][2], ':')[[1]][2] #Get only the answer for ChildhoodUSA.  
           geog_temp_response <- gsub('["}]', '', geog_temp_response) #Trim the extra characters 
-          data_main_analyses[row_index, 'participantChildhoodUSA'] <- geog_temp_response
+          data_main_analyses[row_index, 'participant_childhood_USA'] <- geog_temp_response
         }
         
-        #Participant current location. 
+        # Participant current location. 
         if(grepl('CurrentUSA', temp_response[[1]][3])) {
           geog_temp_response <- strsplit(temp_response[[1]][3], ':')[[1]][2] #Get only the answer for CurrentUSA. 
           geog_temp_response <- gsub('["}]', '', geog_temp_response) #Trim the extra characters 
-          data_main_analyses[row_index, 'participantCurrentUSA'] <- geog_temp_response
+          data_main_analyses[row_index, 'participant_current_USA'] <- geog_temp_response
         }
       }
       
-      #Zipcodes. 
+      # Zipcodes. 
       else if(grepl('CurrentZipcode', participant_response)) {
         temp_response <- strsplit(participant_response, ',') #List of responses for CurrentZipcode and ChildhoodZipcode.
         
-        #Participant current zipcode. 
+        # Participant current zipcode. 
         if(grepl('CurrentZipcode', temp_response[[1]][1])) {
           zipcode_temp_response <- strsplit(temp_response[[1]][1], ':')[[1]][2] #Get only the answer for CurrentZipcode.  
           zipcode_temp_response <- gsub('["}]', '', zipcode_temp_response) #Trim the extra characters 
-          data_main_analyses[row_index, 'participantCurrentZipcode'] <- zipcode_temp_response
+          data_main_analyses[row_index, 'participant_current_zipcode'] <- zipcode_temp_response
         }
         
-        #Participant childhood zipcode.  
+        # Participant childhood zipcode.  
         if(grepl('ChildhoodZipcode', temp_response[[1]][2])) {
           zipcode_temp_response <- strsplit(temp_response[[1]][2], ':')[[1]][2] #Get only the answer for ChildhoodZipcode.  
           zipcode_temp_response <- gsub('["}]', '', zipcode_temp_response) #Trim the extra characters 
-          data_main_analyses[row_index, 'participantChildhoodZipcode'] <- zipcode_temp_response
+          data_main_analyses[row_index, 'participant_childhood_zipcode'] <- zipcode_temp_response
         }
       }
       
-      #Languages. 
+      # Languages. 
       else if(grepl('FirstLanguage', participant_response)) {
         temp_response <- strsplit(participant_response, '",') #List of responses for FirstLanguage and AllLanguages.
 
-        #Participant first language. 
+        # Participant first language. 
         if(grepl('FirstLanguage', temp_response[[1]][1])) {
           language_temp_response <- strsplit(temp_response[[1]][1], ':')[[1]][2] #Get only the answer for FirstLanguage. 
           language_temp_response <- gsub('["}]', '', language_temp_response) #Trim the extra characters 
-          data_main_analyses[row_index, 'participantFirstLanguage'] <- language_temp_response
+          data_main_analyses[row_index, 'participant_first_language'] <- language_temp_response
         }
         
-        #Participant all languages spoken.  
+        # Participant all languages spoken.  
         if(grepl('AllLanguages', temp_response[[1]][2])) {
           language_temp_response <- strsplit(temp_response[[1]][2], ':')[[1]][2] #Get only the answer for AllLanguages.
           language_temp_response <- gsub('["}]', '', language_temp_response) #Trim the extra characters 
-          data_main_analyses[row_index, 'participantCurrentLanguages'] <- language_temp_response
+          data_main_analyses[row_index, 'participant_current_languages'] <- language_temp_response
         }
       }
     }
     
-    #Check if it's a numerical response for participant's current location urbanicity rating (1-100). 
+    # Check if it's a numerical response for participant's current location urbanicity rating (1-100). 
     else if(grepl("^[0-9]+$", participant_response) & (grepl('currently live', stimulus, fixed = TRUE))) {
-      data_main_analyses[row_index, 'participantCurrentUrbanicity'] <- participant_response
+      data_main_analyses[row_index, 'participant_current_urbanicity'] <- participant_response
     }
     
-    #Check if it's a numerical response for participant's childhood location urbanicity rating (1-100). 
+    # Check if it's a numerical response for participant's childhood location urbanicity rating (1-100). 
     else if(grepl("^[0-9]+$", participant_response) & (grepl('grew up', stimulus, fixed = TRUE))) {
       #Participant's childhood location urbanicity. 
-      data_main_analyses[row_index, 'participantChildhoodUrbanicity'] <- participant_response
+      data_main_analyses[row_index, 'participant_childhood_urbanicity'] <- participant_response
     }
     
-    #Check if it's an image response (choosing the shape image). 
+    # Check if it's an image response (choosing the shape image). 
     else if(grepl("^[0-9]+$", participant_response) & (grepl('img', stimulus, fixed = TRUE))) {
-      data_main_analyses[row_index, 'participantExtensionChoice'] <- participant_response
+      data_main_analyses[row_index, 'participant_extension_choice'] <- participant_response
     }
   }
   
-  #Interpret the participantExtensionChoice column to make the numerical answer choice values meaningful.
+  # Interpret the participantExtensionChoice column to make the numerical answer choice values meaningful.
   participant_image_choice <- data_main_analyses[row_index, 'participantExtensionChoice']
   if(!is.na(participant_image_choice) && length(participant_image_choice) > 0) {
     
-    #Participant chose the left image. 
+    # Participant chose the left image. 
     if(participant_image_choice == "0") {
-      data_main_analyses[row_index, 'participantExtensionChoiceImage'] <- data_main_analyses[row_index, 'extensionLeftImg']
+      data_main_analyses[row_index, 'participant_extension_choice_image'] <- data_main_analyses[row_index, 'extensionLeftImg']
     }
     
-    #Participant chose the center image.
+    # Participant chose the center image.
     else if(participant_image_choice == "1") {
-      data_main_analyses[row_index, 'participantExtensionChoiceImage'] <- data_main_analyses[row_index, 'extensionCenterImg']
+      data_main_analyses[row_index, 'participant_extension_choice_image'] <- data_main_analyses[row_index, 'extensionCenterImg']
     }
     
-    #Participant chose the right image. 
+    # Participant chose the right image. 
     else if(participant_image_choice == "2") {
-      data_main_analyses[row_index, 'participantExtensionChoiceImage'] <- data_main_analyses[row_index, 'extensionRightImg']
+      data_main_analyses[row_index, 'participant_extension_choice_image'] <- data_main_analyses[row_index, 'extensionRightImg']
     }
   }
 }
 
-#Combine subject rows into a single row and remove the extra columns. 
+# Combine subject rows into a single row and remove the extra columns. 
 data_main_analyses_tidy <- data_main_analyses |> 
-  select(-reactionTime, -trialType, -imageLoadSuccess, -stimulus, -response, -batchSubjectID) |> 
-  mutate(across(everything(), ~ ifelse(. == "", NA, .))) |>  #Replace empty strings with NA
-  group_by(subjectID) |> 
+  select(-rt, -trial_type, -success, -stimulus, -response) |> 
+  #Replace empty strings with NA. 
+  mutate(across(everything(), ~ ifelse(. == "", NA, .))) |> 
+  group_by(subject_id) |> 
   summarize(across(everything(), ~ if(all(is.na(.))) {NA} else {na.omit(.)[1]}), .groups = "drop")
 ```
 
@@ -358,9 +343,12 @@ Check the pre-processed data to see if there is an equal spread of subjects per 
 #Check that there are enough subjects per condition.
 condition_check <- data_main_analyses_tidy |> 
   group_by(condition) |> 
-  summarize(numSubjectsPerCondition = n()) #Count the number of times the condition comes up
+  summarize(numSubjectsPerCondition = n()) 
+  #Count the number of times the condition comes up
 
-print(paste("There are an equal number of subjects per condition:", all(condition_check$numSubjectsPerCondition == condition_check$numSubjectsPerCondition[1]))) #If true, then there are an equal number of subjects per condition.
+print(paste("There are an equal number of subjects per condition:", all(condition_check$numSubjectsPerCondition == 
+  condition_check$numSubjectsPerCondition[1]))) 
+  #If true, then there are an equal number of subjects per condition.
 ```
 
 Remove the rows that are empty (no data collected) and that have repeat subject IDs.
@@ -371,20 +359,25 @@ null_values <- sum(is.na(data_main_analyses_tidy$participantExtensionChoice))
 
 #Print the result
 if (null_values > 0) {
-  cat("Out of", nrow(data_main_analyses_tidy), "subjects, there are", null_values, "null values in the column 'participantExtensionChoice.'.\n")
+  cat("Out of", nrow(data_main_analyses_tidy), 
+      "subjects, there are", null_values, 
+      "null values in the column 'participantExtensionChoice.'.\n")
 } else {
-  cat("Out of", nrow(data_main_analyses_tidy), "subjects, there are no null values in the column 'participantExtensionChoice.'.\n")
+  cat("Out of", nrow(data_main_analyses_tidy), 
+      "subjects, there are no null values in the column 'participantExtensionChoice.'.\n")
 }
 
 #Remove rows that don't have a response in participantExtensionChoice.
-data_main_analyses_tidy <- data_main_analyses_tidy[!is.na(data_main_analyses_tidy$participantExtensionChoice), ]
+data_main_analyses_tidy <- 
+  data_main_analyses_tidy[!is.na(data_main_analyses_tidy$participantExtensionChoice), ]
   
 #Check if the data were removed. 
 null_values <- sum(is.na(data_main_analyses_tidy$participantExtensionChoice))
 
 #Print the result
 if (null_values > 0) {
-  cat("After data cleaning, there are", null_values, "null values in the column 'participantExtensionChoice' and", nrow(data_main_analyses_tidy), "total subjects. \n")
+  cat("After data cleaning, there are", 
+      null_values, "null values in the column 'participantExtensionChoice' and", nrow(data_main_analyses_tidy), "total subjects. \n")
 } else {
   cat("After data cleaning, there are no null values in the column 'participantExtensionChoice' and", nrow(data_main_analyses_tidy), "total subjects. \n")
 }
@@ -396,10 +389,14 @@ Now that the data are cleaned and in a tidy format, figure out whether participa
 #Go through each subject. 
 for(row_index in 1:nrow(data_main_analyses_tidy)) {
   #Get the exemplar the participant saw.
-  participant_exemplar <- unlist(strsplit(as.character(data_main_analyses_tidy[row_index, 'exemplarImg']), '_'))
+  participant_exemplar <- 
+    unlist(strsplit(as.character(data_main_analyses_tidy[row_index, 
+                                                         'exemplarImg']), '_'))
   
   #Get the extension the participant chose. 
-  participant_extension_choice <- unlist(strsplit(as.character(data_main_analyses_tidy[row_index, 'participantExtensionChoiceImage']), '_'))
+  participant_extension_choice <- 
+    unlist(strsplit(as.character(data_main_analyses_tidy[row_index, 
+                                                         'participantExtensionChoiceImage']), '_'))
   
   #Get the shape of the exemplar object and put into a new column called exemplarShape. 
   exemplar_shape <- participant_exemplar[3]
@@ -430,8 +427,24 @@ Finally, reorder the columns into a logical order and add information about the 
 
 ```{r Reorder Columns}
 data_main_analyses_tidy <- data_main_analyses_tidy |> 
-  mutate(participantLocation = 'US', experiment = 'USA_Adults', ageGroup = 'Adults', exclude = 0) |> 
-  select(subjectID, condition, experiment, ageGroup, participantLocation, exemplarName, exemplarImg, exemplarShape, participantOverlapAnswer, participantOverlapProperty, participantExtensionChoice, participantExtensionChoiceImage, extensionLeftImg, extensionCenterImg, extensionRightImg, extensionLeftImgAttnCheckResponse, extensionCenterImgAttnCheckResponse, extensionRightImgAttnCheckResponse, participantAge, participantBornUSA, participantChildhoodUSA, participantCurrentUSA, participantCurrentZipcode, participantChildhoodZipcode, participantFirstLanguage, participantCurrentLanguages, participantCurrentUrbanicity, participantChildhoodUrbanicity, exclude)
+  mutate(participantLocation = 'US', 
+         experiment = 'USA_Adults', 
+         ageGroup = 'Adults', 
+         exclude = 0) |> 
+  select(subject_id, condition, experiment, ageGroup, participantLocation, 
+         exemplarName, exemplarImg, exemplarShape, participantOverlapAnswer, 
+         participantOverlapProperty, 
+         participantExtensionChoice, 
+         participantExtensionChoiceImage, 
+         extensionLeftImg, extensionCenterImg, extensionRightImg, 
+         extensionLeftImgAttnCheckResponse, 
+         extensionCenterImgAttnCheckResponse, 
+         extensionRightImgAttnCheckResponse, 
+         participantAge, participantBornUSA, 
+         participantChildhoodUSA, participantCurrentUSA, 
+         participantCurrentZipcode, participantChildhoodZipcode, 
+         participantFirstLanguage, participantCurrentLanguages, 
+         participantCurrentUrbanicity, participantChildhoodUrbanicity, exclude)
 ```
 
 ### Results of control measures
@@ -456,7 +469,8 @@ original_data <- read.csv(original_data_path)
 table(original_data$Experiment) #Contains data from all 7 experiments.
 
 #Number of participants
-original_data |> group_by(AgeGroup,Location) %>% summarize(subjects=n(), .groups = 'drop')
+original_data |> group_by(AgeGroup,Location) |> 
+  summarize(subjects=n(), .groups = 'drop')
 
 #Stats by experiment
 summary_data_original <- original_data |> 
@@ -479,7 +493,8 @@ summary_data_original <- arrange(summary_data_original,ExpNo)
 
 #Results
 summary_data_original |> 
-  dplyr::select(ExpNo, Experiment, subjects, ShapeNo, MatNo, ColorNo, DistNo, ShapePerc, MatPerc, ColorPerc, DistPerc)
+  dplyr::select(ExpNo, Experiment, subjects, ShapeNo, MatNo, ColorNo, DistNo, 
+                ShapePerc, MatPerc, ColorPerc, DistPerc)
 
 #Reproduce the binomial test for Experiment 5: US_Turk_Adults.
 CurrExp <- summary_data_original |> 
