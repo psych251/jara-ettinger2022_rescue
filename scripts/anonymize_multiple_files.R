@@ -1,19 +1,19 @@
-# import libraries
+# Import libraries
 library(tidyverse)
 library(here)
 
 process_file <- function(path_to_data) {
   
-  # read data
+  # Read data
   df_raw = read_csv(here(path_to_data))
   
-  # create unique IDs
+  # Create unique IDs
   df_ids = df_raw %>% 
     group_by(PROLIFIC_PID) %>% 
     mutate(prolific_id = cur_group_id()) %>% 
     ungroup()
   
-  # anonymize
+  # Anonymize data
   df_anon = df_ids %>% 
     select(-c(PROLIFIC_PID, STUDY_ID, SESSION_ID,
               run_id, source_code_version, 
@@ -44,7 +44,7 @@ process_file <- function(path_to_data) {
 }
 
 # List of file paths
-file_paths <- list.files(path = "/Users/emilychen/GitHub/jara-ettinger2022_rescue/data_raw", 
+file_paths <- list.files(path = "PATH TO FILES", 
                          pattern = "*.csv", full.names = TRUE)
 
 # Process each file
